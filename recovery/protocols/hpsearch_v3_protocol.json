@@ -1,0 +1,298 @@
+{
+  "schema_version": "1.0.0",
+  "frozen": true,
+  "title": "Weak-form hyperparameter search v3: PIL-biased normalized quadrature recovery",
+  "purpose": "Freeze a separate validation-only search from the 40k Stage-1 checkpoint using PIL-biased collocation with normalized inverse-density quadrature, without changing the original recovery run or hpsearch v1 or v2 artifacts.",
+  "parent_protocol": {
+    "path": "tools/recovery/hpsearch_v2_protocol.json",
+    "sha256": "71d16efe54333886a27da1303b133628bb11ad1456596b4725705848880c4f67"
+  },
+  "resume_checkpoint": {
+    "path": "outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+    "step": 40000,
+    "sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183"
+  },
+  "data_split": {
+    "windows_train_val": "data/windows_train_val_8005.parquet",
+    "split": "same train/validation split as the original recovery protocol",
+    "val_fraction": 0.0628505443747938
+  },
+  "resume_step": 40000,
+  "max_step": 46000,
+  "screening_seeds": [1234],
+  "confirmation_seeds": [1, 42],
+  "confirmation_authorized_only_if_at_least_one_arm_does_not_strictly_peak_at_41000_with_monotonic_decline_thereafter": true,
+  "confirmation_authorization_rule": "Confirmation is authorized only if at least one completed screening arm does not strictly peak at 41000 with monotonic decline thereafter.",
+  "shared_frozen_settings": {
+    "weak_aggregation": "spatial_moment",
+    "physics_grad_scale": 0.10297600920673596,
+    "enable_gradient_clamping": false,
+    "lambda_phys": 0.06956521739130435,
+    "lambda_phys_schedule": [[0.0, 0.06956521739130435], [1.0, 0.06956521739130435]]
+  },
+  "stop_rule": "If every completed screening arm has best mean-val-TSS at 41000 and strictly lower mean at every later logged step 42000-46000, freeze as a failed PIL recovery, do not launch confirmation, do not open test.",
+  "stop_rule_spec": {
+    "completed_screening_arms": "every completed screening arm",
+    "best_step": 41000,
+    "later_logged_steps": {
+      "min_step": 42000,
+      "max_step": 46000,
+      "inclusive": true
+    },
+    "mean_val_tss_lower_at_every_later_step": true,
+    "mean_val_tss_strictly_lower_at_every_later_step": true,
+    "freeze_as": "failed PIL recovery",
+    "launch_confirmation": false,
+    "open_test": false
+  },
+  "selection": {
+    "split": "validation",
+    "uses_test": false,
+    "metric": "mean validation TSS over 6h/12h/24h",
+    "candidate_window": {
+      "min_step": 41000,
+      "max_step": 46000,
+      "inclusive": true
+    },
+    "tie_break": "higher 24h validation TSS then earlier step",
+    "screening_rule": "Screen all three arms with seed 1234, using the frozen validation metric and tie-break. Apply the explicit stop rule before any confirmation launch; otherwise freeze the winning arm and confirm it with seeds 1 and 42 only when the confirmation authorization condition is met.",
+    "confirmation_scope": "winning arm only"
+  },
+  "collocation": {
+    "sampling": "PIL-biased",
+    "quadrature": "normalized inverse-density",
+    "quad_weight_mode": "inverse_density",
+    "quad_weight_mode_condition": "alpha > 0",
+    "n_max": 4096,
+    "P_per_t": 512,
+    "use_adaptive_resampling": false,
+    "arm_difference": "Only collocation.alpha_start and collocation.alpha_end differ between arms; normalized inverse-density quadrature is required for each alpha-positive proposal."
+  },
+  "arms": [
+    {
+      "name": "pil_050",
+      "config": "src/configs/flare_pinn_hpsearch_v3_pil_050.yaml",
+      "checkpoint_dir": "outputs/checkpoints/weak_form_hpsearch_v3/{arm}/seed{seed}",
+      "weak_aggregation": "spatial_moment",
+      "physics_grad_scale": 0.10297600920673596,
+      "enable_gradient_clamping": false,
+      "lambda_phys": 0.06956521739130435,
+      "lambda_phys_schedule": [[0.0, 0.06956521739130435], [1.0, 0.06956521739130435]],
+      "lambda_phys_schedule_last_value": 0.06956521739130435,
+      "alpha_start": 0.5,
+      "alpha_end": 0.5,
+      "quad_weight_mode": "inverse_density",
+      "wandb_name": "flare_pinn_hpsearch_v3_pil_050"
+    },
+    {
+      "name": "pil_075",
+      "config": "src/configs/flare_pinn_hpsearch_v3_pil_075.yaml",
+      "checkpoint_dir": "outputs/checkpoints/weak_form_hpsearch_v3/{arm}/seed{seed}",
+      "weak_aggregation": "spatial_moment",
+      "physics_grad_scale": 0.10297600920673596,
+      "enable_gradient_clamping": false,
+      "lambda_phys": 0.06956521739130435,
+      "lambda_phys_schedule": [[0.0, 0.06956521739130435], [1.0, 0.06956521739130435]],
+      "lambda_phys_schedule_last_value": 0.06956521739130435,
+      "alpha_start": 0.75,
+      "alpha_end": 0.75,
+      "quad_weight_mode": "inverse_density",
+      "wandb_name": "flare_pinn_hpsearch_v3_pil_075"
+    },
+    {
+      "name": "pil_released",
+      "config": "src/configs/flare_pinn_hpsearch_v3_pil_released.yaml",
+      "checkpoint_dir": "outputs/checkpoints/weak_form_hpsearch_v3/{arm}/seed{seed}",
+      "weak_aggregation": "spatial_moment",
+      "physics_grad_scale": 0.10297600920673596,
+      "enable_gradient_clamping": false,
+      "lambda_phys": 0.06956521739130435,
+      "lambda_phys_schedule": [[0.0, 0.06956521739130435], [1.0, 0.06956521739130435]],
+      "lambda_phys_schedule_last_value": 0.06956521739130435,
+      "alpha_start": 0.5,
+      "alpha_end": 0.95,
+      "quad_weight_mode": "inverse_density",
+      "wandb_name": "flare_pinn_hpsearch_v3_pil_released"
+    }
+  ],
+  "wandb": {
+    "optional": true,
+    "environment_variable": "WANDB_API_KEY",
+    "when_api_key_exists": "optional",
+    "local_logs_authoritative": true,
+    "must_never_block_run": true,
+    "policy": "If WANDB_API_KEY exists, W&B may be used, but local logs remain authoritative and W&B failure or unavailability must never block a run."
+  },
+  "original_recovery_artifacts": {
+    "retained": true,
+    "never_overwritten": true,
+    "original_locked_run": {
+      "min_step": 44000,
+      "max_step": 46000,
+      "retained": true
+    },
+    "files": [
+      {
+        "path": "tools/recovery/weak_form_correction_protocol.json",
+        "sha256": "2b353b55b1cf14005bf30bd9b5dce6561ac18e5b6e38fea6dfa730a0cf4674a2",
+        "retained": true
+      },
+      {
+        "path": "src/configs/flare_pinn_weak_corrected.yaml",
+        "sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/preflight_scale.json",
+        "sha256": "a496f1ad35341fff8c00452e658b9d3dc64b871fcc9f49dd8908b7110933f2aa",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/run_lock.json",
+        "sha256": "f4e06f76dccb2c24f95b8acd32f9ef05923023e4cd369b7948dffbe08faa1aab",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/checkpoint_selection.json",
+        "sha256": "430485650f2c1cdf051c3deb6e6391008f96a4ce0cde48fd3ea5815c99d6c2d7",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/completion_receipt.json",
+        "sha256": "14726ccd8ae0bf0b456e2f58c9b4897fb035c7789dcf54ff1b8dad120594245b",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/data_integrity_receipt.json",
+        "sha256": "d2e93c0f233b72ab1090866aee2f322b6d074c68b823a2bcac93a9d9142cf0cd",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/seed1234_retry_receipt.json",
+        "sha256": "96e6ceef3ccfd8d6405cde375b79d6d39722d5a3f8471a1bb0b38f70e7c23134",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/seed1234_smoke_failure.json",
+        "sha256": "1303b6d6e130cc7a61a4adb825bcb7ac3d3c00139e378de6767e075aad232d68",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/seed1_terminal_receipt.json",
+        "sha256": "eba24a1a13d6b5cd8ab6b3baab7a82c62ffe88ce08944c0e3b512fcdeaf3f71c",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/seed42_terminal_receipt.json",
+        "sha256": "fbcb8172a867a61dddd640dec13512316ca2721cac3433226c1144e417678e80",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/corrected_test_results.json",
+        "sha256": "5f7ba29e92e1efb2616574a945f7d2d8499d2a9a48c068a9510c2b32333254ea",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/corrected_test_results.csv",
+        "sha256": "f3359e3216372e75ca342dc290cee62ee5b2577baad0f337e54ada41380cfb74",
+        "retained": true
+      }
+    ],
+    "directories": [
+      "outputs/checkpoints/weak_form_corrected/seed1234",
+      "outputs/checkpoints/weak_form_corrected/seed1",
+      "outputs/checkpoints/weak_form_corrected/seed42",
+      "outputs/checkpoints/weak_form/final",
+      "outputs/checkpoints/weak_form/seed1",
+      "outputs/checkpoints/weak_form/seed42",
+      "outputs/recovery/logs",
+      "outputs/recovery/test_eval"
+    ]
+  },
+  "v1_artifacts": {
+    "retained": true,
+    "never_overwritten": true,
+    "files": [
+      {
+        "path": "tools/recovery/hpsearch_v1_protocol.json",
+        "sha256": "2c9ce2559181a560158b06943f9c434a73e7372d42afa7d8b88104d4ce5102e6",
+        "retained": true
+      },
+      {
+        "path": "src/configs/flare_pinn_hpsearch_v1_lambda_cap.yaml",
+        "sha256": "0b1987c050564feec758bf8f315441f4aa3461aabf7d42c030ea9d581f966413",
+        "retained": true
+      },
+      {
+        "path": "src/configs/flare_pinn_hpsearch_v1_half_scale.yaml",
+        "sha256": "150340abac442a430568ba85d89314bd77ff9fa5024f54f4d699003ef50b832c",
+        "retained": true
+      },
+      {
+        "path": "src/configs/flare_pinn_hpsearch_v1_both.yaml",
+        "sha256": "f9eb654d137067c1bf3fe8eafe645eab8817b267e3950c23261d8f89d5bb90a7",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/hpsearch_v1/data_integrity_receipt.json",
+        "sha256": "c25e4afd4ef9f2d9380718176651671b1692d4c6f36d6db6fe5aae33e90101b5",
+        "retained": true
+      },
+      {
+        "path": "outputs/recovery/hpsearch_v1/screening_receipt.json",
+        "sha256": "7087cfda45e16e196837a5941926cd775d3073fc108ff43dbc28e5528f42eafb",
+        "retained": true
+      }
+    ],
+    "directories": [
+      "outputs/checkpoints/weak_form_hpsearch_v1",
+      "outputs/recovery/hpsearch_v1"
+    ]
+  },
+  "v2_artifacts": {
+    "retained": true,
+    "never_overwritten": true,
+    "files": [
+      {
+        "path": "tools/recovery/hpsearch_v2_protocol.json",
+        "sha256": "71d16efe54333886a27da1303b133628bb11ad1456596b4725705848880c4f67",
+        "retained": true
+      },
+      {
+        "path": "src/configs/flare_pinn_hpsearch_v2_hold_lam_040k.yaml",
+        "sha256": "8b7741fe57cdd319ccd10d90785cefd52718f29c722c5c58211066f705c86612",
+        "retained": true
+      },
+      {
+        "path": "src/configs/flare_pinn_hpsearch_v2_hold_lam_005.yaml",
+        "sha256": "d6f5dfa7bcd96e02f3dba3a4b16e9385b525477f2a77ff96e1e1939fbeb20527",
+        "retained": true
+      },
+      {
+        "path": "src/configs/flare_pinn_hpsearch_v2_hold_lam_010.yaml",
+        "sha256": "1f3b5c9d8dacca8e85e16a1027e41bd4eda8fe01d30c08bdc0a25a340964d29b",
+        "retained": true
+      }
+    ],
+    "directories": [
+      "outputs/checkpoints/weak_form_hpsearch_v2",
+      "outputs/recovery/hpsearch_v2"
+    ]
+  },
+  "test_evaluation": {
+    "only_after_confirmation": true,
+    "only_after_validation_selection_is_frozen": true,
+    "n_evaluations": 1,
+    "per": "selected confirmation checkpoint",
+    "no_test_access_during_search": true
+  },
+  "budget_cap_usd": 15,
+  "prohibited": [
+    "Changing the resume checkpoint, split, validation fraction, seeds, candidate window, arm definitions, constant lambda schedule, collocation quadrature, or step budget after this protocol is frozen.",
+    "Selecting an arm or checkpoint with anything other than the frozen validation rule.",
+    "Launching confirmation unless the frozen confirmation authorization condition is met.",
+    "Accessing the test split during screening or confirmation search.",
+    "Opening test evaluation when the explicit stop rule triggers.",
+    "Overwriting, deleting or relabelling any original recovery artifact, hpsearch v1 artifact or hpsearch v2 artifact."
+  ]
+}

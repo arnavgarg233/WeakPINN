@@ -1,0 +1,32 @@
+{
+  "32ww": {
+    "file": "frap_32ww_010.mat",
+    "dataset_index": 10,
+    "D_ls_pixel2_per_s": 157.5255,
+    "D_ls_m2_per_s": 9.093883e-11,
+    "D_ls_um2_per_s": 90.93883,
+    "selection_method": "rank-based composite, lowest mean rank across 5 quality metrics"
+  },
+  "56ww": {
+    "file": "frap_56ww_005.mat",
+    "dataset_index": 5,
+    "D_ls_pixel2_per_s": 16.36641,
+    "D_ls_m2_per_s": 9.448266e-12,
+    "D_ls_um2_per_s": 9.448266,
+    "selection_method": "rank-based composite, lowest mean rank across 5 quality metrics"
+  },
+  "metadata": {
+    "pixel_size_m": 7.598e-07,
+    "pixel_size_um": 0.7598,
+    "time_per_frame_s": 0.265,
+    "T_postbleach_frames": 100,
+    "recovery_window_s": 26.5,
+    "FoV_um": 194.5088,
+    "bleach_radius_um": 15.0,
+    "bleach_diameter_um": 30.0,
+    "image_shape_HxW": [
+      256,
+      256
+    ]
+  }
+}

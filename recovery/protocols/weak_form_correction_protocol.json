@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0.0",
+  "frozen": true,
+  "title": "Weak-form aggregation correction: frozen recovery protocol",
+  "purpose": "Re-run Stage 2 with the integrated (per-time spatial moment) weak-form loss while keeping the released pointwise arm intact for comparison.",
+  "base_commit": "dfe4aa0994608a3d9c245e91f64a31c79243929d",
+  "base_repository": "Flare-PINN/Flare-PINN",
+  "dataset": {
+    "doi": "10.5281/zenodo.20222404",
+    "windows_train_val": "data/windows_train_val_8005.parquet",
+    "windows_test": "data/windows_test_15.parquet",
+    "consolidated_dir": "~/flare_data/consolidated",
+    "note": "No dataset file, split, window list or label is modified by this correction."
+  },
+  "checkpoints": [
+    {
+      "role": "stage1_resume",
+      "path": "outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+      "step": 40000,
+      "sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183",
+      "description": "Stage-1 no-physics classifier at 40k. Both Stage-2 arms resume from this exact file."
+    },
+    {
+      "role": "legacy_weak_44k",
+      "path": "outputs/checkpoints/weak_form/final/checkpoint_step_0044000.pt",
+      "step": 44000,
+      "sha256": "f192c2f8dbd1779ac7f8392eb0d5f7c54bc80a6cb75479476d9484803625e37e",
+      "description": "Released paper-lock weak-form checkpoint, trained with weak_aggregation=local_integrand_mse. Retained unchanged."
+    }
+  ],
+  "code_change": {
+    "config_key": "physics.weak_aggregation",
+    "legacy_value": "local_integrand_mse",
+    "corrected_value": "spatial_moment",
+    "default_value": "local_integrand_mse",
+    "backward_compatibility": "Configs and checkpoints that do not set physics.weak_aggregation keep the released pointwise behaviour bit-for-bit; this is pinned by golden-value tests in tests/test_weak_form_physics.py.",
+    "touched_files": [
+      "src/models/pinn/weak_form.py",
+      "src/models/pinn/physics.py",
+      "src/models/pinn/hybrid_model.py",
+      "src/models/pinn/config.py",
+      "src/models/pinn/__init__.py",
+      "src/train.py",
+      "src/configs/flare_pinn_weak_corrected.yaml"
+    ],
+    "estimator_note": "The corrected loss is the square of a finite Monte Carlo estimate of each spatial moment, so it carries finite-sample quadrature variance that does not vanish at the exact solution; no variance correction, split-half U-statistic or deterministic grid is used.",
+    "pointwise_operations_disabled_in_corrected_mode": [
+      "physics.enable_gradient_clamping (clamps dB/dx, dB/dy, dB/dt pointwise)",
+      "physics.use_causal_weighting (reweights residuals pointwise)",
+      "collocation.use_adaptive_resampling (residual-biased resampling)"
+    ],
+    "nonfinite_policy": "A non-finite spatial moment raises FloatingPointError with the count before any clipping or squaring; it is never replaced by zero. Finite clipping of the formed moment is applied via physics.weak_moment_clip."
+  },
+  "stage2_run": {
+    "config": "src/configs/flare_pinn_weak_corrected.yaml",
+    "weak_aggregation": "spatial_moment",
+    "resume_checkpoint": "outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+    "resume_step": 40000,
+    "max_step": 46000,
+    "seeds": [1234, 1, 42],
+    "checkpoint_dirs": {
+      "1234": "outputs/checkpoints/weak_form_corrected/seed1234",
+      "1": "outputs/checkpoints/weak_form_corrected/seed1",
+      "42": "outputs/checkpoints/weak_form_corrected/seed42"
+    },
+    "commands": [
+      "python src/train.py --config src/configs/flare_pinn_weak_corrected.yaml --resume outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt --seed 1234 --checkpoint-dir outputs/checkpoints/weak_form_corrected/seed1234",
+      "python src/train.py --config src/configs/flare_pinn_weak_corrected.yaml --resume outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt --seed 1 --checkpoint-dir outputs/checkpoints/weak_form_corrected/seed1",
+      "python src/train.py --config src/configs/flare_pinn_weak_corrected.yaml --resume outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt --seed 42 --checkpoint-dir outputs/checkpoints/weak_form_corrected/seed42"
+    ],
+    "device": "cuda",
+    "val_fraction": 0.0628505443747938,
+    "val_fraction_rationale": "1905 / (28405 + 1905): the open Zenodo train/val CSVs are already filtered, so the released 0.0588 would carve a different validation split from them.",
+    "collocation": {
+      "sampling": "uniform",
+      "alpha_start": 0.0,
+      "alpha_end": 0.0,
+      "n_max": 4096,
+      "P_per_t": 512,
+      "use_adaptive_resampling": false,
+      "rationale": "The signed spatial moment estimates a uniform-domain integral. PIL-biased unweighted samples do not. If a biased proposal is ever used, normalized inverse-density quadrature weights are required and are reported as quad_weight_mode='inverse_density'."
+    },
+    "unchanged_from_released_stage2": [
+      "lambda_phys_schedule",
+      "optimizer, learning rate, scheduler, EMA",
+      "architecture and encoder",
+      "data splits, sampler and batch size",
+      "K = 3 Fourier test-function ensemble and component-matched test functions"
+    ]
+  },
+  "preflight": {
+    "command": "python tools/recovery/preflight_scale_check.py --config src/configs/flare_pinn_weak_corrected.yaml --checkpoint outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt --output outputs/recovery/preflight_scale.json",
+    "purpose": "Loss-scale matching only: report legacy and corrected physics loss plus classifier and physics gradient norms on one frozen window before the corrected run starts.",
+    "scale_rule": "corrected physics.physics_grad_scale = 0.08 * (legacy unscaled physics gradient norm / corrected unscaled physics gradient norm), measured on window_index 0 with seed 1234 from data/windows_train_val_8005.parquet. Frozen before any outcome is observed. The preflight aborts if either gradient norm is non-finite or non-positive, and the emitted selected_physics_grad_scale is written into the corrected config before the run starts.",
+    "scale_rule_is_not_outcome_tuning": true,
+    "checkpoint_loading": "model_state_dict, strict=True; a partial load aborts.",
+    "determinism": "The whole model, including the GRU encoder, runs in training mode: cuDNN refuses RNN backward from eval mode and the preflight differentiates through the encoder. Dropout is therefore active and the two arms are matched by reseeding CPU and every available accelerator RNG with the declared seed immediately before each arm's encode and physics call; the arms share the same architecture, so the same seed gives the same dropout masks.",
+    "sampling": "Each arm uses its own declared collocation sampling policy, so the collocation point sets are not identical across arms; the window, the seed and the loaded weights are identical.",
+    "not_for": "Selecting, tuning or filtering any outcome.",
+    "dry_run": "python tools/recovery/preflight_scale_check.py --dry-run",
+    "attempts": [
+      {
+        "attempt": 1,
+        "device": "cuda",
+        "outcome": "failed",
+        "error": "RuntimeError: cudnn RNN backward can only be called in training mode",
+        "numbers_produced": false,
+        "selected_physics_grad_scale": null,
+        "cause": "The preflight put the model in eval mode and restored only the physics submodule to train mode, then differentiated through the GRU encoder. cuDNN does not permit RNN backward from eval mode.",
+        "resolution": "The preflight now keeps the whole model in training mode and matches the arms by reseeding CPU and every accelerator RNG immediately before each arm's encode and physics call. The frozen scale formula, the window, the seed, the configs and strict loading are unchanged.",
+        "note": "This attempt produced no scale and is retained as a failed attempt, not as a result."
+      },
+      {
+        "attempt": 2,
+        "device": "cuda",
+        "outcome": "passed",
+        "numbers_produced": true,
+        "window_index": 0,
+        "seed": 1234,
+        "checkpoint_sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183",
+        "checkpoint_state_dict_key": "model_state_dict",
+        "checkpoint_strict": true,
+        "legacy_unscaled_physics_gradient_norm": 118.49177931283872,
+        "corrected_unscaled_physics_gradient_norm": 92.05389117378057,
+        "loss_scale_ratio": 1.2872001150841994,
+        "original_physics_grad_scale": 0.08,
+        "formula": "0.08 * legacy_unscaled_physics_gradient_norm / corrected_unscaled_physics_gradient_norm",
+        "selected_physics_grad_scale": 0.10297600920673596,
+        "preflight_sha256": "a496f1ad35341fff8c00452e658b9d3dc64b871fcc9f49dd8908b7110933f2aa",
+        "run_lock_sha256": "f4e06f76dccb2c24f95b8acd32f9ef05923023e4cd369b7948dffbe08faa1aab",
+        "config_sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5",
+        "n_time_groups": 49,
+        "quad_weight_mode": "uniform",
+        "nonfinite_moment_count": 0
+      }
+    ]
+  },
+  "checkpoint_selection": {
+    "split": "validation",
+    "uses_test_split": false,
+    "metric": "mean validation TSS over the 6h, 12h and 24h horizons",
+    "candidate_window": {"min_step": 44000, "max_step": 46000},
+    "tie_break": "higher 24h validation TSS, then the earlier step",
+    "thresholds": "Distance-to-corner operating points fitted on validation only, frozen before test evaluation",
+    "note": "Identical rule to outputs/finalists/flare_pinn_paper_lock.json, applied independently to each arm."
+  },
+  "test_evaluation": {
+    "split": "data/windows_test_15.parquet",
+    "touched_before_selection": false,
+    "n_evaluations": 1,
+    "thresholds_source": "validation",
+    "note": "The test split is evaluated once per arm, after the validation-only selection is frozen."
+  },
+  "legacy_arm": {
+    "retained": true,
+    "config": "src/configs/flare_pinn_final.yaml",
+    "weak_aggregation": "local_integrand_mse",
+    "checkpoints_kept": [
+      "outputs/checkpoints/weak_form/final/checkpoint_step_0044000.pt",
+      "outputs/checkpoints/weak_form/seed1/checkpoint_step_0044000.pt",
+      "outputs/checkpoints/weak_form/seed42/checkpoint_step_0045000.pt"
+    ],
+    "results_kept": "No file under final_results/ is modified or deleted by this correction.",
+    "note": "The released arm stays in the record as the pointwise post-IBP integrand variant; it is not relabelled and not withdrawn."
+  },
+  "posthoc_evaluation": {
+    "command": "python tools/analysis/eval_weak_moments.py --checkpoint weak_legacy outputs/checkpoints/weak_form/final/checkpoint_step_0044000.pt src/configs/flare_pinn_final.yaml",
+    "estimand": "Raw integrated weak moments on one fixed uniform collocation set, with no checkpoint-specific normalization, no clipping and no importance weighting.",
+    "supported_families": ["weak_legacy", "weak_corrected", "strong", "no_physics"],
+    "causality": "Differences between checkpoints are descriptive only. The arms differ in training objective, so a difference in measured weak moments does not establish that the objective caused any downstream metric difference."
+  },
+  "outcome_thresholds": null,
+  "outcome_thresholds_note": "There is no prespecified outcome threshold. This protocol freezes the procedure (base commit, data, seeds, resume point, step budget, selection rule, single test evaluation, legacy arm retention). It deliberately does not state what result would count as success, and no result may be relabelled after the fact.",
+  "prohibited": [
+    "Changing weak_aggregation, alpha_start/alpha_end, seeds, resume step or max step after the corrected run has started",
+    "Re-running the preflight to obtain a different physics_grad_scale after seeing any training or validation result",
+    "Selecting a checkpoint using the test split",
+    "Re-running the test evaluation after seeing it",
+    "Deleting, overwriting or relabelling the released legacy arm",
+    "Tuning any hyperparameter using the preflight or post-hoc weak-moment numbers"
+  ]
+}

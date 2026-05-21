@@ -1,0 +1,360 @@
+{
+  "schema_version": "efficacy_v5/1",
+  "frozen": true,
+  "title": "V5 exploratory validation-only efficacy protocol",
+  "purpose": "Compare no physics, calibrated legacy-basis physics, and calibrated tensor-basis physics from the same Stage-1 state using one frozen validation endpoint.",
+  "exploratory": true,
+  "validation_only": true,
+  "confirmatory": false,
+  "test_access": false,
+  "test_access_under_any_branch": false,
+  "source_config": {
+    "path": "src/configs/flare_pinn_weak_corrected.yaml",
+    "sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5",
+    "copy_policy": "Copy all fields and apply only the efficacy-v5 deltas frozen below."
+  },
+  "resume_checkpoint": {
+    "path": "outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+    "step": 40000,
+    "sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183",
+    "optimizer_lr": 1.2997162960954744e-06,
+    "read_only": true
+  },
+  "data": {
+    "train_validation_parquet": {
+      "path": "data/windows_train_val_8005.parquet",
+      "sha256": "39adb4e5a9211736805e1ee7f16705ba15cf92c43012b59e2b8459cafd5f6658",
+      "canonical_rows": 30310,
+      "train_rows": 28405,
+      "validation_rows": 1905,
+      "read_only": true
+    },
+    "validation_parquet": {
+      "path": "data/windows_val_5.parquet",
+      "sha256": "7dba3e03066a890a17ca0c4cca41ac3141927271ca8dfb756cec94fded61d57e",
+      "rows": 1905,
+      "split": "validation",
+      "read_only": true
+    },
+    "calibration_window_spec": {
+      "path": "tools/recovery/v5_gradient_windows_v2.json",
+      "sha256": "68bdfe4a7aef6ffc6959d4459dd7e108678686d5bd6c7497d16f27a36546d462",
+      "windows": 16,
+      "read_only": true
+    },
+    "consolidated_manifest": {
+      "path": "/workspace/flare_data/consolidated/manifest.pkl",
+      "sha256": "b692385d4c0eaa1b2b425aeb9808dd7e50066021e658f037392ec3faf4ee18aa",
+      "records": 3647,
+      "expected_npz_count": 3647,
+      "read_only": true
+    },
+    "partition_rule": "Filter has_noaa_mapping, sort by t0 with the canonical loader ordering, and split before row 28405."
+  },
+  "calibration_acceptance": {
+    "protocol": {
+      "path": "tools/recovery/gradient_calibration_v5_protocol_v5.json",
+      "sha256": "01bdfce57a27e8a50ae56a88701ec79a9636224482398a66fc1b480bca189e9b"
+    },
+    "pair_acceptance": "outputs/recovery/gradient_calibration_v5/pair_acceptance.json",
+    "pair_acceptance_sha256": "31e43011bd8b132db91b6dbc4b5df736be229166001098e451ab9394b222f6b6",
+    "acceptance_digest": "c5b0ce66a0fd37cddc34fa21a045c75c2c1e2c0a9cba7101f8c60a94e1562971",
+    "accepted": true,
+    "target_effective_gradient_ratio": 0.25,
+    "operating_lambda": 0.06956521739130435,
+    "legacy_diagonal": {
+      "path": "outputs/recovery/gradient_calibration_v5/legacy_diagonal.json",
+      "sha256": "9283b10d53fd6c4cf0a9539641c4953375593b9bafd66416b2a3da91dada18f6",
+      "physics_grad_scale": 0.04029105864893679
+    },
+    "tensor_product": {
+      "path": "outputs/recovery/gradient_calibration_v5/tensor_product.json",
+      "sha256": "0d70596833ba520d3fd981146917be234658ad32c392809f1713a107e9ee6624",
+      "physics_grad_scale": 0.04437884540685923
+    },
+    "matched_evidence": {
+      "identities_sha256": "05917010ad3766790daf112f5a7707e8b982ad7e205a3c12d577bd1dc6e9f34a",
+      "coordinate_digest": "28ac96fcc8833898701e77d9204f5260d02d67d1c3b211014e9f5e3c32f9590f",
+      "sampling_digest": "cf847c7d2bf9ac4565eaa52feebe9b4f8e47ee7762b6130d9459fa82b862ccd8",
+      "frozen_state_sha256": "2d5b21e738f97705e2fedddb75248d045d2657a59b9733ef859861993dc6618b"
+    }
+  },
+  "shared_frozen_settings": {
+    "device": "cuda",
+    "seed": 1234,
+    "resume_step": 40000,
+    "max_step": 46000,
+    "physics": {
+      "enable": true,
+      "weak_aggregation": "spatial_moment",
+      "fail_closed": true,
+      "raw_loss_clip": 0.0,
+      "weak_moment_clip": 0.0,
+      "weak_fourier_modes": 3,
+      "enable_gradient_clamping": false,
+      "use_gradnorm": false,
+      "use_lra": false,
+      "use_causal_training": true,
+      "causal_decay": 1.0
+    },
+    "collocation": {
+      "alpha_start": 0.0,
+      "alpha_end": 0.0,
+      "stratify_by_time": true,
+      "rng_seed_offset": 104729,
+      "use_adaptive_resampling": false,
+      "n_max": 4096
+    },
+    "train": {
+      "steps": 46000,
+      "lr": 1.2997162960954744e-06,
+      "scheduler_type": "constant",
+      "resume_optimizer_state": true,
+      "resume_ema_state": true,
+      "resume_scheduler_state": false,
+      "resume_new_stage": true,
+      "resume_strict": true,
+      "expected_resume_lr": 1.2997162960954744e-06,
+      "expected_resume_lr_tol": 1e-12,
+      "enable_plateau_rollback": false,
+      "strict_step_alignment": true,
+      "auto_restart_every": 0,
+      "selection_metric": "mean_tss",
+      "eval_every": 3000,
+      "checkpoint_every": 3000,
+      "keep_last_n_checkpoints": 3,
+      "gradient_accumulation_steps": 8,
+      "use_ema": true,
+      "ema_decay": 0.995
+    },
+    "wandb_enabled": false
+  },
+  "declared_config_deltas_from_source": [
+    "physics.weak_moment_clip",
+    "physics.fail_closed",
+    "physics.raw_loss_clip",
+    "physics.weak_test_basis",
+    "physics.weak_fourier_modes",
+    "physics.physics_grad_scale",
+    "physics.use_gradnorm",
+    "physics.lambda_phys_schedule",
+    "collocation.stratify_by_time",
+    "collocation.rng_seed_offset",
+    "train.lr",
+    "train.eval_every",
+    "train.checkpoint_every",
+    "train.checkpoint_dir",
+    "train.keep_last_n_checkpoints",
+    "train.auto_restart_every",
+    "train.resume_optimizer_state",
+    "train.resume_ema_state",
+    "train.resume_scheduler_state",
+    "train.resume_new_stage",
+    "train.expected_resume_lr",
+    "train.expected_resume_lr_tol",
+    "train.resume_strict",
+    "train.strict_step_alignment",
+    "train.enable_plateau_rollback",
+    "train.selection_metric",
+    "train.scheduler.type",
+    "wandb.enabled",
+    "wandb.name"
+  ],
+  "arms": [
+    {
+      "name": "no_physics",
+      "config": "src/configs/flare_pinn_v5_no_physics.yaml",
+      "config_sha256": "e3828413fffee0c3b37af626bc8ca3789c61848352f2cfcf93e60dfce49f46fa",
+      "weak_test_basis": "legacy_diagonal",
+      "physics_grad_scale": 0.04029105864893679,
+      "physics_grad_scale_relevance": "irrelevant because lambda is zero",
+      "lambda_phys_schedule": [[0.0, 0.0], [1.0, 0.0]],
+      "checkpoint_dir": "outputs/checkpoints/efficacy_v5/no_physics/seed1234"
+    },
+    {
+      "name": "lowdose_legacy",
+      "config": "src/configs/flare_pinn_v5_lowdose_legacy.yaml",
+      "config_sha256": "85b29e9d5ace25fef02d8d7b15bb2000172ae77ef6aa983e55d408adda51c80f",
+      "weak_test_basis": "legacy_diagonal",
+      "physics_grad_scale": 0.04029105864893679,
+      "lambda_phys_schedule": [[0.0, 0.06956521739130435], [1.0, 0.06956521739130435]],
+      "target_effective_gradient_ratio": 0.25,
+      "checkpoint_dir": "outputs/checkpoints/efficacy_v5/lowdose_legacy/seed1234"
+    },
+    {
+      "name": "lowdose_tensor",
+      "config": "src/configs/flare_pinn_v5_lowdose_tensor.yaml",
+      "config_sha256": "bea7af4384de76aab9cafb87c0593407a2ad3da60453ebd3a9c6f7cfb8b749af",
+      "weak_test_basis": "tensor_product",
+      "physics_grad_scale": 0.04437884540685923,
+      "lambda_phys_schedule": [[0.0, 0.06956521739130435], [1.0, 0.06956521739130435]],
+      "target_effective_gradient_ratio": 0.25,
+      "checkpoint_dir": "outputs/checkpoints/efficacy_v5/lowdose_tensor/seed1234"
+    }
+  ],
+  "execution": {
+    "mode": "sequential",
+    "arm_order": ["no_physics", "lowdose_legacy", "lowdose_tensor"],
+    "parallel_arms": false,
+    "working_directory": "/workspace/Flare-PINN",
+    "environment": "WANDB_MODE=disabled WANDB_DISABLED=true",
+    "preflight": [
+      "Verify every pinned hash and row count before the first launch.",
+      "Verify CUDA is selected and the resume step is exactly 40000.",
+      "Verify the restored optimizer LR is exactly 1.2997162960954744e-06 within absolute tolerance 1e-12.",
+      "Verify no test path is present or accessible from any command."
+    ],
+    "launch_commands": {
+      "no_physics": "WANDB_MODE=disabled WANDB_DISABLED=true python src/train.py --config src/configs/flare_pinn_v5_no_physics.yaml --resume outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+      "lowdose_legacy": "WANDB_MODE=disabled WANDB_DISABLED=true python src/train.py --config src/configs/flare_pinn_v5_lowdose_legacy.yaml --resume outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+      "lowdose_tensor": "WANDB_MODE=disabled WANDB_DISABLED=true python src/train.py --config src/configs/flare_pinn_v5_lowdose_tensor.yaml --resume outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt"
+    },
+    "instruction": "Launch exactly one arm at a time in frozen order. Do not start the next arm until the current arm and its required validation archive are complete and the cost gate still permits continuation."
+  },
+  "evaluation": {
+    "tool": "tools/validation/batch_validate_checkpoints.py",
+    "tool_sha256": "c26034f56d1531273c28bc3bd55ba852bb3466c1c4f75ae5d17a187d0034be82",
+    "underlying_validator_sha256": "5c7446a02d44dd841ba4522c1b46e0c52ad2cfde0d52a066eaf02180ad23f874",
+    "data": "data/windows_val_5.parquet",
+    "split": "validation",
+    "numbered_checkpoints_only": true,
+    "best_model_prohibited": true,
+    "threshold_sweep_n": 1024,
+    "metric": "mean sweep-TSS over 6h, 12h, and 24h",
+    "weight_modes": {
+      "ema": "required primary at step 46000",
+      "raw": "required diagnostic only"
+    },
+    "event_lattice": [
+      {
+        "step": 40000,
+        "role": "common_anchor",
+        "weights": ["ema"],
+        "source": "stored_reference"
+      },
+      {
+        "step": 43000,
+        "role": "diagnostic",
+        "weights": ["raw", "ema"],
+        "source": "batch_evaluator"
+      },
+      {
+        "step": 46000,
+        "role": "sole_primary",
+        "weights": ["raw", "ema"],
+        "primary_weights": "ema",
+        "source": "batch_evaluator"
+      }
+    ],
+    "anchor_reference": {
+      "status": "stored common reference only",
+      "step": 40000,
+      "weights": "ema",
+      "validation_windows": 1905,
+      "metric": "sweep_tss",
+      "threshold_sweep_n": 1024,
+      "mean_tss": 0.8061295869851035,
+      "per_horizon_tss": [0.8407459922449216, 0.7992864898402356, 0.7783562788701535],
+      "horizons_hours": [6, 12, 24],
+      "source": "outputs/checkpoints/benchmark_classifier/validation_results/checkpoint_step_0040000_validation.npz"
+    },
+    "primary_endpoint": {
+      "step": 46000,
+      "weights": "ema",
+      "metric": "mean sweep-TSS over 6h, 12h, and 24h",
+      "sole_primary": true
+    },
+    "commands": {
+      "no_physics": "python tools/validation/batch_validate_checkpoints.py --config src/configs/flare_pinn_v5_no_physics.yaml --data data/windows_val_5.parquet --checkpoint outputs/checkpoints/efficacy_v5/no_physics/seed1234/checkpoint_step_0043000.pt outputs/checkpoints/efficacy_v5/no_physics/seed1234/checkpoint_step_0046000.pt --output-dir outputs/recovery/efficacy_v5/no_physics/validation",
+      "lowdose_legacy": "python tools/validation/batch_validate_checkpoints.py --config src/configs/flare_pinn_v5_lowdose_legacy.yaml --data data/windows_val_5.parquet --checkpoint outputs/checkpoints/efficacy_v5/lowdose_legacy/seed1234/checkpoint_step_0043000.pt outputs/checkpoints/efficacy_v5/lowdose_legacy/seed1234/checkpoint_step_0046000.pt --output-dir outputs/recovery/efficacy_v5/lowdose_legacy/validation",
+      "lowdose_tensor": "python tools/validation/batch_validate_checkpoints.py --config src/configs/flare_pinn_v5_lowdose_tensor.yaml --data data/windows_val_5.parquet --checkpoint outputs/checkpoints/efficacy_v5/lowdose_tensor/seed1234/checkpoint_step_0043000.pt outputs/checkpoints/efficacy_v5/lowdose_tensor/seed1234/checkpoint_step_0046000.pt --output-dir outputs/recovery/efficacy_v5/lowdose_tensor/validation"
+    },
+    "diagnostic_exclusion": "Step 43000 and every raw-weight result are diagnostics and cannot replace, average with, or modify the sole primary endpoint."
+  },
+  "decision": {
+    "timing": "Apply only after all three matched arms have complete step-46000 EMA primary results and all failure gates pass.",
+    "mde_mean_tss": 0.009,
+    "comparison_direction": "candidate minus comparator",
+    "differences": {
+      "T-anchor": "tensor_46000_ema - anchor_40000_ema",
+      "T-N": "tensor_46000_ema - no_physics_46000_ema",
+      "T-L": "tensor_46000_ema - legacy_46000_ema",
+      "L-anchor": "legacy_46000_ema - anchor_40000_ema",
+      "L-N": "legacy_46000_ema - no_physics_46000_ema"
+    },
+    "branches": [
+      {
+        "priority": 1,
+        "if": "T-anchor >= 0.009 and T-N >= 0.009 and T-L >= 0.009",
+        "result": "tensor_advances",
+        "protocol_action": "stop; separately freeze confirmation before any additional run"
+      },
+      {
+        "priority": 2,
+        "if": "tensor gate fails and L-anchor >= 0.009 and L-N >= 0.009",
+        "result": "legacy_advances",
+        "protocol_action": "stop; separately freeze confirmation before any additional run"
+      },
+      {
+        "priority": 3,
+        "if": "both advancement gates fail",
+        "result": "stop",
+        "protocol_action": "stop without confirmation or test"
+      }
+    ],
+    "launch_confirmation": false,
+    "launch_test": false
+  },
+  "matching_and_failure_gates": {
+    "training_sampling_match_all_arms": true,
+    "training_sampling_expectation": "The same seed, Stage-1 model, optimizer state, EMA state, data order, architecture, and shared config fields must produce matched training minibatch identities and shared stochastic draws across all arms.",
+    "physics_coordinate_and_collocation_match_physics_arms": true,
+    "physics_matching_expectation": "The legacy and tensor physics arms must use identical coordinate tensors and dedicated stratified collocation index streams. The no-physics arm computes no physics coordinates by design.",
+    "dedicated_collocation_seed": 105963,
+    "fail_closed": true,
+    "configured_clips": {
+      "raw_loss_clip": 0.0,
+      "weak_moment_clip": 0.0
+    },
+    "required_runtime_state": {
+      "physics_gradient_failure": false,
+      "nonfinite_physics_loss": false,
+      "outer_raw_loss_saturated": false,
+      "nonfinite_moment_count": 0,
+      "n_moments_clipped": 0
+    },
+    "mismatch_action": "stop immediately and invalidate matched set",
+    "saturation_action": "stop immediately and invalidate matched set"
+  },
+  "crash_policy": {
+    "restart": false,
+    "resume_crashed_arm": false,
+    "matched_set_valid_after_any_crash": false,
+    "action": "stop immediately; invalidate the matched set; do not resume or relaunch under this protocol"
+  },
+  "cost": {
+    "currency": "USD",
+    "hard_cap": 1.25,
+    "scope": "entire three-arm efficacy protocol",
+    "instruction": "Stop immediately before spend can exceed $1.25; do not launch another arm or evaluation if it could breach the cap."
+  },
+  "confirmation": {
+    "launched_by_this_protocol": false,
+    "policy_if_gate_passes": "separately freeze a new confirmation protocol before any confirmation run"
+  },
+  "test_evaluation": {
+    "launched_by_this_protocol": false,
+    "allowed_under_any_branch": false,
+    "n_test_evaluations": 0
+  },
+  "prohibited": [
+    "Accessing, listing, hashing, opening, or evaluating any test artifact under any branch.",
+    "Using best_model.pt or any unnumbered checkpoint.",
+    "Using step 43000 or raw weights as a primary endpoint.",
+    "Changing a config, input hash, arm order, endpoint, MDE, comparison, branch, or cost cap after launch.",
+    "Restarting or resuming after any efficacy-arm crash.",
+    "Launching confirmation or test evaluation from this protocol.",
+    "Continuing once spend could exceed the $1.25 hard cap.",
+    "Accepting a run with mismatched sampling, mismatched physics coordinates or collocation indices, a nonfinite failure, clipping, or saturation."
+  ]
+}

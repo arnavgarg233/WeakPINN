@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0.0",
+  "frozen": true,
+  "title": "Continuation v4: supervised continuation versus corrected spatial-moment physics",
+  "purpose": "Determine whether the 40k to 46k validation degradation is caused by continued supervised training or by the corrected spatial-moment physics, using paired validation curves without selecting hyperparameters or opening test data.",
+  "diagnostic_only": true,
+  "hyperparameter_selection": false,
+  "arm_winner": null,
+  "design": "paired validation-curve diagnostic",
+  "source_config": {
+    "path": "src/configs/flare_pinn_weak_corrected.yaml",
+    "sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5",
+    "copy_policy": "Copy all fields, then apply only the declared v4 deltas."
+  },
+  "resume_checkpoint": {
+    "path": "outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+    "step": 40000,
+    "sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183",
+    "read_only": true
+  },
+  "seed": 1234,
+  "resume_step": 40000,
+  "max_step": 46000,
+  "split": "validation",
+  "test_access": false,
+  "test_access_under_any_branch": false,
+  "confirmation_authorized": false,
+  "shared_frozen_settings": {
+    "device": "cuda",
+    "seed": 1234,
+    "resume_step": 40000,
+    "max_step": 46000,
+    "selection_metric": "mean_tss",
+    "auto_restart_every": 0,
+    "plateau_patience": 20,
+    "eval_every": 1000,
+    "checkpoint_every": 1000,
+    "keep_last_n_checkpoints": 7,
+    "optimizer_lr_ema_data_architecture_and_all_other_fields": "identical to source_config"
+  },
+  "declared_config_deltas_from_source": [
+    "physics.lambda_phys_schedule",
+    "train.selection_metric",
+    "train.auto_restart_every",
+    "train.plateau_patience",
+    "train.checkpoint_dir",
+    "wandb.enabled",
+    "wandb.name"
+  ],
+  "declared_between_arm_differences": [
+    "physics.lambda_phys_schedule",
+    "train.checkpoint_dir",
+    "wandb.name"
+  ],
+  "arms": [
+    {
+      "name": "no_physics",
+      "config": "src/configs/flare_pinn_continuation_v4_no_physics.yaml",
+      "lambda_phys_schedule": [[0.0, 0.0], [1.0, 0.0]],
+      "physics_module_configured": true,
+      "physics_compute_gate": "lambda_phys <= 0.01 prevents physics computation",
+      "checkpoint_dir": "outputs/checkpoints/continuation_v4/no_physics/seed1234",
+      "wandb_name": "flare_pinn_continuation_v4_no_physics_seed1234"
+    },
+    {
+      "name": "spatial_moment",
+      "config": "src/configs/flare_pinn_continuation_v4_spatial_moment.yaml",
+      "lambda_phys_schedule": [[0.0, 0.0], [0.8, 0.0], [1.0, 0.2]],
+      "schedule_source": "original corrected schedule",
+      "checkpoint_dir": "outputs/checkpoints/continuation_v4/spatial_moment/seed1234",
+      "wandb_name": "flare_pinn_continuation_v4_spatial_moment_seed1234"
+    }
+  ],
+  "launch": {
+    "python": "python",
+    "working_directory": "<REPO_ROOT>",
+    "no_physics": "env -u WANDB_PROJECT -u WANDB_API_KEY python src/train.py --config src/configs/flare_pinn_continuation_v4_no_physics.yaml --resume outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+    "spatial_moment": "env -u WANDB_PROJECT -u WANDB_API_KEY python src/train.py --config src/configs/flare_pinn_continuation_v4_spatial_moment.yaml --resume outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+    "wandb_flag": "omitted",
+    "wandb_environment": ["WANDB_PROJECT unset", "WANDB_API_KEY unset"],
+    "local_logs": {
+      "no_physics": "outputs/logs/flare_pinn_continuation_v4_no_physics.log",
+      "spatial_moment": "outputs/logs/flare_pinn_continuation_v4_spatial_moment.log"
+    },
+    "required_preflight": [
+      "Verify the resume checkpoint SHA256 before either launch.",
+      "Verify CUDA is the selected runtime device.",
+      "Verify the loaded resume step is exactly 40000.",
+      "Verify no path contains or resolves to test data."
+    ]
+  },
+  "evaluation": {
+    "tool": "tools/validation/validate_checkpoint.py",
+    "data": "data/windows_val_5.parquet",
+    "split": "validation",
+    "test_data_prohibited": true,
+    "step_order": [40000, 41000, 42000, 43000, 44000, 45000, 46000],
+    "weight_modes": {
+      "ema": "--use-ema",
+      "raw": "--no-ema"
+    },
+    "anchor_first": true,
+    "numbered_checkpoints_only": true,
+    "best_model_checkpoint_prohibited": true,
+    "command_template": "{python} tools/validation/validate_checkpoint.py --config {config} --checkpoint {checkpoint} --data data/windows_val_5.parquet {mode_flag} --tta-noise 0 --tta-samples 1",
+    "execution_order": "For each arm, evaluate step 40000 first, then steps 41000 through 46000 in ascending order. At every step run EMA and raw modes and archive each NPZ immediately before the next mode can overwrite validate_checkpoint.py's default filename.",
+    "anchor_staging": {
+      "copy_into_each_arm_directory": true,
+      "source_read_only": true,
+      "verify_sha256_after_copy": true,
+      "destination": "outputs/checkpoints/continuation_v4/{arm}/seed1234/checkpoint_step_0040000.pt",
+      "reason": "Evaluation outputs stay under continuation_v4 and cannot overwrite the original 40k validation artifact."
+    },
+    "preserve_each_mode_output": true,
+    "archive_immediately_after_each_run": true,
+    "output_path_template": "outputs/recovery/continuation_v4/{arm}/validation/step_{step}_{weight_mode}.npz",
+    "metric_derivation": {
+      "endpoint": "mean sweep-TSS over 6h, 12h, and 24h",
+      "function": "src.models.eval.metrics.sweep_tss",
+      "threshold_sweep_n": 1024,
+      "input": "probs and labels arrays in each archived validation NPZ",
+      "do_not_use_for_endpoint": "validate_checkpoint.py tss_values, which use distance_to_corner rather than sweep_tss",
+      "test_data": "never read"
+    },
+    "anchor_reference": {
+      "status": "stored reference only",
+      "weights": "ema",
+      "validation_windows": 1905,
+      "metric": "sweep_tss",
+      "threshold_sweep_n": 1024,
+      "mean_tss": 0.8061295869851035,
+      "per_horizon_tss": [
+        0.8407459922449216,
+        0.7992864898402356,
+        0.7783562788701535
+      ],
+      "horizons_hours": [6, 12, 24],
+      "source_npz": "outputs/checkpoints/benchmark_classifier/validation_results/checkpoint_step_0040000_validation.npz"
+    }
+  },
+  "interpretation": {
+    "endpoint": "paired mean-TSS curves at matched numbered checkpoints",
+    "minimum_detectable_effect_mean_tss": 0.009,
+    "absolute_difference_below_mde": "unresolved",
+    "no_arm_winner": true,
+    "branches": {
+      "track_within_mde": "continuation confound",
+      "no_physics_better_by_at_least_mde": "physics harmful under this config",
+      "spatial_moment_better_by_at_least_mde": "physics protective; separately freeze confirmation"
+    },
+    "confirmation_policy": "This diagnostic itself authorizes no confirmation. If the protective branch is observed, freeze a separate confirmation protocol before any additional run."
+  },
+  "discovered_confounds": {
+    "v1_v2_v3_omitted_lambda_zero_control": true,
+    "v1_v2_v3_omitted_lambda_zero_control_detail": "All v1 through v3 screens omitted a lambda_phys=0 arm, so they could not distinguish continuation degradation from a physics effect.",
+    "training_defaulted_to_24h_despite_protocol_mean": true,
+    "training_defaulted_to_24h_despite_protocol_mean_detail": "Prior configs omitted train.selection_metric, whose implementation default is tss_24h, while their protocols named mean TSS.",
+    "auto_restart_replays_sampler_stream": true,
+    "auto_restart_replays_sampler_stream_detail": "The 2000-step auto restart resumes training with the sampler stream reset, replaying the first 2000 batches. CUDA v4 disables auto restart.",
+    "anchor_40k_was_excluded": true,
+    "anchor_40k_was_excluded_detail": "Prior candidate curves began at 41000 and excluded the common 40000 anchor.",
+    "ema_and_raw_both_required": true,
+    "ema_and_raw_both_required_detail": "Both weight views are required so EMA behavior cannot be mistaken for training behavior."
+  },
+  "v3_pil_screen": {
+    "status": "invalid/no-op",
+    "artifacts_modified_or_relabelled": false,
+    "pil_top_pct_config": 0.12,
+    "pil_top_pct_interpreted_percent": 0.12,
+    "implementation": "pil_mask_from_bz",
+    "impw_clip_quantile": 0.995,
+    "reason": "pil_top_pct=0.12 is interpreted as 0.12 percent by pil_mask_from_bz, and the 0.995 clip quantile flattens sparse-mask weights.",
+    "policy": "Preserve v3 files and outputs under their original labels without modification."
+  },
+  "wandb": {
+    "enabled_in_configs": false,
+    "optional": true,
+    "local_logs_authoritative": true,
+    "must_never_block_run": true
+  },
+  "artifact_preservation": {
+    "original_retained": true,
+    "v1_retained": true,
+    "v2_retained": true,
+    "v3_retained": true,
+    "never_modify_delete_overwrite_or_relabel": true,
+    "v4_checkpoint_root": "outputs/checkpoints/continuation_v4",
+    "v4_local_log_root": "outputs/recovery/continuation_v4"
+  },
+  "prohibited": [
+    "Accessing test data during training, evaluation, interpretation, or any branch.",
+    "Selecting or declaring an arm winner; this is a paired curve diagnostic, not hyperparameter selection.",
+    "Using best_model.pt or rollback-composed checkpoints instead of numbered checkpoints.",
+    "Changing the seed, 40k resume checkpoint, step range, split, MDE, schedules, or branch rules after outcomes are visible.",
+    "Modifying, deleting, overwriting, or relabelling original, v1, v2, or v3 artifacts.",
+    "Launching a confirmation run from this protocol."
+  ]
+}

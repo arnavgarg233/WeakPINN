@@ -1,0 +1,167 @@
+{
+  "algorithm": "4 chronological quartiles after exact training_partition(); 2 any-horizon-positive + 2 all-horizon-negative per quartile; lowest SHA256(v5-gradient-calibration|quartile|class|harpnum|t0)",
+  "indices": [
+    1437,
+    2490,
+    3865,
+    6354,
+    7333,
+    8001,
+    8799,
+    9594,
+    16101,
+    16440,
+    18347,
+    20720,
+    22747,
+    25164,
+    25791,
+    27942
+  ],
+  "rows": [
+    {
+      "class": "negative",
+      "harpnum": 538,
+      "index": 1437,
+      "quartile": 0,
+      "rank_sha256": "0012608a0b8d3a5b9cd5c81701514f55ff69e43227bccf14149f789939c002ba",
+      "t0": "2011-05-04T14:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "negative",
+      "harpnum": 702,
+      "index": 2490,
+      "quartile": 0,
+      "rank_sha256": "000ec3402b61943447702b93392f863811bf016691c8833022a35951f49e21e4",
+      "t0": "2011-07-15T10:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "positive",
+      "harpnum": 1256,
+      "index": 3865,
+      "quartile": 0,
+      "rank_sha256": "020aab72017bba517cf73f4625e79ef8dfd8723c40174ab5b466acca81182e33",
+      "t0": "2011-12-28T18:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "positive",
+      "harpnum": 1638,
+      "index": 6354,
+      "quartile": 0,
+      "rank_sha256": "00353144e3b110f1c3c772c02fcc88735322d038290a675b6ea75fa84d41747e",
+      "t0": "2012-05-17T01:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "positive",
+      "harpnum": 1834,
+      "index": 7333,
+      "quartile": 1,
+      "rank_sha256": "0459bc81c10e9fce6d5be935a8d891ad326afd0ce71a4aa5a524010002a25d10",
+      "t0": "2012-07-14T04:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "negative",
+      "harpnum": 1959,
+      "index": 8001,
+      "quartile": 1,
+      "rank_sha256": "0018b39e6c9d07c0c4317ba76e1f7a38bece4e361efecbdf14e445402d7cdfcb",
+      "t0": "2012-09-02T12:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "negative",
+      "harpnum": 2112,
+      "index": 8799,
+      "quartile": 1,
+      "rank_sha256": "0013dcde0d0d80f69dad54bc251cde8035e43283de8a8378baba86db0fcc0c20",
+      "t0": "2012-10-12T22:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "positive",
+      "harpnum": 2220,
+      "index": 9594,
+      "quartile": 1,
+      "rank_sha256": "01e3f2b33bb93cee82008a1e7c81ef367de9f692303294242e8f4dac37bda46e",
+      "t0": "2012-11-27T05:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "positive",
+      "harpnum": 3295,
+      "index": 16101,
+      "quartile": 2,
+      "rank_sha256": "00139ead4caf6c70033ca57a51f0479fcaf7e2cac4740d5cddf5c3e752ba6266",
+      "t0": "2013-10-23T10:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "negative",
+      "harpnum": 3336,
+      "index": 16440,
+      "quartile": 2,
+      "rank_sha256": "0023ce3acaaf4ab0de7ea6baf1a83b106a46f6a4dd61c6b94f34836e8ec2b5cf",
+      "t0": "2013-11-05T12:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "positive",
+      "harpnum": 3686,
+      "index": 18347,
+      "quartile": 2,
+      "rank_sha256": "00299a39fcea17a230e5cb816854bce0136c75331d64d3082f4c74bc89c3ab4a",
+      "t0": "2014-01-31T17:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "negative",
+      "harpnum": 4135,
+      "index": 20720,
+      "quartile": 2,
+      "rank_sha256": "00113953fb69a2221b77bb97eccb05178466ca542590e81a392400cb00103274",
+      "t0": "2014-05-20T23:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "negative",
+      "harpnum": 4718,
+      "index": 22747,
+      "quartile": 3,
+      "rank_sha256": "000a1ad12d34b22f52b253b193bedb5d3254ab5a52b7a7223bd22ff176a22d89",
+      "t0": "2014-10-28T09:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "positive",
+      "harpnum": 5127,
+      "index": 25164,
+      "quartile": 3,
+      "rank_sha256": "0001d5e0e68e78f0fb68742b8c1fc4b8fd6a8f5eab095dbcd63655f99ae7b391",
+      "t0": "2015-02-04T01:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "positive",
+      "harpnum": 5298,
+      "index": 25791,
+      "quartile": 3,
+      "rank_sha256": "0080977c6b42a3fed783e8f9041b9c268dcbb134eacaa67f8859fe5cfd5a0c4b",
+      "t0": "2015-03-17T12:00:00+00:00",
+      "window_uid": ""
+    },
+    {
+      "class": "negative",
+      "harpnum": 5750,
+      "index": 27942,
+      "quartile": 3,
+      "rank_sha256": "00172b25299b1c9f61dff137336eb1614f9e818147755fa45b5628a3a7403509",
+      "t0": "2015-07-09T04:00:00+00:00",
+      "window_uid": ""
+    }
+  ]
+}

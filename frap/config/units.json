@@ -1,0 +1,7 @@
+{
+  "pixel_size_um": 0.7598,
+  "frame_time_s": 0.265,
+  "n_frames": 100,
+  "bleach_radius_um": 15.0,
+  "D_phys_to_D_norm_factor_per_um2_per_s": 0.001400868
+}

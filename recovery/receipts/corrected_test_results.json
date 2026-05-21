@@ -1,0 +1,790 @@
+{
+  "aggregate_metrics": {
+    "by_horizon": {
+      "12": {
+        "brier_score": {
+          "mean": 0.03043808621411262,
+          "n_seeds": 3,
+          "sample_sd": 0.0020518533008937077
+        },
+        "fn": {
+          "mean": 3.6666666666666665,
+          "n_seeds": 3,
+          "sample_sd": 1.1547005383792515
+        },
+        "fp": {
+          "mean": 705.6666666666666,
+          "n_seeds": 3,
+          "sample_sd": 55.07570547286102
+        },
+        "fpr": {
+          "mean": 0.12476426214049978,
+          "n_seeds": 3,
+          "sample_sd": 0.009737571688978252
+        },
+        "pod": {
+          "mean": 0.9388888888888888,
+          "n_seeds": 3,
+          "sample_sd": 0.01924500897298752
+        },
+        "pr_auc": {
+          "mean": 0.27094611300987764,
+          "n_seeds": 3,
+          "sample_sd": 0.014763634631523059
+        },
+        "roc_auc": {
+          "mean": 0.9605630205877732,
+          "n_seeds": 3,
+          "sample_sd": 0.0011744432794742951
+        },
+        "threshold": {
+          "mean": 0.22048271363339855,
+          "n_seeds": 3,
+          "sample_sd": 0.0022596879420337603
+        },
+        "tn": {
+          "mean": 4950.333333333333,
+          "n_seeds": 3,
+          "sample_sd": 55.07570547286102
+        },
+        "tp": {
+          "mean": 56.333333333333336,
+          "n_seeds": 3,
+          "sample_sd": 1.1547005383792517
+        },
+        "tss": {
+          "mean": 0.8141246267483891,
+          "n_seeds": 3,
+          "sample_sd": 0.015782827214828925
+        }
+      },
+      "24": {
+        "brier_score": {
+          "mean": 0.04078649259497863,
+          "n_seeds": 3,
+          "sample_sd": 0.002149370706193706
+        },
+        "fn": {
+          "mean": 5.333333333333333,
+          "n_seeds": 3,
+          "sample_sd": 0.5773502691896258
+        },
+        "fp": {
+          "mean": 898.6666666666666,
+          "n_seeds": 3,
+          "sample_sd": 71.62634524623837
+        },
+        "fpr": {
+          "mean": 0.15976296296296297,
+          "n_seeds": 3,
+          "sample_sd": 0.01273357248822015
+        },
+        "pod": {
+          "mean": 0.9413919413919413,
+          "n_seeds": 3,
+          "sample_sd": 0.006344508452633227
+        },
+        "pr_auc": {
+          "mean": 0.285455331878839,
+          "n_seeds": 3,
+          "sample_sd": 0.008687752075400136
+        },
+        "roc_auc": {
+          "mean": 0.9500066748066748,
+          "n_seeds": 3,
+          "sample_sd": 0.0011070087380650128
+        },
+        "threshold": {
+          "mean": 0.22379991223589704,
+          "n_seeds": 3,
+          "sample_sd": 0.017149494559455403
+        },
+        "tn": {
+          "mean": 4726.333333333333,
+          "n_seeds": 3,
+          "sample_sd": 71.62634524623837
+        },
+        "tp": {
+          "mean": 85.66666666666667,
+          "n_seeds": 3,
+          "sample_sd": 0.5773502691896257
+        },
+        "tss": {
+          "mean": 0.7816289784289783,
+          "n_seeds": 3,
+          "sample_sd": 0.009876909991236514
+        }
+      },
+      "6": {
+        "brier_score": {
+          "mean": 0.024689794810466653,
+          "n_seeds": 3,
+          "sample_sd": 0.0019914759289429342
+        },
+        "fn": {
+          "mean": 4.333333333333333,
+          "n_seeds": 3,
+          "sample_sd": 2.0816659994661326
+        },
+        "fp": {
+          "mean": 492.0,
+          "n_seeds": 3,
+          "sample_sd": 118.19898476721363
+        },
+        "fpr": {
+          "mean": 0.0866044710438303,
+          "n_seeds": 3,
+          "sample_sd": 0.020806017385533115
+        },
+        "pod": {
+          "mean": 0.8761904761904762,
+          "n_seeds": 3,
+          "sample_sd": 0.059476171413318055
+        },
+        "pr_auc": {
+          "mean": 0.19121304299906153,
+          "n_seeds": 3,
+          "sample_sd": 0.016544297612899123
+        },
+        "roc_auc": {
+          "mean": 0.9640824469199755,
+          "n_seeds": 3,
+          "sample_sd": 0.0005584802028383161
+        },
+        "threshold": {
+          "mean": 0.2548694393250652,
+          "n_seeds": 3,
+          "sample_sd": 0.01963699893297651
+        },
+        "tn": {
+          "mean": 5189.0,
+          "n_seeds": 3,
+          "sample_sd": 118.19898476721363
+        },
+        "tp": {
+          "mean": 30.666666666666668,
+          "n_seeds": 3,
+          "sample_sd": 2.081665999466133
+        },
+        "tss": {
+          "mean": 0.7895860051466458,
+          "n_seeds": 3,
+          "sample_sd": 0.03874172379599921
+        }
+      }
+    },
+    "mean_tss_across_horizons": {
+      "mean": 0.7951132034413377,
+      "n_seeds": 3,
+      "sample_sd": 0.017313546624900575
+    },
+    "monotonicity": {
+      "total_windows": 17148,
+      "total_windows_with_any_violation": 0,
+      "violation_fraction": 0.0
+    }
+  },
+  "artifacts": {
+    "config": {
+      "path": "src/configs/flare_pinn_weak_corrected.yaml",
+      "sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5"
+    },
+    "failed_receipt_write_log": {
+      "path": "outputs/recovery/test_eval/90_receipt_write.log",
+      "sha256": "a3b8d95a6bece68e888f3019f902ba42887616db77304d211fa3a9ae307c5326"
+    },
+    "inspection_log": {
+      "path": "outputs/recovery/test_eval/01_inspection.log",
+      "sha256": "171f6aeff1f73686d099d9921a1cf3931dc08e65aed801b3ac25660ce22af195"
+    },
+    "preflight_log": {
+      "path": "outputs/recovery/test_eval/00_preflight.log",
+      "sha256": "17c3142455be7ef413382e517951349065b14b2851925fb49be9e88eececf978"
+    },
+    "validator": {
+      "path": "tools/validation/validate_checkpoint.py",
+      "sha256": "5c7446a02d44dd841ba4522c1b46e0c52ad2cfde0d52a066eaf02180ad23f874"
+    }
+  },
+  "budget": {
+    "actual_estimated_pod_age_hours": 10.780574198055556,
+    "actual_estimated_total_cost_usd": 2.371726323572222,
+    "anchor_cost_usd": 2.2230649251555556,
+    "anchor_pod_age_hours": 10.10484056888889,
+    "cap_usd": 10.0,
+    "elapsed_hours_since_anchor": 0.6757336291666666,
+    "method": "Completion receipt cost/pod-age anchor plus elapsed wall time at frozen rate.",
+    "rate_usd_per_hour": 0.22,
+    "within_cap": true
+  },
+  "created_utc": "2026-09-01T17:31:30.030113+00:00",
+  "data_integrity": {
+    "all_split_key_overlaps_zero": true,
+    "identical_label_order_hash_across_seeds": true,
+    "key_overlap_counts": {
+      "train_test": 0,
+      "train_validation": 0,
+      "validation_test": 0
+    },
+    "labels_sha256": "1fa939cbfdaab2ec0b0ae72fa077d353b05c7e6338eec8f7b42759a57d0ba882",
+    "sample_order_serialization": "harpnum|t0.isoformat|y6|y12|y24|has_noaa_mapping after stable t0 sort",
+    "test_parquet": {
+      "n_test": 5716,
+      "path": "data/windows_test_15.parquet",
+      "sha256": "05939b586cd2c3de7c7bf627de7e2ced2cc7ba88474c1e06d5f3c043157446eb"
+    },
+    "test_sample_order_sha256": "f1fb780646002b9297c9b537b1400b899f7e21b412d6510f8865bdf7dc63909b",
+    "train_validation_parquet": {
+      "n_total": 30310,
+      "n_train": 28405,
+      "n_validation": 1905,
+      "path": "data/windows_train_val_8005.parquet",
+      "sha256": "9ab48860306c2e181c50e830bf02af27a7a2363765886c26b736544cff5f4391"
+    }
+  },
+  "environment": {
+    "cuda_runtime": "12.8",
+    "git_head": "dfe4aa0994608a3d9c245e91f64a31c79243929d",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "numpy": "2.5.2",
+    "nvidia_driver": "580.65.06",
+    "pandas": "3.0.5",
+    "platform": "Linux-6.8.0-57-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.1",
+    "torch": "2.8.0+cu128"
+  },
+  "exact_commands": {
+    "1": {
+      "held_out_test_evaluation": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python tools/validation/validate_checkpoint.py --config src/configs/flare_pinn_weak_corrected.yaml --checkpoint outputs/checkpoints/weak_form_corrected/seed1/checkpoint_step_0044000.pt --data data/windows_test_15.parquet --use-ema --tta-noise 0 --tta-samples 1 --frozen-thresholds outputs/recovery/test_eval/seed1_step44000_validation.npz",
+      "validation_threshold_fit": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python - [inline driver using released load_model/evaluate; config=src/configs/flare_pinn_weak_corrected.yaml; checkpoint=outputs/checkpoints/weak_form_corrected/seed1/checkpoint_step_0044000.pt; source=data/windows_train_val_8005.parquet; chronological split_idx=28405; validation_n=1905; D2C n=1024; EMA=true; TTA noise=0 samples=1; output=outputs/recovery/test_eval/seed1_step44000_validation.npz]"
+    },
+    "1234": {
+      "held_out_test_evaluation": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python tools/validation/validate_checkpoint.py --config src/configs/flare_pinn_weak_corrected.yaml --checkpoint outputs/checkpoints/weak_form_corrected/seed1234/checkpoint_step_0044000.pt --data data/windows_test_15.parquet --use-ema --tta-noise 0 --tta-samples 1 --frozen-thresholds outputs/recovery/test_eval/seed1234_step44000_validation.npz",
+      "validation_threshold_fit": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python - [inline driver using released load_model/evaluate; config=src/configs/flare_pinn_weak_corrected.yaml; checkpoint=outputs/checkpoints/weak_form_corrected/seed1234/checkpoint_step_0044000.pt; source=data/windows_train_val_8005.parquet; chronological split_idx=28405; validation_n=1905; D2C n=1024; EMA=true; TTA noise=0 samples=1; output=outputs/recovery/test_eval/seed1234_step44000_validation.npz]"
+    },
+    "42": {
+      "held_out_test_evaluation": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python tools/validation/validate_checkpoint.py --config src/configs/flare_pinn_weak_corrected.yaml --checkpoint outputs/checkpoints/weak_form_corrected/seed42/checkpoint_step_0044000.pt --data data/windows_test_15.parquet --use-ema --tta-noise 0 --tta-samples 1 --frozen-thresholds outputs/recovery/test_eval/seed42_step44000_validation.npz",
+      "validation_threshold_fit": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python - [inline driver using released load_model/evaluate; config=src/configs/flare_pinn_weak_corrected.yaml; checkpoint=outputs/checkpoints/weak_form_corrected/seed42/checkpoint_step_0044000.pt; source=data/windows_train_val_8005.parquet; chronological split_idx=28405; validation_n=1905; D2C n=1024; EMA=true; TTA noise=0 samples=1; output=outputs/recovery/test_eval/seed42_step44000_validation.npz]"
+    }
+  },
+  "frozen_released_comparisons": {
+    "interpretation": "Descriptive comparison only. No new significance test was run, and no causal claim is made.",
+    "released_local_integrand_weak_form": {
+      "aggregate_tss": {
+        "12": {
+          "mean": 0.8106003457488606,
+          "n_seeds": 3,
+          "sample_sd": 0.02065094035680355
+        },
+        "24": {
+          "mean": 0.7897585673585675,
+          "n_seeds": 3,
+          "sample_sd": 0.007278642774481984
+        },
+        "6": {
+          "mean": 0.8169839314004074,
+          "n_seeds": 3,
+          "sample_sd": 0.01109444494997186
+        }
+      },
+      "artifacts": {
+        "1": {
+          "path": "outputs/checkpoints/weak_form/seed1/validation_results/checkpoint_step_0044000_test.npz",
+          "sha256": "1450da6ae7ebbb1b647f92c789639605d62e21195b9301623608492244a70d80"
+        },
+        "1234": {
+          "path": "outputs/checkpoints/weak_form/final/validation_results/checkpoint_step_0044000_test.npz",
+          "sha256": "414e1d5d275aa466a255709f5fed86eaef8e459f130f853b0b6bca394dfb72e1"
+        },
+        "42": {
+          "path": "outputs/checkpoints/weak_form/seed42/validation_results/checkpoint_step_0045000_test.npz",
+          "sha256": "a4f55be243341581121ab2ab7f17a52ec86ca146bfa9e543317df2fe9f868b19"
+        }
+      },
+      "corrected_minus_comparator_mean_tss": {
+        "12": 0.0035242809995285063,
+        "24": -0.00812958892958926,
+        "6": -0.027397926253761584
+      },
+      "per_seed_tss": {
+        "1": {
+          "12": 0.8070957095709571,
+          "24": 0.7843438339438339,
+          "6": 0.8045666004476073
+        },
+        "1234": {
+          "12": 0.8327793493635077,
+          "24": 0.7980327228327229,
+          "6": 0.8259209897653833
+        },
+        "42": {
+          "12": 0.7919259783121169,
+          "24": 0.7868991452991454,
+          "6": 0.8204642039882314
+        }
+      }
+    },
+    "released_strong_form": {
+      "aggregate_tss": {
+        "12": {
+          "mean": 0.7211181832468961,
+          "n_seeds": 3,
+          "sample_sd": 0.00978358506007336
+        },
+        "24": {
+          "mean": 0.7519023199023199,
+          "n_seeds": 3,
+          "sample_sd": 0.01133165102080463
+        },
+        "6": {
+          "mean": 0.7669592040301422,
+          "n_seeds": 3,
+          "sample_sd": 0.0020553048040998882
+        }
+      },
+      "artifacts": {
+        "1": {
+          "path": "outputs/checkpoints/strong_form/seed1/validation_results/checkpoint_step_0044000_test.npz",
+          "sha256": "da4d48f48c443e97364065bbe619d6e858e13efc9e3e66acfb34d4b6e19d843b"
+        },
+        "1234": {
+          "path": "outputs/checkpoints/strong_form/final/validation_results/checkpoint_step_0044000_test.npz",
+          "sha256": "f2b07a3a54ebc8b29ad2c7f168aefa2ed73cadf288c9e55e5f8e2d750a0b17c0"
+        },
+        "42": {
+          "path": "outputs/checkpoints/strong_form/seed42/validation_results/checkpoint_step_0044000_test.npz",
+          "sha256": "f3037cc851c2f3b4ea1208aeeb40ac015bf9d595388c5705588f8cfa06002263"
+        }
+      },
+      "corrected_minus_comparator_mean_tss": {
+        "12": 0.09300644350149301,
+        "24": 0.029726658526658345,
+        "6": 0.022626801116503614
+      },
+      "per_seed_tss": {
+        "1": {
+          "12": 0.7100070721357851,
+          "24": 0.7445763125763126,
+          "6": 0.7647295496265747
+        },
+        "1234": {
+          "12": 0.7284417727487035,
+          "24": 0.7649543345543345,
+          "6": 0.7673699298413257
+        },
+        "42": {
+          "12": 0.7249057048561999,
+          "24": 0.7461763125763126,
+          "6": 0.7687781326225261
+        }
+      }
+    }
+  },
+  "leakage_checks": {
+    "no_test_metric_used_for_checkpoint_or_threshold_selection": true,
+    "only_selected_step_evaluated": true,
+    "selection_receipt_declares_test_touched_false": true,
+    "selection_receipt_frozen_before_test_and_unchanged": true,
+    "test_labels_and_order_identical_across_seeds": true,
+    "test_thresholds_exactly_equal_validation_thresholds": true,
+    "train_validation_test_key_overlaps_zero": true,
+    "validation_thresholds_independently_recomputed_exactly": true
+  },
+  "n_test_evaluations": 3,
+  "per_seed": {
+    "1": {
+      "artifacts": {
+        "checkpoint": {
+          "path": "outputs/checkpoints/weak_form_corrected/seed1/checkpoint_step_0044000.pt",
+          "sha256": "3bc4832ac6e9e30b9775347b13c7544d081e177c15bad1ef11767eb04ce69e34"
+        },
+        "test": {
+          "path": "outputs/checkpoints/weak_form_corrected/seed1/validation_results/checkpoint_step_0044000_test.npz",
+          "sha256": "12abcf195baf17c91721a176d2a354353768a67a367d480ed5d1c87826d06d77"
+        },
+        "test_log": {
+          "path": "outputs/recovery/test_eval/21_seed1_test.log",
+          "sha256": "c7fbe8cd962fdfc8187babdecaa2526aec749f19decbd13b7f495569ea05d237"
+        },
+        "validation": {
+          "path": "outputs/recovery/test_eval/seed1_step44000_validation.npz",
+          "sha256": "b381996fe763152de44aff789eb1ddb95e81b3e3bf0f00d90ecc6afc0c7a203f"
+        },
+        "validation_log": {
+          "path": "outputs/recovery/test_eval/20_seed1_validation.log",
+          "sha256": "5686f41665efae3712bb9ab8cd2f172e3c4ad6be29632b913771e969b386a366"
+        }
+      },
+      "commands": {
+        "held_out_test_evaluation": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python tools/validation/validate_checkpoint.py --config src/configs/flare_pinn_weak_corrected.yaml --checkpoint outputs/checkpoints/weak_form_corrected/seed1/checkpoint_step_0044000.pt --data data/windows_test_15.parquet --use-ema --tta-noise 0 --tta-samples 1 --frozen-thresholds outputs/recovery/test_eval/seed1_step44000_validation.npz",
+        "validation_threshold_fit": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python - [inline driver using released load_model/evaluate; config=src/configs/flare_pinn_weak_corrected.yaml; checkpoint=outputs/checkpoints/weak_form_corrected/seed1/checkpoint_step_0044000.pt; source=data/windows_train_val_8005.parquet; chronological split_idx=28405; validation_n=1905; D2C n=1024; EMA=true; TTA noise=0 samples=1; output=outputs/recovery/test_eval/seed1_step44000_validation.npz]"
+      },
+      "horizons": {
+        "12": {
+          "brier_score": 0.029789484230380046,
+          "fn": 3,
+          "fp": 679,
+          "fpr": 0.12004950495049505,
+          "n_negative": 5656,
+          "n_positive": 60,
+          "n_total": 5716,
+          "pod": 0.95,
+          "pr_auc": 0.25814966500017644,
+          "roc_auc": 0.960938236680811,
+          "threshold": 0.2191780821917808,
+          "tn": 4977,
+          "tp": 57,
+          "tss": 0.8299504950495049
+        },
+        "24": {
+          "brier_score": 0.04031362552741512,
+          "fn": 5,
+          "fp": 871,
+          "fpr": 0.15484444444444445,
+          "n_negative": 5625,
+          "n_positive": 91,
+          "n_total": 5716,
+          "pod": 0.945054945054945,
+          "pr_auc": 0.27856909843334865,
+          "roc_auc": 0.9512576312576313,
+          "threshold": 0.22427965700626373,
+          "tn": 4754,
+          "tp": 86,
+          "tss": 0.7902105006105006
+        },
+        "6": {
+          "brier_score": 0.02412946771737255,
+          "fn": 5,
+          "fp": 463,
+          "fpr": 0.08149973596197853,
+          "n_negative": 5681,
+          "n_positive": 35,
+          "n_total": 5716,
+          "pod": 0.8571428571428571,
+          "pr_auc": 0.17247373891149195,
+          "roc_auc": 0.9643045741443911,
+          "threshold": 0.24853228962818003,
+          "tn": 5218,
+          "tp": 30,
+          "tss": 0.7756431211808785
+        }
+      },
+      "mean_tss": 0.7986013722802947,
+      "monotonicity": {
+        "n_windows": 5716,
+        "p12_gt_p24": 0,
+        "p6_gt_p12": 0,
+        "violation_fraction": 0.0,
+        "windows_with_any_violation": 0
+      },
+      "seed": 1,
+      "selected_step": 44000,
+      "test_array_integrity": {
+        "all_finite": true,
+        "horizons_sha256": "36519756e2b3a42ddcbb9a06f81ac7278ab2c870295b1fb3a56cfba9c0752d6d",
+        "labels_sha256": "1fa939cbfdaab2ec0b0ae72fa077d353b05c7e6338eec8f7b42759a57d0ba882",
+        "probabilities_in_unit_interval": true,
+        "probabilities_sha256": "e32f950b48fc2078fc2ebec8eb073c59a4db8cc7527a5c7457ce8468089264ff",
+        "shape": [
+          5716,
+          3
+        ],
+        "three_probability_columns": true
+      },
+      "validation_threshold_integrity": {
+        "exact_match": true,
+        "independently_recomputed_thresholds": [
+          0.24853228962818003,
+          0.2191780821917808,
+          0.22427965700626373
+        ],
+        "n_train": 28405,
+        "n_validation": 1905,
+        "rule": "Distance-to-Corner with n=1024",
+        "saved_thresholds": [
+          0.24853228962818003,
+          0.2191780821917808,
+          0.22427965700626373
+        ],
+        "source": "data/windows_train_val_8005.parquet",
+        "split": "chronological tail",
+        "validation_labels_sha256": "ac9aebb90db180b17fdb99cbdea85f32c0be1fec669332605f2a626689f82118"
+      }
+    },
+    "1234": {
+      "artifacts": {
+        "checkpoint": {
+          "path": "outputs/checkpoints/weak_form_corrected/seed1234/checkpoint_step_0044000.pt",
+          "sha256": "449fe34d42d3c251016250ce2b09691b2343e6701991dda0898c425304c28757"
+        },
+        "test": {
+          "path": "outputs/checkpoints/weak_form_corrected/seed1234/validation_results/checkpoint_step_0044000_test.npz",
+          "sha256": "c0c25f07219dd92b62c2d27dcaf2e1b40c736179d773aadecb1cd8c06bc552a7"
+        },
+        "test_log": {
+          "path": "outputs/recovery/test_eval/11_seed1234_test.log",
+          "sha256": "d0516df517c483a2169a12fae86758f88fcf40db1b8dc969f35aeea5826741d3"
+        },
+        "validation": {
+          "path": "outputs/recovery/test_eval/seed1234_step44000_validation.npz",
+          "sha256": "31aed6196098f2dd5f147361bc74b918d32e5b28981c40e00615a6663ccec3e6"
+        },
+        "validation_log": {
+          "path": "outputs/recovery/test_eval/10_seed1234_validation.log",
+          "sha256": "417b354cf76bdd84df789408d886ea05e28e8488359937c4317b651a1d70a677"
+        }
+      },
+      "commands": {
+        "held_out_test_evaluation": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python tools/validation/validate_checkpoint.py --config src/configs/flare_pinn_weak_corrected.yaml --checkpoint outputs/checkpoints/weak_form_corrected/seed1234/checkpoint_step_0044000.pt --data data/windows_test_15.parquet --use-ema --tta-noise 0 --tta-samples 1 --frozen-thresholds outputs/recovery/test_eval/seed1234_step44000_validation.npz",
+        "validation_threshold_fit": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python - [inline driver using released load_model/evaluate; config=src/configs/flare_pinn_weak_corrected.yaml; checkpoint=outputs/checkpoints/weak_form_corrected/seed1234/checkpoint_step_0044000.pt; source=data/windows_train_val_8005.parquet; chronological split_idx=28405; validation_n=1905; D2C n=1024; EMA=true; TTA noise=0 samples=1; output=outputs/recovery/test_eval/seed1234_step44000_validation.npz]"
+      },
+      "horizons": {
+        "12": {
+          "brier_score": 0.028788916008212886,
+          "fn": 5,
+          "fp": 669,
+          "fpr": 0.11828147100424329,
+          "n_negative": 5656,
+          "n_positive": 60,
+          "n_total": 5716,
+          "pod": 0.9166666666666666,
+          "pr_auc": 0.2675896921578221,
+          "roc_auc": 0.9592468175388966,
+          "threshold": 0.2191780821917808,
+          "tn": 4987,
+          "tp": 55,
+          "tss": 0.7983851956624234
+        },
+        "24": {
+          "brier_score": 0.03891292802806123,
+          "fn": 5,
+          "fp": 980,
+          "fpr": 0.17422222222222222,
+          "n_negative": 5625,
+          "n_positive": 91,
+          "n_total": 5716,
+          "pod": 0.945054945054945,
+          "pr_auc": 0.28258086379215913,
+          "roc_auc": 0.9491536019536018,
+          "threshold": 0.2064155787229538,
+          "tn": 4645,
+          "tp": 86,
+          "tss": 0.7708327228327227
+        },
+        "6": {
+          "brier_score": 0.02303850772675735,
+          "fn": 6,
+          "fp": 391,
+          "fpr": 0.06882591093117409,
+          "n_negative": 5681,
+          "n_positive": 35,
+          "n_total": 5716,
+          "pod": 0.8285714285714286,
+          "pr_auc": 0.197366696715829,
+          "roc_auc": 0.9634470792365529,
+          "threshold": 0.2768925130367279,
+          "tn": 5290,
+          "tp": 29,
+          "tss": 0.7597455176402546
+        }
+      },
+      "mean_tss": 0.7763211453784669,
+      "monotonicity": {
+        "n_windows": 5716,
+        "p12_gt_p24": 0,
+        "p6_gt_p12": 0,
+        "violation_fraction": 0.0,
+        "windows_with_any_violation": 0
+      },
+      "seed": 1234,
+      "selected_step": 44000,
+      "test_array_integrity": {
+        "all_finite": true,
+        "horizons_sha256": "36519756e2b3a42ddcbb9a06f81ac7278ab2c870295b1fb3a56cfba9c0752d6d",
+        "labels_sha256": "1fa939cbfdaab2ec0b0ae72fa077d353b05c7e6338eec8f7b42759a57d0ba882",
+        "probabilities_in_unit_interval": true,
+        "probabilities_sha256": "696d6bed0ccababc83e6856e03fa6c9b699c654137aa47598ea72886b8da952d",
+        "shape": [
+          5716,
+          3
+        ],
+        "three_probability_columns": true
+      },
+      "validation_threshold_integrity": {
+        "exact_match": true,
+        "independently_recomputed_thresholds": [
+          0.2768925130367279,
+          0.2191780821917808,
+          0.2064155787229538
+        ],
+        "n_train": 28405,
+        "n_validation": 1905,
+        "rule": "Distance-to-Corner with n=1024",
+        "saved_thresholds": [
+          0.2768925130367279,
+          0.2191780821917808,
+          0.2064155787229538
+        ],
+        "source": "data/windows_train_val_8005.parquet",
+        "split": "chronological tail",
+        "validation_labels_sha256": "ac9aebb90db180b17fdb99cbdea85f32c0be1fec669332605f2a626689f82118"
+      }
+    },
+    "42": {
+      "artifacts": {
+        "checkpoint": {
+          "path": "outputs/checkpoints/weak_form_corrected/seed42/checkpoint_step_0044000.pt",
+          "sha256": "5ae9203d29716e270ec1a52465241e089ab22a801abd5e5d3dba3c920ea08389"
+        },
+        "test": {
+          "path": "outputs/checkpoints/weak_form_corrected/seed42/validation_results/checkpoint_step_0044000_test.npz",
+          "sha256": "f5eaeceeb88f138445c7a24022d04ba9df37180fd61c63a79888df5c6c7d0496"
+        },
+        "test_log": {
+          "path": "outputs/recovery/test_eval/31_seed42_test.log",
+          "sha256": "9e28a7582c04905e5fa85882028a8fd65df9f4cc69a91737100061fdac3b00d5"
+        },
+        "validation": {
+          "path": "outputs/recovery/test_eval/seed42_step44000_validation.npz",
+          "sha256": "fe10ad7e1b559fea0e140b2a4ba4e5d8dd30170feea4d848a836ca7cb2273f6d"
+        },
+        "validation_log": {
+          "path": "outputs/recovery/test_eval/30_seed42_validation.log",
+          "sha256": "23ebd1f4d59f67829ecf0712c5f60a0a30f4599cb32d712301f2878f63262d09"
+        }
+      },
+      "commands": {
+        "held_out_test_evaluation": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python tools/validation/validate_checkpoint.py --config src/configs/flare_pinn_weak_corrected.yaml --checkpoint outputs/checkpoints/weak_form_corrected/seed42/checkpoint_step_0044000.pt --data data/windows_test_15.parquet --use-ema --tta-noise 0 --tta-samples 1 --frozen-thresholds outputs/recovery/test_eval/seed42_step44000_validation.npz",
+        "validation_threshold_fit": "PYTHONPATH=/workspace/Flare-PINN/src /workspace/weakpinn-venv/bin/python - [inline driver using released load_model/evaluate; config=src/configs/flare_pinn_weak_corrected.yaml; checkpoint=outputs/checkpoints/weak_form_corrected/seed42/checkpoint_step_0044000.pt; source=data/windows_train_val_8005.parquet; chronological split_idx=28405; validation_n=1905; D2C n=1024; EMA=true; TTA noise=0 samples=1; output=outputs/recovery/test_eval/seed42_step44000_validation.npz]"
+      },
+      "horizons": {
+        "12": {
+          "brier_score": 0.03273585840374492,
+          "fn": 3,
+          "fp": 769,
+          "fpr": 0.13596181046676095,
+          "n_negative": 5656,
+          "n_positive": 60,
+          "n_total": 5716,
+          "pod": 0.95,
+          "pr_auc": 0.2870989818716345,
+          "roc_auc": 0.9615040075436116,
+          "threshold": 0.22309197651663404,
+          "tn": 4887,
+          "tp": 57,
+          "tss": 0.814038189533239
+        },
+        "24": {
+          "brier_score": 0.043132924229459545,
+          "fn": 6,
+          "fp": 845,
+          "fpr": 0.15022222222222223,
+          "n_negative": 5625,
+          "n_positive": 91,
+          "n_total": 5716,
+          "pod": 0.9340659340659341,
+          "pr_auc": 0.2952160334110091,
+          "roc_auc": 0.9496087912087913,
+          "threshold": 0.24070450097847357,
+          "tn": 4780,
+          "tp": 85,
+          "tss": 0.7838437118437118
+        },
+        "6": {
+          "brier_score": 0.026901408987270052,
+          "fn": 2,
+          "fp": 622,
+          "fpr": 0.10948776623833832,
+          "n_negative": 5681,
+          "n_positive": 35,
+          "n_total": 5716,
+          "pod": 0.9428571428571428,
+          "pr_auc": 0.20379869336986364,
+          "roc_auc": 0.9644956873789825,
+          "threshold": 0.23918351531028748,
+          "tn": 5059,
+          "tp": 33,
+          "tss": 0.8333693766188045
+        }
+      },
+      "mean_tss": 0.8104170926652517,
+      "monotonicity": {
+        "n_windows": 5716,
+        "p12_gt_p24": 0,
+        "p6_gt_p12": 0,
+        "violation_fraction": 0.0,
+        "windows_with_any_violation": 0
+      },
+      "seed": 42,
+      "selected_step": 44000,
+      "test_array_integrity": {
+        "all_finite": true,
+        "horizons_sha256": "36519756e2b3a42ddcbb9a06f81ac7278ab2c870295b1fb3a56cfba9c0752d6d",
+        "labels_sha256": "1fa939cbfdaab2ec0b0ae72fa077d353b05c7e6338eec8f7b42759a57d0ba882",
+        "probabilities_in_unit_interval": true,
+        "probabilities_sha256": "db764864b3f91084ec88412859ec3451e6444bea4074eb0c3a6ba48124855430",
+        "shape": [
+          5716,
+          3
+        ],
+        "three_probability_columns": true
+      },
+      "validation_threshold_integrity": {
+        "exact_match": true,
+        "independently_recomputed_thresholds": [
+          0.23918351531028748,
+          0.22309197651663404,
+          0.24070450097847357
+        ],
+        "n_train": 28405,
+        "n_validation": 1905,
+        "rule": "Distance-to-Corner with n=1024",
+        "saved_thresholds": [
+          0.23918351531028748,
+          0.22309197651663404,
+          0.24070450097847357
+        ],
+        "source": "data/windows_train_val_8005.parquet",
+        "split": "chronological tail",
+        "validation_labels_sha256": "ac9aebb90db180b17fdb99cbdea85f32c0be1fec669332605f2a626689f82118"
+      }
+    }
+  },
+  "population_and_sample_definitions": {
+    "brier_score": "Population mean over 5,716 held-out windows of (probability-label)^2.",
+    "confusion_counts": "Positive prediction iff probability >= the frozen seed/horizon validation threshold.",
+    "monotonicity": "Violation iff p6>p12 or p12>p24; equality is not a violation.",
+    "pr_auc": "Repository-compatible trapezoidal precision-recall area at 512 fixed probability thresholds on [0,1]; no operating threshold is selected.",
+    "roc_auc": "Repository-compatible trapezoidal ROC area at 512 fixed probability thresholds on [0,1]; no operating threshold is selected.",
+    "seed_sample": "Three frozen corrected weak-form checkpoints for seeds 1234, 1, and 42; across-seed dispersion is sample SD with ddof=1.",
+    "test_population": "All 5,716 valid chronological held-out windows in data/windows_test_15.parquet, one binary label and probability per 6h, 12h, and 24h horizon.",
+    "tss": "TP/(TP+FN) - FP/(FP+TN)."
+  },
+  "protocol": {
+    "ema_used": true,
+    "failure_reruns": 0,
+    "n_test_evaluations": 3,
+    "test_evaluations_per_selected_checkpoint": 1,
+    "test_threshold_search_performed": false,
+    "threshold_rule": "Distance-to-Corner on validation only",
+    "threshold_source": "data/windows_train_val_8005.parquet chronological 28405/1905 split",
+    "tta_noise": 0.0,
+    "tta_samples": 1
+  },
+  "schema_version": "1.0.0",
+  "selection": {
+    "receipt_path": "outputs/recovery/checkpoint_selection.json",
+    "receipt_sha256": "430485650f2c1cdf051c3deb6e6391008f96a4ce0cde48fd3ea5815c99d6c2d7",
+    "receipt_test_touched": false,
+    "selected_steps": {
+      "1": 44000,
+      "1234": 44000,
+      "42": 44000
+    },
+    "selection_changed_after_test": false
+  },
+  "selection_changed_after_test": false,
+  "status": "corrected_weak_form_held_out_test_evaluation_complete"
+}

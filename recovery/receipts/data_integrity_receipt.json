@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-09-01T13:51:21.425967+00:00",
+  "archives": {
+    "expected": 50,
+    "valid_markers": 50,
+    "invalid_markers": 0,
+    "marker_set_sha256": "efe2a6fc94c8883bb56f8534b31d5b52661dcd197de031216707460daa6f6803"
+  },
+  "bundles": {
+    "directory": "/workspace/flare_data/consolidated",
+    "expected": 3647,
+    "actual": 3647,
+    "sample_checked_first": [
+      {
+        "file": "/workspace/flare_data/consolidated/H318.npz",
+        "frames": 23,
+        "timestamps": 23
+      },
+      {
+        "file": "/workspace/flare_data/consolidated/H2262.npz",
+        "frames": 319,
+        "timestamps": 319
+      },
+      {
+        "file": "/workspace/flare_data/consolidated/H3932.npz",
+        "frames": 44,
+        "timestamps": 44
+      },
+      {
+        "file": "/workspace/flare_data/consolidated/H5676.npz",
+        "frames": 182,
+        "timestamps": 182
+      },
+      {
+        "file": "/workspace/flare_data/consolidated/H7212.npz",
+        "frames": 10,
+        "timestamps": 10
+      }
+    ],
+    "all_checked": 3647,
+    "frames_timestamps_equal_nonzero": true,
+    "total_frames": 457229,
+    "min_frames_per_bundle": 1,
+    "max_frames_per_bundle": 387,
+    "total_bytes": 37203707889
+  },
+  "manifest": {
+    "path": "/workspace/flare_data/consolidated/manifest.pkl",
+    "entries": 3647,
+    "schema_fields": [
+      "harpnum",
+      "file",
+      "n_frames",
+      "start",
+      "end"
+    ],
+    "atomic_write": true,
+    "sha256": "b692385d4c0eaa1b2b425aeb9808dd7e50066021e658f037392ec3faf4ee18aa"
+  },
+  "splits": {
+    "train": {
+      "path": "data/train.csv",
+      "count": 28405,
+      "columns": [
+        "harpnum",
+        "t0",
+        "y_geq_M_6h",
+        "y_geq_M_12h",
+        "y_geq_M_24h"
+      ],
+      "required_columns_present": true,
+      "sha256": "87604ad2a69e87504bf78706983cda515f5cd1dffec06f91005c0cd52f01120c"
+    },
+    "val": {
+      "path": "data/val.csv",
+      "count": 1905,
+      "columns": [
+        "harpnum",
+        "t0",
+        "y_geq_M_6h",
+        "y_geq_M_12h",
+        "y_geq_M_24h"
+      ],
+      "required_columns_present": true,
+      "sha256": "493fd21e7d78cc459b9df9e44d52a9f3df8e5f45eb325de26dd8546d8e0d40c4"
+    },
+    "test": {
+      "path": "data/test.csv",
+      "count": 5716,
+      "columns": [
+        "harpnum",
+        "t0",
+        "y_geq_M_6h",
+        "y_geq_M_12h",
+        "y_geq_M_24h"
+      ],
+      "required_columns_present": true,
+      "sha256": "aae877eb5973a1cb102de7a51ea43b5e5f23261a83c0faabc7be60df7c6ebb1a"
+    },
+    "combined_train_val_count": 30310,
+    "combined_val_fraction": 0.0628505443747938,
+    "required_columns": [
+      "harpnum",
+      "t0",
+      "y_geq_M_6h",
+      "y_geq_M_12h",
+      "y_geq_M_24h"
+    ],
+    "windows_train_val": {
+      "path": "data/windows_train_val_8005.parquet",
+      "count": 30310,
+      "required_columns": [
+        "harpnum",
+        "t0",
+        "y_geq_M_6h",
+        "y_geq_M_12h",
+        "y_geq_M_24h",
+        "has_noaa_mapping"
+      ],
+      "matches_train_plus_val": true,
+      "sha256": "9ab48860306c2e181c50e830bf02af27a7a2363765886c26b736544cff5f4391"
+    },
+    "windows_test": {
+      "path": "data/windows_test_15.parquet",
+      "count": 5716,
+      "required_columns": [
+        "harpnum",
+        "t0",
+        "y_geq_M_6h",
+        "y_geq_M_12h",
+        "y_geq_M_24h",
+        "has_noaa_mapping"
+      ],
+      "matches_test_csv": true,
+      "sha256": "05939b586cd2c3de7c7bf627de7e2ced2cc7ba88474c1e06d5f3c043157446eb"
+    }
+  },
+  "disk": {
+    "total_bytes": 107374182400,
+    "used_bytes": 38397825024,
+    "free_bytes": 68976357376,
+    "minimum_free_guard_bytes": 10737418240,
+    "sufficient": true
+  }
+}

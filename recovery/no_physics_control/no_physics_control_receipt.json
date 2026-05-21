@@ -1,0 +1,105 @@
+{
+ "schema": "no_physics_continuation_control/1",
+ "created_utc": "2026-09-05T21:35:50.696692+00:00",
+ "purpose": "Answer whether the +0.0822 solar recipe gain is the physics term or the additional 6,000 training steps.",
+ "prediction_recorded_before_run": {
+  "file": "prediction_before_run.txt",
+  "sha256": "475b44680d36c4889f04118512ee31a2d0726e7c0202e8564b5bf9c85af5ed51",
+  "predicted_mean_tss_N_44k": 0.715,
+  "observed_mean_tss_N_44k": 0.7155
+ },
+ "protocol": {
+  "checkpoints_pre_existing": true,
+  "training_performed": false,
+  "weights": "ema",
+  "threshold_rule": "Distance-to-Corner fit on validation only, frozen before test",
+  "test_windows": 5716,
+  "test_evaluations_added": 2,
+  "n_test_evaluations_total": 5,
+  "hardware": "NVIDIA RTX 3090",
+  "torch": "2.8.0+cu128",
+  "pandas": "3.0.5"
+ },
+ "results": {
+  "N_0044000_validation": {
+   "per_horizon": {
+    "6h": 0.8386046646217953,
+    "12h": 0.7952277545111421,
+    "24h": 0.7805698925945586
+   },
+   "mean_tss": 0.8048007705758321,
+   "thresholds": [
+    0.24266144814090018,
+    0.26418786692759294,
+    0.2498951405286789
+   ],
+   "artifact_sha256": "eb037db6acc8419a3699893c25ba0a37edd3c80599a11decaad84b2d880acd01"
+  },
+  "N_0044000_test": {
+   "per_horizon": {
+    "6h": 0.7105791233937687,
+    "12h": 0.6787953795379539,
+    "24h": 0.7571321123321123
+   },
+   "mean_tss": 0.715502205087945,
+   "thresholds": [
+    0.24266144814090018,
+    0.26418786692759294,
+    0.2498951405286789
+   ],
+   "artifact_sha256": "954445f0ad781ab246a859e25cb72f6e1fdecc41169ba5491e207a0021e61c87"
+  },
+  "N_0046000_validation": {
+   "per_horizon": {
+    "6h": 0.84021066033914,
+    "12h": 0.7952277545111421,
+    "24h": 0.7778028754390522
+   },
+   "mean_tss": 0.8044137634297782,
+   "thresholds": [
+    0.2457921802997589,
+    0.26418786692759294,
+    0.2465753424657534
+   ],
+   "artifact_sha256": "a7ef25b6519dfaee56d63e7213d0775bead4f832e29c3f2065562c2af2f1a7ec"
+  },
+  "N_0046000_test": {
+   "per_horizon": {
+    "6h": 0.711107199436719,
+    "12h": 0.6777345591702028,
+    "24h": 0.7638544566544567
+   },
+   "mean_tss": 0.7175654050871261,
+   "thresholds": [
+    0.2457921802997589,
+    0.26418786692759294,
+    0.2465753424657534
+   ],
+   "artifact_sha256": "42f227c0ba21faaa70ac9077e80a468a16de6dae2c0ed40bc92098a912ba734b"
+  }
+ },
+ "matched_step_44000_comparison": {
+  "in_distribution_validation": {
+   "N": 0.8047999999999998,
+   "recipe": 0.7917664899874955,
+   "physics_effect": -0.013033510012504301
+  },
+  "out_of_distribution_test": {
+   "N": 0.7155,
+   "recipe": 0.7951131666666668,
+   "physics_effect": 0.07961316666666673
+  },
+  "generalization_swing": 0.09264667667917108
+ },
+ "decomposition_of_recipe_gain": {
+  "data_only_40k_test": 0.7129553883844979,
+  "N_44k_test": 0.7155,
+  "recipe_44k_test": 0.7951131666666668,
+  "total_gain": 0.08215777828216886,
+  "from_extra_training": 0.0025446116155021237,
+  "from_physics_term": 0.07961316666666673,
+  "pct_from_extra_training": 3.097225446825884,
+  "pct_from_physics_term": 96.90277455317413
+ },
+ "note": "This control was run after the recipe result was known, under a plan recorded before any test data was on the machine. Both checkpoints and both splits are reported."
+}

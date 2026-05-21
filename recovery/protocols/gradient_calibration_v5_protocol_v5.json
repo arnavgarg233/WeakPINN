@@ -1,0 +1,256 @@
+{
+  "schema_version": "5.0.0",
+  "frozen": true,
+  "title": "V5 train-only paired gradient calibration, executable acceptance protocol",
+  "purpose": "Measure one independently derived physics gradient scale for each weak test basis at frozen Stage-1 weights while proving identical training windows, coordinates, and collocation samples across the pair.",
+  "supersedes": {
+    "path": "tools/recovery/gradient_calibration_v5_protocol_v4.json",
+    "sha256": "791363c930db8490ae4785b254c4d127d68ce2ae027d6f086d3c831915216cbf",
+    "status": "preserved_read_only",
+    "reason": "V4 was blocked pre-measurement by an identity mismatch caused by stable-vs-default same-time ordering: the exact loader uses default ordering for equal t0 values, while v4 froze stable ordering. No calibration outcomes exist."
+  },
+  "preserved_predecessors": {
+    "tools/recovery/gradient_calibration_v5_protocol.json": "9f8f7b353abe5f721a6f1cce5ee7a7fec27cf09fea5f2a09f4b2745001554d67",
+    "tools/recovery/gradient_calibration_v5_protocol_v2.json": "4903869db514fb67579dfe23e7b6937aad3f49e34a4c11f87dbba8a5298549c1",
+    "tools/recovery/gradient_calibration_v5_protocol_v3.json": "20dfb8a93fd10f8b883c574312322f491b0f60b6657c6d369225165d142d256e",
+    "tools/recovery/gradient_calibration_v5_protocol_v4.json": "791363c930db8490ae4785b254c4d127d68ce2ae027d6f086d3c831915216cbf"
+  },
+  "calibration_only": true,
+  "train_only": true,
+  "optimizer_updates": false,
+  "raw_model_weights": true,
+  "efficacy_config_freeze_authorized": false,
+  "seed": 1234,
+  "target_effective_gradient_ratio": 0.25,
+  "operating_lambda": 0.06956521739130435,
+  "basis_order": [
+    "legacy_diagonal",
+    "tensor_product"
+  ],
+  "derived_scales": {
+    "legacy_diagonal": null,
+    "tensor_product": null
+  },
+  "pinned_artifacts": {
+    "calibration_tool": {
+      "path": "tools/recovery/grad_calibration_multiwindow.py",
+      "sha256": "1be28e65961679d75ec87be39db0afc14f6e43cfbf73649222bedbc858ea367c",
+      "tool_version": "1.2.0",
+      "output_schema_version": "grad_calibration_multiwindow/3",
+      "read_only": true,
+      "canonical_window_uid": {
+        "canonical_table_column_present": false,
+        "frozen_window_spec_value": "",
+        "reported_value": "",
+        "identity_match": [
+          "index",
+          "harpnum",
+          "t0"
+        ]
+      }
+    },
+    "pair_checker": {
+      "path": "tools/recovery/accept_gradient_calibration_pair.py",
+      "sha256": "0b8048503ab2de65d1b2388aec1620dce91c29768b1e0e5f52680f790a45f267",
+      "tool_version": "1.0.0",
+      "output_schema_version": "accept_gradient_calibration_pair/1",
+      "invocation": "python tools/recovery/accept_gradient_calibration_pair.py",
+      "read_only": true
+    },
+    "calibration_config": {
+      "path": "src/configs/flare_pinn_v5_calibration.yaml",
+      "sha256": "677a5017c23812f39ea425caaa8cf57f6ebc9a1ef2c2a3b8cc7dae3872e3cf93",
+      "read_only": true
+    },
+    "window_spec": {
+      "path": "tools/recovery/v5_gradient_windows_v2.json",
+      "sha256": "68bdfe4a7aef6ffc6959d4459dd7e108678686d5bd6c7497d16f27a36546d462",
+      "read_only": true
+    },
+    "train_validation_parquet": {
+      "path": "data/windows_train_val_8005.parquet",
+      "sha256": "39adb4e5a9211736805e1ee7f16705ba15cf92c43012b59e2b8459cafd5f6658",
+      "read_only": true
+    },
+    "validation_parquet_integrity_only": {
+      "path": "data/windows_val_5.parquet",
+      "sha256": "7dba3e03066a890a17ca0c4cca41ac3141927271ca8dfb756cec94fded61d57e",
+      "measurement_input": false,
+      "content_read": false,
+      "read_only": true
+    },
+    "consolidated_manifest": {
+      "path": "/workspace/flare_data/consolidated/manifest.pkl",
+      "sha256": "b692385d4c0eaa1b2b425aeb9808dd7e50066021e658f037392ec3faf4ee18aa",
+      "records": 3647,
+      "expected_npz_count": 3647,
+      "read_only": true
+    },
+    "checkpoint": {
+      "path": "outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+      "sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183",
+      "step": 40000,
+      "weights": "raw model_state_dict",
+      "read_only": true
+    }
+  },
+  "data_partition": {
+    "canonical_rows": 30310,
+    "train_rows": 28405,
+    "validation_rows": 1905,
+    "selected_partition": "train",
+    "partition_rule": "Filter has_noaa_mapping, sort by t0, and take rows before split index 28405.",
+    "ordered_row_content_sha256": "b21f8bb1a7341070a1db81d7c5e24a52b1e0344ef124a9edb1613c8c10c0b82d",
+    "validation_examples_read": false,
+    "validation_outputs_read": false,
+    "test_examples_read": false,
+    "test_outputs_read": false,
+    "test_access_under_any_branch": false
+  },
+  "window_selection": {
+    "indices": [
+      1437,
+      2490,
+      3865,
+      6354,
+      7333,
+      8001,
+      8799,
+      9594,
+      16101,
+      16440,
+      18347,
+      20720,
+      22747,
+      25164,
+      25791,
+      27942
+    ],
+    "algorithm": "4 chronological quartiles after exact training_partition(); 2 any-horizon-positive + 2 all-horizon-negative per quartile; lowest SHA256(v5-gradient-calibration|quartile|class|harpnum|t0)",
+    "count": 16,
+    "order": "ascending canonical training row index",
+    "must_equal_frozen_window_spec": true,
+    "selection_uses_gradient_measurements": false
+  },
+  "pre_measurement_hash_gate": {
+    "failure_action": "abort before any frame read or model measurement",
+    "working_directory": "/workspace/Flare-PINN",
+    "command": "printf '%s  %s\\n' 1be28e65961679d75ec87be39db0afc14f6e43cfbf73649222bedbc858ea367c tools/recovery/grad_calibration_multiwindow.py 0b8048503ab2de65d1b2388aec1620dce91c29768b1e0e5f52680f790a45f267 tools/recovery/accept_gradient_calibration_pair.py 677a5017c23812f39ea425caaa8cf57f6ebc9a1ef2c2a3b8cc7dae3872e3cf93 src/configs/flare_pinn_v5_calibration.yaml 68bdfe4a7aef6ffc6959d4459dd7e108678686d5bd6c7497d16f27a36546d462 tools/recovery/v5_gradient_windows_v2.json 39adb4e5a9211736805e1ee7f16705ba15cf92c43012b59e2b8459cafd5f6658 data/windows_train_val_8005.parquet 7dba3e03066a890a17ca0c4cca41ac3141927271ca8dfb756cec94fded61d57e data/windows_val_5.parquet b692385d4c0eaa1b2b425aeb9808dd7e50066021e658f037392ec3faf4ee18aa /workspace/flare_data/consolidated/manifest.pkl b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183 outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt | sha256sum --check --strict -",
+    "required_before": [
+      "focused calibration tests on the pod",
+      "legacy_diagonal frame access",
+      "legacy_diagonal model construction",
+      "tensor_product frame access",
+      "tensor_product model construction"
+    ],
+    "tool_internal_gate": "The calibration tool independently requires and verifies config, checkpoint, train-validation parquet, window-spec, and consolidated-manifest hashes before opening the windows table, constructing the frame dataset, or measuring the model."
+  },
+  "measurement": {
+    "lambda_while_measuring_unscaled_physics": 1.0,
+    "proposal_lambda": 0.06956521739130435,
+    "target_fraction": 0.25,
+    "shared_backbone_only": true,
+    "module_mode": "train",
+    "weak_fourier_modes": 3,
+    "state_restore": "every window and every arm",
+    "weights_updated": false,
+    "grad_buffers_cleared": true,
+    "no_gradient_balancer": true,
+    "no_clipping_or_saturation": true,
+    "wandb": "disabled"
+  },
+  "commands": {
+    "working_directory": "/workspace/Flare-PINN",
+    "environment": "WANDB_MODE=disabled WANDB_DISABLED=true",
+    "output_directory": "outputs/recovery/gradient_calibration_v5",
+    "execution_order": [
+      "pre_measurement_hash_gate",
+      "focused_calibration_tests",
+      "legacy_diagonal",
+      "freeze_legacy_sampling_and_coordinate_digests",
+      "tensor_product",
+      "pair_acceptance"
+    ],
+    "focused_calibration_tests": "python -m pytest -q tests/test_grad_calibration_multiwindow.py tests/test_accept_gradient_calibration_pair.py tests/test_gradient_calibration_v5_protocol_v3.py",
+    "legacy_diagonal": "WANDB_MODE=disabled WANDB_DISABLED=true python tools/recovery/grad_calibration_multiwindow.py --config src/configs/flare_pinn_v5_calibration.yaml --expect-config-sha256 677a5017c23812f39ea425caaa8cf57f6ebc9a1ef2c2a3b8cc7dae3872e3cf93 --checkpoint outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt --expect-sha256 b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183 --windows-parquet data/windows_train_val_8005.parquet --expect-windows-sha256 39adb4e5a9211736805e1ee7f16705ba15cf92c43012b59e2b8459cafd5f6658 --expect-canonical-rows 30310 --expect-train-rows 28405 --consolidated-dir /workspace/flare_data/consolidated --expect-bundle-manifest-sha256 b692385d4c0eaa1b2b425aeb9808dd7e50066021e658f037392ec3faf4ee18aa --window-spec tools/recovery/v5_gradient_windows_v2.json --expect-window-spec-sha256 68bdfe4a7aef6ffc6959d4459dd7e108678686d5bd6c7497d16f27a36546d462 --window-indices 1437,2490,3865,6354,7333,8001,8799,9594,16101,16440,18347,20720,22747,25164,25791,27942 --seed 1234 --target-fraction 0.25 --lambda-phys 0.06956521739130435 --device cuda --weak-test-basis legacy_diagonal --output outputs/recovery/gradient_calibration_v5/legacy_diagonal.json",
+    "digest_handoff": {
+      "source_output": "outputs/recovery/gradient_calibration_v5/legacy_diagonal.json",
+      "sampling_source_field": "sampling.digest",
+      "coordinate_source_field": "coordinates.digest",
+      "required_sha256_hex_length": 64,
+      "frozen_sampling_variable": "LEGACY_SAMPLING_DIGEST",
+      "frozen_coordinate_variable": "LEGACY_COORDINATE_DIGEST",
+      "tensor_arguments": [
+        "--expect-sampling-digest ${LEGACY_SAMPLING_DIGEST}",
+        "--expect-coordinate-digest ${LEGACY_COORDINATE_DIGEST}"
+      ],
+      "mismatch_action": "abort"
+    },
+    "tensor_product": "WANDB_MODE=disabled WANDB_DISABLED=true python tools/recovery/grad_calibration_multiwindow.py --config src/configs/flare_pinn_v5_calibration.yaml --expect-config-sha256 677a5017c23812f39ea425caaa8cf57f6ebc9a1ef2c2a3b8cc7dae3872e3cf93 --checkpoint outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt --expect-sha256 b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183 --windows-parquet data/windows_train_val_8005.parquet --expect-windows-sha256 39adb4e5a9211736805e1ee7f16705ba15cf92c43012b59e2b8459cafd5f6658 --expect-canonical-rows 30310 --expect-train-rows 28405 --consolidated-dir /workspace/flare_data/consolidated --expect-bundle-manifest-sha256 b692385d4c0eaa1b2b425aeb9808dd7e50066021e658f037392ec3faf4ee18aa --window-spec tools/recovery/v5_gradient_windows_v2.json --expect-window-spec-sha256 68bdfe4a7aef6ffc6959d4459dd7e108678686d5bd6c7497d16f27a36546d462 --window-indices 1437,2490,3865,6354,7333,8001,8799,9594,16101,16440,18347,20720,22747,25164,25791,27942 --seed 1234 --target-fraction 0.25 --lambda-phys 0.06956521739130435 --device cuda --weak-test-basis tensor_product --expect-sampling-digest ${LEGACY_SAMPLING_DIGEST} --expect-coordinate-digest ${LEGACY_COORDINATE_DIGEST} --output outputs/recovery/gradient_calibration_v5/tensor_product.json",
+    "pair_acceptance": "python tools/recovery/accept_gradient_calibration_pair.py --legacy outputs/recovery/gradient_calibration_v5/legacy_diagonal.json --tensor outputs/recovery/gradient_calibration_v5/tensor_product.json --expect-config-sha256 677a5017c23812f39ea425caaa8cf57f6ebc9a1ef2c2a3b8cc7dae3872e3cf93 --expect-checkpoint-sha256 b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183 --expect-windows-sha256 39adb4e5a9211736805e1ee7f16705ba15cf92c43012b59e2b8459cafd5f6658 --expect-window-spec-sha256 68bdfe4a7aef6ffc6959d4459dd7e108678686d5bd6c7497d16f27a36546d462 --target-fraction 0.25 --lambda-phys 0.06956521739130435 --output outputs/recovery/gradient_calibration_v5/pair_acceptance.json"
+  },
+  "pair_acceptance": {
+    "checker": "tools/recovery/accept_gradient_calibration_pair.py",
+    "required_same": [
+      "selection.identities_sha256",
+      "ordered window identities",
+      "coordinates.digest",
+      "coordinates.per_window_digests",
+      "sampling.digest",
+      "sampling.per_window_index_digests",
+      "checkpoint.frozen_state_sha256",
+      "config.sha256",
+      "checkpoint.sha256",
+      "data.windows_parquet_sha256",
+      "selection.window_spec.sha256",
+      "median supervised gradient norm"
+    ],
+    "basis_specific_diagnostics": {
+      "independently_clean": true,
+      "aggregate_digest_equality_required": false,
+      "per_window_digest_equality_required": false,
+      "expected_to_differ": true,
+      "equality_permitted": true,
+      "reason": "Diagnostics include the weak test basis, matched test-pair counts, and raw weak-moment magnitudes. They are not basis-invariant evidence."
+    },
+    "required_guard_values": {
+      "all_finite": true,
+      "all_nonzero": true,
+      "weights_unchanged_all": true,
+      "grads_cleared_all": true,
+      "frozen_state_restored_all": true
+    },
+    "required_per_window_values": {
+      "weights_unchanged": true,
+      "grads_cleared": true,
+      "state_restored": true,
+      "physics_fail_closed": true,
+      "gradient_failure": false,
+      "outer_raw_loss_nonfinite": false,
+      "outer_raw_loss_saturated": false,
+      "nonfinite_moment_count": 0,
+      "n_moments_clipped": 0,
+      "clip_value": 0,
+      "outer_raw_loss_clip": 0
+    },
+    "failure_action": "abort without writing a receipt",
+    "accepted_pair_required_before_copy": true
+  },
+  "scale_derivation": {
+    "independent_per_basis": true,
+    "formula": "physics_grad_scale[basis] = 0.25 * median_grad_norm_supervised[basis] / (0.06956521739130435 * median_grad_norm_physics_unscaled[basis])",
+    "cross_basis_pooling": false,
+    "rounding_before_derivation": false
+  },
+  "freeze_gate": "This protocol authorizes calibration measurement and pair acceptance only. It does not authorize an efficacy configuration, efficacy training, validation evaluation, test access, seed runs, or any optimizer update.",
+  "prohibited": [
+    "Creating or freezing any efficacy configuration from this protocol.",
+    "Launching efficacy training or applying any optimizer update.",
+    "Reading validation examples or predictive outputs during calibration.",
+    "Reading, listing, hashing, opening, or downloading any test artifact.",
+    "Pooling gradient measurements across weak test bases.",
+    "Requiring equality of basis-specific diagnostics digests.",
+    "Accepting a pair with mismatched identity, coordinate, sampling, state, or pinned-input evidence.",
+    "Changing a pinned artifact, index, seed, target, lambda, basis order, formula, or gate after measurement begins."
+  ]
+}

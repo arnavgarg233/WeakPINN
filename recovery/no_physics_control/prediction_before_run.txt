@@ -1,0 +1,48 @@
+Arm N test evaluation - prediction recorded BEFORE the run
+==========================================================
+Recorded: 2026-09-05, before any test data was touched.
+
+WHAT: arm N = the 40,000-step data-only checkpoint continued 6,000 further
+steps with NO physics term, stopping at step 46,000, seed 1234. The checkpoint
+already exists; nothing is retrained. It has only ever been scored on
+validation (0.8082). It has never been scored on test.
+
+WHY: to answer the obvious referee question about the +0.0822 recipe gain,
+"is it the physics term, or is it just 6,000 more training steps?"
+
+PREDICTION: N lands near 0.715 grand-mean test TSS, close to the 0.7130
+data-only 40k baseline and far below the recipe arm's 0.7951. Basis: on
+validation N moved only +0.0021 off the 40k start point, essentially flat.
+
+COMMITMENT: the resulting number goes into the manuscript whichever way it
+falls. If N lands near 0.79, most of the +0.0822 is extra training rather than
+the physics term, the causal claim weakens accordingly, and the paper says so.
+
+PROTOCOL, fixed here before running:
+  checkpoint  no_physics/seed1234/checkpoint_step_0046000.pt
+  weights     EMA (matches every other arm)
+  thresholds  Distance-to-Corner fit on validation only, frozen before test
+  data        data/windows_test_15.parquet, 5,716 windows
+  metric      TSS at 6h, 12h, 24h and the unweighted grand mean
+  runs        exactly one test evaluation, no repeats, no reruns on failure
+
+AMENDMENT, recorded before any test data existed on this machine
+----------------------------------------------------------------
+While preparing the run I found that arm N also has a checkpoint at step
+44,000, which is the exact step the recipe arm was scored at. Comparing N at
+46,000 against a recipe arm scored at 44,000 would confound the physics term
+with 2,000 extra steps. N at 44,000 is the properly matched control.
+
+Amended plan: evaluate BOTH checkpoints, once each.
+  PRIMARY   N @ step 44,000  - matched-step control, same training length as
+            the recipe arm, so the only difference is the physics term.
+  SECONDARY N @ step 46,000  - the v5 formal endpoint, reported for continuity.
+
+This raises the count from one test evaluation to two.
+
+This amendment is made before any test magnetogram data finished downloading
+and therefore before any test outcome could be known. It is a design
+correction, not a response to a result. Both numbers get reported.
+
+Revised prediction: N @ 44,000 lands near 0.715 grand-mean test TSS, close to
+the 0.7130 data-only baseline and well below the recipe arm's 0.7951.

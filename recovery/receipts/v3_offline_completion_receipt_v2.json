@@ -1,0 +1,321 @@
+{
+  "schema_version": "efficacy_v5_v3_complete_offline_completion_receipt/2",
+  "model": "GPT-5.6 Luna Medium",
+  "status": "formal_offline_validation_completed_stop",
+  "local_only": true,
+  "correction_time_utc": "2026-09-04T22:14:59Z",
+  "supersedes": {
+    "path": "outputs/recovery/efficacy_v5/v3_complete/v3_offline_completion_receipt.json",
+    "sha256": "186bca34eed6a52a242dc47d5260be4465cab8934a50920f022087c19b3d37f9",
+    "bytes": 23946,
+    "verified_byte_identical": true
+  },
+  "old_receipt_sha256": "186bca34eed6a52a242dc47d5260be4465cab8934a50920f022087c19b3d37f9",
+  "correction_reason": "The prior receipt mislabeled the historical 40000 validation mean sweep-TSS as test TSS. This receipt corrects that evidence label, records the separate historical 40000 test TSS context from the benchmark CSV, and makes the split and estimand boundaries explicit. No formal v5 metric, threshold, MDE, gate, or decision is changed.",
+  "correction_scope": {
+    "evidence_and_labels_only": true,
+    "formal_v5_values_unchanged": true,
+    "code_config_protocol_manuscript_and_other_results_untouched": true,
+    "runpod_touched": false,
+    "test_data_accessed": false
+  },
+  "scope": {
+    "repo_relative_artifact_root": "outputs/recovery/efficacy_v5/v3_complete",
+    "arms": {
+      "N": "no_physics",
+      "L": "lowdose_legacy",
+      "T": "lowdose_tensor"
+    },
+    "seed": 1234,
+    "formal_step": 46000,
+    "formal_primary_weights": "ema",
+    "diagnostic_weights": "raw",
+    "metric": "sweep_tss",
+    "threshold_sweep_n": 1024,
+    "validation_windows": 1905
+  },
+  "split_estimand_map": {
+    "historical_40000_validation_anchor": {
+      "split": "validation",
+      "step": 40000,
+      "weights": "ema",
+      "estimand": "mean sweep-TSS over 6h, 12h, and 24h",
+      "role": "historical context anchor only",
+      "is_v5_endpoint": false,
+      "test": false,
+      "test_performance_inference": false
+    },
+    "historical_40000_test_context": {
+      "split": "test",
+      "step": 40000,
+      "weights": "not specified in source CSV",
+      "estimand": "arithmetic mean of the three per-horizon CSV TSS values at the CSV row thresholds",
+      "role": "historical context only",
+      "is_v5_endpoint": false,
+      "compare_to_v5": false,
+      "cross_split_comparison": false,
+      "test_performance_inference_about_v5": false
+    },
+    "formal_v5_endpoint": {
+      "split": "validation",
+      "step": 46000,
+      "dataset": "data/windows_val_5.parquet",
+      "weights": "ema",
+      "estimand": "mean sweep-TSS over 6h, 12h, and 24h",
+      "role": "sole formal v5 primary endpoint",
+      "is_v5_endpoint": true,
+      "test": false,
+      "test_data_accessed": false,
+      "test_performance_inference": false
+    }
+  },
+  "historical_context": {
+    "historical_40000_validation": {
+      "label": "historical 40k VALIDATION mean sweep-TSS",
+      "step": 40000,
+      "weights": "ema",
+      "mean_tss": 0.8061295869851035,
+      "per_horizon_tss": {
+        "6h": 0.8407459922449216,
+        "12h": 0.7992864898402356,
+        "24h": 0.7783562788701535
+      },
+      "source": {
+        "path": "outputs/checkpoints/benchmark_classifier/validation_results/checkpoint_step_0040000_validation.npz",
+        "sha256": "357565e9ceac1beb18e04b03445101295048a7d33e63ec5df93e636316f0cb60",
+        "bytes": 47052
+      },
+      "derivation": "Recomputed sweep_tss from the NPZ probs and labels arrays at n=1024 for each horizon and then took the arithmetic mean.",
+      "not_test": true,
+      "not_v5_endpoint": true,
+      "test_performance_inference": false
+    },
+    "historical_40000_test": {
+      "label": "historical 40k TEST TSS",
+      "step": 40000,
+      "per_horizon_tss": {
+        "6h": 0.7123393768702694,
+        "12h": 0.680917020273456,
+        "24h": 0.745609768009768
+      },
+      "mean_tss": 0.7129553883844978,
+      "source": {
+        "path": "final_results/metrics/benchmark_40k_confusion_metrics.csv",
+        "sha256": "f98365058687fdde5d77120bd55373a718bfee3baa37d9230510601d118d22dc",
+        "bytes": 640
+      },
+      "context_only": true,
+      "is_v5_endpoint": false,
+      "compare_to_v5": false,
+      "cross_split_comparison": false,
+      "test_performance_inference_about_v5": false
+    },
+    "test_context_boundary": "The historical 40000 TEST TSS values are retained as context only and are not compared with the formal v5 validation endpoint because the split and estimand differ."
+  },
+  "formal_v5_validation": {
+    "endpoint": {
+      "name": "46k offline validation endpoint",
+      "step": 46000,
+      "split": "validation",
+      "dataset": "data/windows_val_5.parquet",
+      "weights": "ema",
+      "estimand": "mean sweep-TSS over 6h, 12h, and 24h",
+      "primary": true,
+      "test": false,
+      "test_data_accessed": false
+    },
+    "primary_ema": {
+      "N": {
+        "label": "N",
+        "mean_tss": 0.8081810477391248,
+        "per_horizon_tss": {
+          "6h": 0.84021066033914,
+          "12h": 0.8058011478206917,
+          "24h": 0.7785313350575427
+        }
+      },
+      "L": {
+        "label": "L",
+        "mean_tss": 0.8103650883365446,
+        "per_horizon_tss": {
+          "6h": 0.8412813241507032,
+          "12h": 0.8085155886458817,
+          "24h": 0.7812983522130491
+        }
+      },
+      "T": {
+        "label": "T",
+        "mean_tss": 0.8103650883365446,
+        "per_horizon_tss": {
+          "6h": 0.8412813241507032,
+          "12h": 0.8085155886458817,
+          "24h": 0.7812983522130491
+        }
+      }
+    },
+    "formal_comparisons": {
+      "L_minus_N": 0.002184040597419834,
+      "T_minus_N": 0.002184040597419834,
+      "T_minus_L": 0.0,
+      "mde_mean_tss": 0.009,
+      "L_minus_N_ge_mde": false,
+      "T_minus_N_ge_mde": false,
+      "T_minus_L_ge_mde": false,
+      "decision": "STOP"
+    },
+    "decision_statement": "The formal v5 validation endpoint is complete and evaluable, but the primary advancement gates fail at MDE 0.009. No confirmation or test evaluation is authorized.",
+    "source_receipt": "outputs/recovery/efficacy_v5/v3_complete/v3_offline_completion_receipt.json"
+  },
+  "no_test_inference": {
+    "v5_accessed_test": false,
+    "v5_test_data_accessed": false,
+    "v5_test_evaluation_launched": false,
+    "v5_validation_is_not_test": true,
+    "statement": "V5 did not access test. The formal v5 result is validation-only and provides no test-performance inference."
+  },
+  "source_hashes": {
+    "superseded_completion_receipt": {
+      "path": "outputs/recovery/efficacy_v5/v3_complete/v3_offline_completion_receipt.json",
+      "sha256": "186bca34eed6a52a242dc47d5260be4465cab8934a50920f022087c19b3d37f9",
+      "bytes": 23946,
+      "verified_unchanged": true
+    },
+    "historical_validation_npz": {
+      "path": "outputs/checkpoints/benchmark_classifier/validation_results/checkpoint_step_0040000_validation.npz",
+      "sha256": "357565e9ceac1beb18e04b03445101295048a7d33e63ec5df93e636316f0cb60",
+      "bytes": 47052,
+      "verified": true
+    },
+    "historical_test_csv": {
+      "path": "final_results/metrics/benchmark_40k_confusion_metrics.csv",
+      "sha256": "f98365058687fdde5d77120bd55373a718bfee3baa37d9230510601d118d22dc",
+      "bytes": 640,
+      "verified": true
+    },
+    "sweep_tss_implementation": {
+      "path": "src/models/eval/metrics.py",
+      "sha256": "eecb77e4437d085f23f6f4f8f71cb59b7ebcec2ab3466bb451049abb38a8ade3",
+      "bytes": 11217,
+      "verified": true
+    },
+    "v5_batch_evaluator": {
+      "path": "tools/validation/batch_validate_checkpoints.py",
+      "sha256": "c26034f56d1531273c28bc3bd55ba852bb3466c1c4f75ae5d17a187d0034be82",
+      "bytes": 22168,
+      "verified": true
+    },
+    "v5_validation_data": {
+      "path": "data/windows_val_5.parquet",
+      "sha256": "7dba3e03066a890a17ca0c4cca41ac3141927271ca8dfb756cec94fded61d57e",
+      "bytes": 69640,
+      "verified": true
+    },
+    "v5_primary_result_files": {
+      "N_ema": {
+        "path": "outputs/recovery/efficacy_v5/v3_complete/v3_offline/no_physics/checkpoints/step_0046000_c9647f169f74_f578f54a82/ema/result.json",
+        "sha256": "3feb1db06aa4b670796a24969dc2083db2f815d6ba54e2d25c5a1888812edad5",
+        "bytes": 2065,
+        "verified": true
+      },
+      "L_ema": {
+        "path": "outputs/recovery/efficacy_v5/v3_complete/v3_offline/lowdose_legacy/checkpoints/step_0046000_5b952024c892_daf25c8bb5/ema/result.json",
+        "sha256": "f8f89e65aa86d113d21a9d30a501c83335781f848327e5336b4d200b2353af7f",
+        "bytes": 2076,
+        "verified": true
+      },
+      "T_ema": {
+        "path": "outputs/recovery/efficacy_v5/v3_complete/v3_offline/lowdose_tensor/checkpoints/step_0046000_3f23383c7cd6_abb09c6d1d/ema/result.json",
+        "sha256": "6e963a246732b42e9380fe28471aa4e2a86637c8fcec05b4c5755f026eed6c1c",
+        "bytes": 2075,
+        "verified": true
+      }
+    },
+    "prior_screening_receipt": {
+      "path": "outputs/recovery/efficacy_v5/v3_complete/v3_screening_receipt.json",
+      "sha256": "d88ab9a8b388db747dd6f771f5ce3621b4ad69704004247c72668a6c4ea153ea",
+      "bytes": 50975,
+      "verified": true
+    },
+    "superseded_receipt_inventory": {
+      "sha256_fields_checked": 26,
+      "declared_sha256_fields_checked": 18,
+      "result_declared_sha256_fields_checked": 6,
+      "hash_fields_checked": 50,
+      "all_listed_hashes_match": true
+    }
+  },
+  "arithmetic_revalidation": {
+    "historical_40000_validation_mean": {
+      "formula": "(0.8407459922449216 + 0.7992864898402356 + 0.7783562788701535) / 3",
+      "value": 0.8061295869851035,
+      "matches_recorded": true
+    },
+    "historical_40000_test_mean": {
+      "formula": "(0.7123393768702694 + 0.680917020273456 + 0.745609768009768) / 3",
+      "value": 0.7129553883844978,
+      "matches_recorded": true
+    },
+    "formal_v5_means": {
+      "N": {
+        "formula": "(0.84021066033914 + 0.8058011478206917 + 0.7785313350575427) / 3",
+        "value": 0.8081810477391248,
+        "matches_recorded": true
+      },
+      "L": {
+        "formula": "(0.8412813241507032 + 0.8085155886458817 + 0.7812983522130491) / 3",
+        "value": 0.8103650883365446,
+        "matches_recorded": true
+      },
+      "T": {
+        "formula": "(0.8412813241507032 + 0.8085155886458817 + 0.7812983522130491) / 3",
+        "value": 0.8103650883365446,
+        "matches_recorded": true
+      }
+    },
+    "formal_differences": {
+      "L_minus_N": {
+        "formula": "0.8103650883365446 - 0.8081810477391248",
+        "value": 0.002184040597419834,
+        "matches_recorded": true
+      },
+      "T_minus_N": {
+        "formula": "0.8103650883365446 - 0.8081810477391248",
+        "value": 0.002184040597419834,
+        "matches_recorded": true
+      },
+      "T_minus_L": {
+        "formula": "0.8103650883365446 - 0.8103650883365446",
+        "value": 0.0,
+        "matches_recorded": true
+      }
+    },
+    "mde_gate": {
+      "mde": 0.009,
+      "advancement_effects": [
+        0.002184040597419834,
+        0.002184040597419834,
+        0.0
+      ],
+      "all_advancement_effects_ge_mde": false,
+      "decision": "STOP",
+      "matches_recorded": true
+    },
+    "superseded_receipt_arithmetic_rechecked": true
+  },
+  "validation": {
+    "json_parseable": true,
+    "deterministic_serialization": "UTF-8 JSON with fixed two-space indentation, stable key order, and final newline",
+    "old_receipt_byte_identity_checked": true,
+    "source_hashes_checked": true,
+    "source_hashes_all_match": true,
+    "formal_mean_arithmetic_checked": true,
+    "historical_test_mean_arithmetic_checked": true,
+    "formal_difference_arithmetic_checked": true,
+    "mde_hierarchy_checked": true,
+    "split_estimand_map_checked": true,
+    "cross_split_test_context_excluded_from_v5_comparisons": true,
+    "no_test_access_check": true,
+    "no_test_performance_inference_check": true,
+    "formal_v5_stop_unchanged": true
+  }
+}

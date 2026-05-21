@@ -1,0 +1,1166 @@
+{
+  "schema_version": "1.0.0",
+  "created_utc": "2026-09-01T16:57:18.909035Z",
+  "status": "validation_only_checkpoint_selection_complete",
+  "frozen_rule": {
+    "protocol_path": "/workspace/Flare-PINN/tools/recovery/weak_form_correction_protocol.json",
+    "protocol_sha256": "2b353b55b1cf14005bf30bd9b5dce6561ac18e5b6e38fea6dfa730a0cf4674a2",
+    "frozen": true,
+    "split": "validation",
+    "candidate_steps": [
+      44000,
+      45000,
+      46000
+    ],
+    "candidate_window": {
+      "min_step": 44000,
+      "max_step": 46000
+    },
+    "metric": "mean validation TSS over the 6h, 12h and 24h horizons",
+    "metric_formula_used": "(validation TSS at 6h + validation TSS at 12h + validation TSS at 24h) / 3",
+    "tie_break": "higher 24h validation TSS, then the earlier step",
+    "selection_independent_per_seed": true,
+    "ignore_code_maintained_best_model_outside_candidate_window": true,
+    "thresholds": "Distance-to-corner operating points fitted on validation only, frozen before test evaluation",
+    "uses_test_split": false,
+    "test_data_or_test_artifact_access_allowed": false
+  },
+  "frozen_input_hashes": {
+    "config": {
+      "path": "/workspace/Flare-PINN/src/configs/flare_pinn_weak_corrected.yaml",
+      "sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5",
+      "verified_against_run_lock": true
+    },
+    "preflight": {
+      "path": "/workspace/Flare-PINN/outputs/recovery/preflight_scale.json",
+      "sha256": "a496f1ad35341fff8c00452e658b9d3dc64b871fcc9f49dd8908b7110933f2aa",
+      "verified_against_run_lock": true
+    },
+    "run_lock": {
+      "path": "/workspace/Flare-PINN/outputs/recovery/run_lock.json",
+      "sha256": "f4e06f76dccb2c24f95b8acd32f9ef05923023e4cd369b7948dffbe08faa1aab"
+    },
+    "data_integrity_receipt": {
+      "path": "/workspace/Flare-PINN/outputs/recovery/data_integrity_receipt.json",
+      "sha256": "d2e93c0f233b72ab1090866aee2f322b6d074c68b823a2bcac93a9d9142cf0cd"
+    },
+    "stage1_resume_checkpoint": {
+      "path": "/workspace/Flare-PINN/outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+      "sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183"
+    }
+  },
+  "run_verification": {
+    "1234": {
+      "seed": 1234,
+      "receipt_path": "/workspace/Flare-PINN/outputs/recovery/seed1234_retry_receipt.json",
+      "receipt_sha256": "96e6ceef3ccfd8d6405cde375b79d6d39722d5a3f8471a1bb0b38f70e7c23134",
+      "receipt_seed": 1234,
+      "receipt_status": "completed_to_46000",
+      "log_path_from_receipt": "outputs/recovery/logs/seed1234_attempt2.log",
+      "log_path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1234_attempt2.log",
+      "log_sha256": "0e0c6000af3bb4f9498ff22717ab5e860655c4497286aad1c973ba3f8008fd22",
+      "log_sha256_matches_receipt": true,
+      "config_sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5",
+      "config_sha256_matches_frozen": true
+    },
+    "1": {
+      "seed": 1,
+      "receipt_path": "/workspace/Flare-PINN/outputs/recovery/seed1_terminal_receipt.json",
+      "receipt_sha256": "eba24a1a13d6b5cd8ab6b3baab7a82c62ffe88ce08944c0e3b512fcdeaf3f71c",
+      "receipt_seed": 1,
+      "receipt_status": "completed_to_46000",
+      "log_path_from_receipt": "outputs/recovery/logs/seed1.log",
+      "log_path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1.log",
+      "log_sha256": "9b54b95cd893a848bc76033b36f3457ba84f946fb0bdd10d5a3d8fb2bd0fd5dd",
+      "log_sha256_matches_receipt": true,
+      "config_sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5",
+      "config_sha256_matches_frozen": true
+    },
+    "42": {
+      "seed": 42,
+      "receipt_path": "/workspace/Flare-PINN/outputs/recovery/seed42_terminal_receipt.json",
+      "receipt_sha256": "fbcb8172a867a61dddd640dec13512316ca2721cac3433226c1144e417678e80",
+      "receipt_seed": 42,
+      "receipt_status": "completed_to_46000",
+      "log_path_from_receipt": "outputs/recovery/logs/seed42.log",
+      "log_path": "/workspace/Flare-PINN/outputs/recovery/logs/seed42.log",
+      "log_sha256": "ea5593e79d20e40763eb7d762e0ac5470f869e859e43d4f48a541cb684e48501",
+      "log_sha256_matches_receipt": true,
+      "config_sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5",
+      "config_sha256_matches_frozen": true
+    }
+  },
+  "candidate_set_verification": {
+    "expected_rows": 9,
+    "saved_rows": 9,
+    "all_candidate_steps_present_for_each_seed": true,
+    "missing_candidates": [],
+    "standalone_validation_artifacts_found": false,
+    "fallback_logs_used_only_when_standalone_artifact_missing": true,
+    "all_fallback_logs_contain_6h_12h_24h_values_for_all_candidates": true,
+    "seed1234_failed_attempt_excluded": {
+      "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1234.log",
+      "sha256": "ea8ad81bf1cf2db03dc235c13ce32cf29daf07881e495888ea5ec88112373e69",
+      "used_for_candidate_metrics": false,
+      "reason": "preserved attempt failed before validation and checkpoint serialization"
+    }
+  },
+  "best_model_checks": {
+    "1234": {
+      "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1234/best_model.pt",
+      "sha256": "dda48ea59a0d87a87f7b162db3b5f7a66b7f4c845487d53b1fd8c8ee7ae8c08f",
+      "internal_step": 42000,
+      "internal_step_outside_candidate_window": true,
+      "internal_metric_24h_tss": 0.789356583806738,
+      "ignored_by_frozen_rule": true,
+      "reason": "code-maintained best_model step is outside the exact candidate set 44000, 45000, 46000"
+    },
+    "1": {
+      "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1/best_model.pt",
+      "sha256": "8c007761f88fd895ed9c3de8e601ddbc6e868e66cba63346680fcafd86131d01",
+      "internal_step": 43000,
+      "internal_step_outside_candidate_window": true,
+      "internal_metric_24h_tss": 0.7951334379905809,
+      "ignored_by_frozen_rule": true,
+      "reason": "code-maintained best_model step is outside the exact candidate set 44000, 45000, 46000"
+    },
+    "42": {
+      "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed42/best_model.pt",
+      "sha256": "8a7ae5f07f129786d39afbfacbb885b23b442f0a22137a6765d155239757eff7",
+      "internal_step": 42000,
+      "internal_step_outside_candidate_window": true,
+      "internal_metric_24h_tss": 0.7984538585771885,
+      "ignored_by_frozen_rule": true,
+      "reason": "code-maintained best_model step is outside the exact candidate set 44000, 45000, 46000"
+    }
+  },
+  "candidates": [
+    {
+      "row_id": "seed1234:step44000",
+      "seed": 1234,
+      "step": 44000,
+      "split": "validation",
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1234/checkpoint_step_0044000.pt",
+        "sha256": "449fe34d42d3c251016250ce2b09691b2343e6701991dda0898c425304c28757",
+        "internal_step": 44000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.7862789830929605,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1234_attempt2.log",
+        "sha256": "0e0c6000af3bb4f9498ff22717ab5e860655c4497286aad1c973ba3f8008fd22",
+        "bytes": 30264,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 170,
+          "selection_summary_line": 176,
+          "horizon_lines": {
+            "6h": 177,
+            "12h": 178,
+            "24h": 179
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.809,
+        "12h": 0.79,
+        "24h": 0.786
+      },
+      "validation_tss_logged_text": {
+        "6h": "0.809",
+        "12h": "0.790",
+        "24h": "0.786"
+      },
+      "validation_tss_source_lines": {
+        "6h": 177,
+        "12h": 178,
+        "24h": 179
+      },
+      "mean_validation_tss": 0.795,
+      "mean_validation_tss_exact_fraction_from_logged_values": "159/200",
+      "mean_validation_tss_decimal_from_logged_values": "0.79500000000000000000",
+      "mean_validation_tss_rounded_4dp": 0.795,
+      "mean_validation_tss_formula": "(0.809 + 0.790 + 0.786) / 3",
+      "reported_selection_summary_for_audit_only": {
+        "values": {
+          "24h": 0.7863,
+          "mean": 0.7949,
+          "max": 0.8086
+        },
+        "logged_text": {
+          "24h": "0.7863",
+          "mean": "0.7949",
+          "max": "0.8086"
+        },
+        "line": 176,
+        "mean_difference_summary_minus_recomputed": -0.0001,
+        "not_used_for_selection": true
+      },
+      "checkpoint_metric_24h_tss": 0.7862789830929605,
+      "selection_metric_used": 0.795,
+      "selection_metric_source": "arithmetic mean of the three per-horizon TSS values in the preserved validation log",
+      "selection_rank": 1,
+      "selected_by_frozen_rule": true
+    },
+    {
+      "row_id": "seed1234:step45000",
+      "seed": 1234,
+      "step": 45000,
+      "split": "validation",
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1234/checkpoint_step_0045000.pt",
+        "sha256": "10344d578cedfbe6206c8d7bcdbc783e66d6802a6ef4cab015ef51df44d3fbee",
+        "internal_step": 45000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.7727544808736998,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1234_attempt2.log",
+        "sha256": "0e0c6000af3bb4f9498ff22717ab5e860655c4497286aad1c973ba3f8008fd22",
+        "bytes": 30264,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 231,
+          "selection_summary_line": 237,
+          "horizon_lines": {
+            "6h": 238,
+            "12h": 239,
+            "24h": 240
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.795,
+        "12h": 0.782,
+        "24h": 0.773
+      },
+      "validation_tss_logged_text": {
+        "6h": "0.795",
+        "12h": "0.782",
+        "24h": "0.773"
+      },
+      "validation_tss_source_lines": {
+        "6h": 238,
+        "12h": 239,
+        "24h": 240
+      },
+      "mean_validation_tss": 0.7833333333333333,
+      "mean_validation_tss_exact_fraction_from_logged_values": "47/60",
+      "mean_validation_tss_decimal_from_logged_values": "0.78333333333333333333",
+      "mean_validation_tss_rounded_4dp": 0.7833,
+      "mean_validation_tss_formula": "(0.795 + 0.782 + 0.773) / 3",
+      "reported_selection_summary_for_audit_only": {
+        "values": {
+          "24h": 0.7728,
+          "mean": 0.783,
+          "max": 0.7947
+        },
+        "logged_text": {
+          "24h": "0.7728",
+          "mean": "0.7830",
+          "max": "0.7947"
+        },
+        "line": 237,
+        "mean_difference_summary_minus_recomputed": -0.0003333333333333333,
+        "not_used_for_selection": true
+      },
+      "checkpoint_metric_24h_tss": 0.7727544808736998,
+      "selection_metric_used": 0.7833333333333333,
+      "selection_metric_source": "arithmetic mean of the three per-horizon TSS values in the preserved validation log",
+      "selection_rank": 2,
+      "selected_by_frozen_rule": false
+    },
+    {
+      "row_id": "seed1234:step46000",
+      "seed": 1234,
+      "step": 46000,
+      "split": "validation",
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1234/checkpoint_step_0046000.pt",
+        "sha256": "6ebd3817cf0cbe403c69544124ce8b29f98e3f1a1cc9619d96b9efa65a4271fe",
+        "internal_step": 46000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.7672204465626871,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1234_attempt2.log",
+        "sha256": "0e0c6000af3bb4f9498ff22717ab5e860655c4497286aad1c973ba3f8008fd22",
+        "bytes": 30264,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 260,
+          "selection_summary_line": 266,
+          "horizon_lines": {
+            "6h": 267,
+            "12h": 268,
+            "24h": 269
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.793,
+        "12h": 0.775,
+        "24h": 0.767
+      },
+      "validation_tss_logged_text": {
+        "6h": "0.793",
+        "12h": "0.775",
+        "24h": "0.767"
+      },
+      "validation_tss_source_lines": {
+        "6h": 267,
+        "12h": 268,
+        "24h": 269
+      },
+      "mean_validation_tss": 0.7783333333333333,
+      "mean_validation_tss_exact_fraction_from_logged_values": "467/600",
+      "mean_validation_tss_decimal_from_logged_values": "0.77833333333333333333",
+      "mean_validation_tss_rounded_4dp": 0.7783,
+      "mean_validation_tss_formula": "(0.793 + 0.775 + 0.767) / 3",
+      "reported_selection_summary_for_audit_only": {
+        "values": {
+          "24h": 0.7672,
+          "mean": 0.7783,
+          "max": 0.7926
+        },
+        "logged_text": {
+          "24h": "0.7672",
+          "mean": "0.7783",
+          "max": "0.7926"
+        },
+        "line": 266,
+        "mean_difference_summary_minus_recomputed": -3.3333333333333335e-05,
+        "not_used_for_selection": true
+      },
+      "checkpoint_metric_24h_tss": 0.7672204465626871,
+      "selection_metric_used": 0.7783333333333333,
+      "selection_metric_source": "arithmetic mean of the three per-horizon TSS values in the preserved validation log",
+      "selection_rank": 3,
+      "selected_by_frozen_rule": false
+    },
+    {
+      "row_id": "seed1:step44000",
+      "seed": 1,
+      "step": 44000,
+      "split": "validation",
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1/checkpoint_step_0044000.pt",
+        "sha256": "3bc4832ac6e9e30b9775347b13c7544d081e177c15bad1ef11767eb04ce69e34",
+        "internal_step": 44000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.7879391933862644,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1.log",
+        "sha256": "9b54b95cd893a848bc76033b36f3457ba84f946fb0bdd10d5a3d8fb2bd0fd5dd",
+        "bytes": 30051,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 170,
+          "selection_summary_line": 176,
+          "horizon_lines": {
+            "6h": 177,
+            "12h": 178,
+            "24h": 179
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.803,
+        "12h": 0.805,
+        "24h": 0.788
+      },
+      "validation_tss_logged_text": {
+        "6h": "0.803",
+        "12h": "0.805",
+        "24h": "0.788"
+      },
+      "validation_tss_source_lines": {
+        "6h": 177,
+        "12h": 178,
+        "24h": 179
+      },
+      "mean_validation_tss": 0.7986666666666666,
+      "mean_validation_tss_exact_fraction_from_logged_values": "599/750",
+      "mean_validation_tss_decimal_from_logged_values": "0.79866666666666666667",
+      "mean_validation_tss_rounded_4dp": 0.7987,
+      "mean_validation_tss_formula": "(0.803 + 0.805 + 0.788) / 3",
+      "reported_selection_summary_for_audit_only": {
+        "values": {
+          "24h": 0.7879,
+          "mean": 0.7985,
+          "max": 0.8048
+        },
+        "logged_text": {
+          "24h": "0.7879",
+          "mean": "0.7985",
+          "max": "0.8048"
+        },
+        "line": 176,
+        "mean_difference_summary_minus_recomputed": -0.00016666666666666666,
+        "not_used_for_selection": true
+      },
+      "checkpoint_metric_24h_tss": 0.7879391933862644,
+      "selection_metric_used": 0.7986666666666666,
+      "selection_metric_source": "arithmetic mean of the three per-horizon TSS values in the preserved validation log",
+      "selection_rank": 1,
+      "selected_by_frozen_rule": true
+    },
+    {
+      "row_id": "seed1:step45000",
+      "seed": 1,
+      "step": 45000,
+      "split": "validation",
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1/checkpoint_step_0045000.pt",
+        "sha256": "cf306efcebcb7189093e99d6be3e720ea7be8dc6045d4abe99409b51b72097f1",
+        "internal_step": 45000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.791259613972872,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1.log",
+        "sha256": "9b54b95cd893a848bc76033b36f3457ba84f946fb0bdd10d5a3d8fb2bd0fd5dd",
+        "bytes": 30051,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 232,
+          "selection_summary_line": 238,
+          "horizon_lines": {
+            "6h": 239,
+            "12h": 240,
+            "24h": 241
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.798,
+        "12h": 0.803,
+        "24h": 0.791
+      },
+      "validation_tss_logged_text": {
+        "6h": "0.798",
+        "12h": "0.803",
+        "24h": "0.791"
+      },
+      "validation_tss_source_lines": {
+        "6h": 239,
+        "12h": 240,
+        "24h": 241
+      },
+      "mean_validation_tss": 0.7973333333333333,
+      "mean_validation_tss_exact_fraction_from_logged_values": "299/375",
+      "mean_validation_tss_decimal_from_logged_values": "0.79733333333333333333",
+      "mean_validation_tss_rounded_4dp": 0.7973,
+      "mean_validation_tss_formula": "(0.798 + 0.803 + 0.791) / 3",
+      "reported_selection_summary_for_audit_only": {
+        "values": {
+          "24h": 0.7913,
+          "mean": 0.7973,
+          "max": 0.8027
+        },
+        "logged_text": {
+          "24h": "0.7913",
+          "mean": "0.7973",
+          "max": "0.8027"
+        },
+        "line": 238,
+        "mean_difference_summary_minus_recomputed": -3.3333333333333335e-05,
+        "not_used_for_selection": true
+      },
+      "checkpoint_metric_24h_tss": 0.791259613972872,
+      "selection_metric_used": 0.7973333333333333,
+      "selection_metric_source": "arithmetic mean of the three per-horizon TSS values in the preserved validation log",
+      "selection_rank": 2,
+      "selected_by_frozen_rule": false
+    },
+    {
+      "row_id": "seed1:step46000",
+      "seed": 1,
+      "step": 46000,
+      "split": "validation",
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1/checkpoint_step_0046000.pt",
+        "sha256": "911f41625740b9217e7bae719c7c219d9039b648ff8497a5792ece55c0f42258",
+        "internal_step": 46000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.7779779316264415,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1.log",
+        "sha256": "9b54b95cd893a848bc76033b36f3457ba84f946fb0bdd10d5a3d8fb2bd0fd5dd",
+        "bytes": 30051,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 260,
+          "selection_summary_line": 266,
+          "horizon_lines": {
+            "6h": 267,
+            "12h": 268,
+            "24h": 269
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.79,
+        "12h": 0.788,
+        "24h": 0.778
+      },
+      "validation_tss_logged_text": {
+        "6h": "0.790",
+        "12h": "0.788",
+        "24h": "0.778"
+      },
+      "validation_tss_source_lines": {
+        "6h": 267,
+        "12h": 268,
+        "24h": 269
+      },
+      "mean_validation_tss": 0.7853333333333333,
+      "mean_validation_tss_exact_fraction_from_logged_values": "589/750",
+      "mean_validation_tss_decimal_from_logged_values": "0.78533333333333333333",
+      "mean_validation_tss_rounded_4dp": 0.7853,
+      "mean_validation_tss_formula": "(0.790 + 0.788 + 0.778) / 3",
+      "reported_selection_summary_for_audit_only": {
+        "values": {
+          "24h": 0.778,
+          "mean": 0.7851,
+          "max": 0.7896
+        },
+        "logged_text": {
+          "24h": "0.7780",
+          "mean": "0.7851",
+          "max": "0.7896"
+        },
+        "line": 266,
+        "mean_difference_summary_minus_recomputed": -0.00023333333333333333,
+        "not_used_for_selection": true
+      },
+      "checkpoint_metric_24h_tss": 0.7779779316264415,
+      "selection_metric_used": 0.7853333333333333,
+      "selection_metric_source": "arithmetic mean of the three per-horizon TSS values in the preserved validation log",
+      "selection_rank": 3,
+      "selected_by_frozen_rule": false
+    },
+    {
+      "row_id": "seed42:step44000",
+      "seed": 42,
+      "step": 44000,
+      "split": "validation",
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed42/checkpoint_step_0044000.pt",
+        "sha256": "5ae9203d29716e270ec1a52465241e089ab22a801abd5e5d3dba3c920ea08389",
+        "internal_step": 44000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.791259613972872,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed42.log",
+        "sha256": "ea5593e79d20e40763eb7d762e0ac5470f869e859e43d4f48a541cb684e48501",
+        "bytes": 30054,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 170,
+          "selection_summary_line": 176,
+          "horizon_lines": {
+            "6h": 177,
+            "12h": 178,
+            "24h": 179
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.817,
+        "12h": 0.803,
+        "24h": 0.791
+      },
+      "validation_tss_logged_text": {
+        "6h": "0.817",
+        "12h": "0.803",
+        "24h": "0.791"
+      },
+      "validation_tss_source_lines": {
+        "6h": 177,
+        "12h": 178,
+        "24h": 179
+      },
+      "mean_validation_tss": 0.8036666666666666,
+      "mean_validation_tss_exact_fraction_from_logged_values": "2411/3000",
+      "mean_validation_tss_decimal_from_logged_values": "0.80366666666666666667",
+      "mean_validation_tss_rounded_4dp": 0.8037,
+      "mean_validation_tss_formula": "(0.817 + 0.803 + 0.791) / 3",
+      "reported_selection_summary_for_audit_only": {
+        "values": {
+          "24h": 0.7913,
+          "mean": 0.8038,
+          "max": 0.8172
+        },
+        "logged_text": {
+          "24h": "0.7913",
+          "mean": "0.8038",
+          "max": "0.8172"
+        },
+        "line": 176,
+        "mean_difference_summary_minus_recomputed": 0.00013333333333333334,
+        "not_used_for_selection": true
+      },
+      "checkpoint_metric_24h_tss": 0.791259613972872,
+      "selection_metric_used": 0.8036666666666666,
+      "selection_metric_source": "arithmetic mean of the three per-horizon TSS values in the preserved validation log",
+      "selection_rank": 1,
+      "selected_by_frozen_rule": true
+    },
+    {
+      "row_id": "seed42:step45000",
+      "seed": 42,
+      "step": 45000,
+      "split": "validation",
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed42/checkpoint_step_0045000.pt",
+        "sha256": "4009b95b53145f4e7de371f5da84cdd93397efa277b35f8f079c656b96ee0256",
+        "internal_step": 45000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.7873857899551631,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed42.log",
+        "sha256": "ea5593e79d20e40763eb7d762e0ac5470f869e859e43d4f48a541cb684e48501",
+        "bytes": 30054,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 230,
+          "selection_summary_line": 236,
+          "horizon_lines": {
+            "6h": 237,
+            "12h": 238,
+            "24h": 239
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.81,
+        "12h": 0.799,
+        "24h": 0.787
+      },
+      "validation_tss_logged_text": {
+        "6h": "0.810",
+        "12h": "0.799",
+        "24h": "0.787"
+      },
+      "validation_tss_source_lines": {
+        "6h": 237,
+        "12h": 238,
+        "24h": 239
+      },
+      "mean_validation_tss": 0.7986666666666666,
+      "mean_validation_tss_exact_fraction_from_logged_values": "599/750",
+      "mean_validation_tss_decimal_from_logged_values": "0.79866666666666666667",
+      "mean_validation_tss_rounded_4dp": 0.7987,
+      "mean_validation_tss_formula": "(0.810 + 0.799 + 0.787) / 3",
+      "reported_selection_summary_for_audit_only": {
+        "values": {
+          "24h": 0.7874,
+          "mean": 0.7988,
+          "max": 0.8097
+        },
+        "logged_text": {
+          "24h": "0.7874",
+          "mean": "0.7988",
+          "max": "0.8097"
+        },
+        "line": 236,
+        "mean_difference_summary_minus_recomputed": 0.00013333333333333334,
+        "not_used_for_selection": true
+      },
+      "checkpoint_metric_24h_tss": 0.7873857899551631,
+      "selection_metric_used": 0.7986666666666666,
+      "selection_metric_source": "arithmetic mean of the three per-horizon TSS values in the preserved validation log",
+      "selection_rank": 2,
+      "selected_by_frozen_rule": false
+    },
+    {
+      "row_id": "seed42:step46000",
+      "seed": 42,
+      "step": 46000,
+      "split": "validation",
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed42/checkpoint_step_0046000.pt",
+        "sha256": "b0a32873396e9b8fc65b39ece94c379d6884f8e428312eb32aab1728b92c49ee",
+        "internal_step": 46000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.7840653693685554,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed42.log",
+        "sha256": "ea5593e79d20e40763eb7d762e0ac5470f869e859e43d4f48a541cb684e48501",
+        "bytes": 30054,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 259,
+          "selection_summary_line": 265,
+          "horizon_lines": {
+            "6h": 266,
+            "12h": 267,
+            "24h": 268
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.804,
+        "12h": 0.793,
+        "24h": 0.784
+      },
+      "validation_tss_logged_text": {
+        "6h": "0.804",
+        "12h": "0.793",
+        "24h": "0.784"
+      },
+      "validation_tss_source_lines": {
+        "6h": 266,
+        "12h": 267,
+        "24h": 268
+      },
+      "mean_validation_tss": 0.7936666666666666,
+      "mean_validation_tss_exact_fraction_from_logged_values": "2381/3000",
+      "mean_validation_tss_decimal_from_logged_values": "0.79366666666666666667",
+      "mean_validation_tss_rounded_4dp": 0.7937,
+      "mean_validation_tss_formula": "(0.804 + 0.793 + 0.784) / 3",
+      "reported_selection_summary_for_audit_only": {
+        "values": {
+          "24h": 0.7841,
+          "mean": 0.7937,
+          "max": 0.8038
+        },
+        "logged_text": {
+          "24h": "0.7841",
+          "mean": "0.7937",
+          "max": "0.8038"
+        },
+        "line": 265,
+        "mean_difference_summary_minus_recomputed": 3.3333333333333335e-05,
+        "not_used_for_selection": true
+      },
+      "checkpoint_metric_24h_tss": 0.7840653693685554,
+      "selection_metric_used": 0.7936666666666666,
+      "selection_metric_source": "arithmetic mean of the three per-horizon TSS values in the preserved validation log",
+      "selection_rank": 3,
+      "selected_by_frozen_rule": false
+    }
+  ],
+  "selected_by_seed": {
+    "1234": {
+      "row_id": "seed1234:step44000",
+      "seed": 1234,
+      "step": 44000,
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1234/checkpoint_step_0044000.pt",
+        "sha256": "449fe34d42d3c251016250ce2b09691b2343e6701991dda0898c425304c28757",
+        "internal_step": 44000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.7862789830929605,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1234_attempt2.log",
+        "sha256": "0e0c6000af3bb4f9498ff22717ab5e860655c4497286aad1c973ba3f8008fd22",
+        "bytes": 30264,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 170,
+          "selection_summary_line": 176,
+          "horizon_lines": {
+            "6h": 177,
+            "12h": 178,
+            "24h": 179
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.809,
+        "12h": 0.79,
+        "24h": 0.786
+      },
+      "mean_validation_tss": 0.795,
+      "mean_validation_tss_exact_fraction_from_logged_values": "159/200",
+      "selection_metric_used": 0.795,
+      "tie_break_24h_validation_tss": 0.786,
+      "reason": "highest recomputed mean validation TSS; ties would use higher 24h validation TSS, then earlier step"
+    },
+    "1": {
+      "row_id": "seed1:step44000",
+      "seed": 1,
+      "step": 44000,
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed1/checkpoint_step_0044000.pt",
+        "sha256": "3bc4832ac6e9e30b9775347b13c7544d081e177c15bad1ef11767eb04ce69e34",
+        "internal_step": 44000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.7879391933862644,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed1.log",
+        "sha256": "9b54b95cd893a848bc76033b36f3457ba84f946fb0bdd10d5a3d8fb2bd0fd5dd",
+        "bytes": 30051,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 170,
+          "selection_summary_line": 176,
+          "horizon_lines": {
+            "6h": 177,
+            "12h": 178,
+            "24h": 179
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.803,
+        "12h": 0.805,
+        "24h": 0.788
+      },
+      "mean_validation_tss": 0.7986666666666666,
+      "mean_validation_tss_exact_fraction_from_logged_values": "599/750",
+      "selection_metric_used": 0.7986666666666666,
+      "tie_break_24h_validation_tss": 0.788,
+      "reason": "highest recomputed mean validation TSS; ties would use higher 24h validation TSS, then earlier step"
+    },
+    "42": {
+      "row_id": "seed42:step44000",
+      "seed": 42,
+      "step": 44000,
+      "checkpoint": {
+        "path": "/workspace/Flare-PINN/outputs/checkpoints/weak_form_corrected/seed42/checkpoint_step_0044000.pt",
+        "sha256": "5ae9203d29716e270ec1a52465241e089ab22a801abd5e5d3dba3c920ea08389",
+        "internal_step": 44000,
+        "internal_step_matches_filename": true,
+        "internal_metric_24h_tss": 0.791259613972872,
+        "internal_metric_24h_tss_rounds_to_logged_24h": true,
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "metadata_fields_present": {
+          "seed": false,
+          "config": false,
+          "config_path": false,
+          "config_sha256": false
+        },
+        "internal_seed": null,
+        "internal_config": null
+      },
+      "validation_artifact": {
+        "kind": "preserved training log",
+        "path": "/workspace/Flare-PINN/outputs/recovery/logs/seed42.log",
+        "sha256": "ea5593e79d20e40763eb7d762e0ac5470f869e859e43d4f48a541cb684e48501",
+        "bytes": 30054,
+        "standalone_validation_artifact_present": false,
+        "reconstruction_allowed_by_rule": true,
+        "contains_all_three_horizon_values": true,
+        "source_lines": {
+          "checkpoint_step_line": 170,
+          "selection_summary_line": 176,
+          "horizon_lines": {
+            "6h": 177,
+            "12h": 178,
+            "24h": 179
+          }
+        }
+      },
+      "validation_tss": {
+        "6h": 0.817,
+        "12h": 0.803,
+        "24h": 0.791
+      },
+      "mean_validation_tss": 0.8036666666666666,
+      "mean_validation_tss_exact_fraction_from_logged_values": "2411/3000",
+      "selection_metric_used": 0.8036666666666666,
+      "tie_break_24h_validation_tss": 0.791,
+      "reason": "highest recomputed mean validation TSS; ties would use higher 24h validation TSS, then earlier step"
+    }
+  },
+  "test_access": {
+    "test_touched": false,
+    "test_data_or_test_artifact_accessed": false,
+    "test_paths_accessed": [],
+    "held_out_test_evaluation_performed": false,
+    "selection_sources_are_validation_only": true,
+    "proof": {
+      "frozen_rule_uses_test_split": false,
+      "candidate_rows_split": "validation",
+      "all_validation_artifacts_or_logs_are_validation_blocks": true,
+      "no_test_checkpoint_or_test_metric_read": true
+    },
+    "stop_point": "stop before held-out test evaluation"
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0.0",
+  "frozen": true,
+  "title": "V5 train-only multiwindow gradient calibration",
+  "purpose": "Measure supervised and unscaled physics backbone gradient norms at the fixed Stage-1 weights and derive one physics gradient scale independently for each weak test basis.",
+  "calibration_only": true,
+  "train_only": true,
+  "optimizer_updates": false,
+  "raw_model_weights": true,
+  "seed": 1234,
+  "operating_lambda": 0.06956521739130435,
+  "target_effective_gradient_ratio": 0.25,
+  "bases": [
+    "legacy_diagonal",
+    "tensor_product"
+  ],
+  "derived_scales": {
+    "legacy_diagonal": null,
+    "tensor_product": null
+  },
+  "efficacy_config_freeze_authorized": false,
+  "tool": {
+    "path": "tools/recovery/grad_calibration_multiwindow.py",
+    "sha256": "519f3dfd90332af8072dbefbf55047f96d02c9fd88cf634fe4304739f9444198",
+    "read_only": true
+  },
+  "source_config": {
+    "path": "src/configs/flare_pinn_weak_corrected.yaml",
+    "sha256": "9a8d6669aa20838c0258837a17227a7c71a09fcd09ff706bff8e84fb77a0b9f5",
+    "read_only": true
+  },
+  "calibration_config": {
+    "path": "src/configs/flare_pinn_v5_calibration.yaml",
+    "sha256": "677a5017c23812f39ea425caaa8cf57f6ebc9a1ef2c2a3b8cc7dae3872e3cf93",
+    "copy_policy": "Copy every source field and apply only the declared measurement fields. Select the basis only with the command-line override.",
+    "declared_fields": [
+      "collocation.alpha_end",
+      "collocation.alpha_start",
+      "collocation.rng_seed_offset",
+      "collocation.stratify_by_time",
+      "collocation.use_adaptive_resampling",
+      "physics.fail_closed",
+      "physics.raw_loss_clip",
+      "physics.use_gradnorm",
+      "physics.use_lra",
+      "physics.weak_fourier_modes",
+      "physics.weak_moment_clip"
+    ],
+    "measurement_values": {
+      "physics.weak_moment_clip": 0.0,
+      "physics.fail_closed": true,
+      "physics.raw_loss_clip": 0.0,
+      "physics.use_gradnorm": false,
+      "physics.use_lra": false,
+      "physics.weak_fourier_modes": 3,
+      "collocation.alpha_start": 0.0,
+      "collocation.alpha_end": 0.0,
+      "collocation.stratify_by_time": true,
+      "collocation.use_adaptive_resampling": false,
+      "collocation.rng_seed_offset": 104729
+    },
+    "basis_field_policy": "Do not add or change physics.weak_test_basis in the YAML. Override it separately for each run."
+  },
+  "resume_checkpoint": {
+    "path": "outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+    "step": 40000,
+    "sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183",
+    "weights": "raw model_state_dict",
+    "read_only": true
+  },
+  "data": {
+    "windows_parquet": "data/windows_train_val_8005.parquet",
+    "windows_parquet_sha256": "39adb4e5a9211736805e1ee7f16705ba15cf92c43012b59e2b8459cafd5f6658",
+    "parquet_hash_source": {
+      "path": "outputs/recovery/continuation_v4/from_pod/continuation_v4/data_integrity_receipt.json",
+      "sha256": "f97aa18b104491ff374f1ef957530f2bf128c809b39764fabdea9aade02050b0",
+      "field": "train_validation_split.train_val_parquet_sha256"
+    },
+    "ordered_row_content_sha256": "b21f8bb1a7341070a1db81d7c5e24a52b1e0344ef124a9edb1613c8c10c0b82d",
+    "canonical_rows": 30310,
+    "train_rows": 28405,
+    "validation_rows": 1905,
+    "selected_partition": "train",
+    "partition_rule": "Filter has_noaa_mapping, sort by t0, and take rows before split index 28405.",
+    "consolidated_dir": "~/flare_data/consolidated",
+    "validation_examples_read": false,
+    "test_examples_read": false,
+    "test_access_under_any_branch": false
+  },
+  "window_selection": {
+    "artifact": {
+      "path": "tools/recovery/v5_gradient_windows.json",
+      "sha256": "1a412e55b46a67f5dee8d8fc553392771d5532174a9720e017f52bf6ee67f037",
+      "read_only": true
+    },
+    "indices": [
+      1437,
+      2490,
+      3865,
+      6354,
+      7333,
+      8001,
+      8799,
+      9594,
+      16103,
+      16439,
+      18347,
+      20720,
+      22747,
+      25164,
+      25791,
+      27942
+    ],
+    "algorithm": {
+      "input_order": "canonical training rows sorted by t0",
+      "quartiles": "numpy.array_split over the 28405 positional row indices into four chronological groups",
+      "classes": {
+        "positive": "at least one of the 6h, 12h, or 24h labels is true",
+        "negative": "all 6h, 12h, and 24h labels are false"
+      },
+      "per_quartile": {
+        "positive": 2,
+        "negative": 2
+      },
+      "rank_input": "v5-gradient-calibration|{quartile}|{class}|{harpnum}|{iso_t0}",
+      "rank": "ascending SHA256 hexadecimal string",
+      "final_order": "ascending canonical training row index"
+    },
+    "index_quartile": {
+      "1437": 0,
+      "2490": 0,
+      "3865": 0,
+      "6354": 0,
+      "7333": 1,
+      "8001": 1,
+      "8799": 1,
+      "9594": 1,
+      "16103": 2,
+      "16439": 2,
+      "18347": 2,
+      "20720": 2,
+      "22747": 3,
+      "25164": 3,
+      "25791": 3,
+      "27942": 3
+    },
+    "index_class": {
+      "1437": "negative",
+      "2490": "negative",
+      "3865": "positive",
+      "6354": "positive",
+      "7333": "positive",
+      "8001": "negative",
+      "8799": "negative",
+      "9594": "positive",
+      "16103": "positive",
+      "16439": "negative",
+      "18347": "positive",
+      "20720": "negative",
+      "22747": "negative",
+      "25164": "positive",
+      "25791": "positive",
+      "27942": "negative"
+    },
+    "selection_uses_outcomes_only_for_frozen_class_balance": true,
+    "selection_uses_gradient_measurements": false
+  },
+  "measurement": {
+    "lambda_while_measuring_unscaled_physics": 1.0,
+    "proposal_lambda": 0.06956521739130435,
+    "shared_backbone_only": true,
+    "module_mode": "train",
+    "reseed_each_arm": true,
+    "collocation_rng_seed": 105963,
+    "weights_updated": false,
+    "grad_buffers_cleared": true,
+    "basis_override": "command line",
+    "weak_fourier_modes": 3,
+    "no_gradient_balancer": true,
+    "no_clipping_or_saturation": true
+  },
+  "commands": {
+    "working_directory": "<REPO_ROOT>",
+    "legacy_diagonal": "python tools/recovery/grad_calibration_multiwindow.py --config src/configs/flare_pinn_v5_calibration.yaml --checkpoint outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt --expect-sha256 b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183 --windows-parquet data/windows_train_val_8005.parquet --consolidated-dir ~/flare_data/consolidated --window-indices 1437,2490,3865,6354,7333,8001,8799,9594,16103,16439,18347,20720,22747,25164,25791,27942 --seed 1234 --target-fraction 0.25 --lambda-phys 0.06956521739130435 --device cuda --weak-test-basis legacy_diagonal --output outputs/recovery/gradient_calibration_v5/legacy_diagonal.json",
+    "tensor_product": "python tools/recovery/grad_calibration_multiwindow.py --config src/configs/flare_pinn_v5_calibration.yaml --checkpoint outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt --expect-sha256 b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183 --windows-parquet data/windows_train_val_8005.parquet --consolidated-dir ~/flare_data/consolidated --window-indices 1437,2490,3865,6354,7333,8001,8799,9594,16103,16439,18347,20720,22747,25164,25791,27942 --seed 1234 --target-fraction 0.25 --lambda-phys 0.06956521739130435 --device cuda --weak-test-basis tensor_product --output outputs/recovery/gradient_calibration_v5/tensor_product.json"
+  },
+  "pair_acceptance": {
+    "require_same": [
+      "selection.identities_sha256",
+      "ordered window identities",
+      "ordered coordinate digests",
+      "ordered collocation sampling index digests"
+    ],
+    "missing_required_digest": "abort",
+    "clipping_or_saturation": "abort",
+    "nonfinite_measurement": "abort",
+    "nonpositive_gradient_norm": "abort",
+    "tool_guard_failure": "abort",
+    "positive_norm_fields": [
+      "grad_norm_cls",
+      "grad_norm_data",
+      "grad_norm_supervised",
+      "grad_norm_physics_unscaled"
+    ],
+    "tool_output_capability": "The pinned tool emits the window identity digest but does not emit ordered coordinate or collocation sampling index digests. Do not accept scales from its two JSON outputs alone. Missing digest evidence fails closed."
+  },
+  "scale_derivation": {
+    "independent_per_basis": true,
+    "formula": "physics_grad_scale[basis] = 0.25 * median_grad_norm_supervised[basis] / (0.06956521739130435 * median_grad_norm_physics_unscaled[basis])",
+    "numerator": "target_effective_gradient_ratio * median_grad_norm_supervised",
+    "denominator": "operating_lambda * median_grad_norm_physics_unscaled",
+    "cross_basis_pooling": false,
+    "rounding_before_derivation": false
+  },
+  "freeze_gate": "Do not freeze any v5 efficacy configuration until both independently derived scales exist and the paired acceptance rules pass.",
+  "prohibited": [
+    "Training or applying any optimizer update during calibration.",
+    "Reading validation examples or validation outputs during calibration or interpretation.",
+    "Reading test examples or test outputs under any branch.",
+    "Reading or deriving any predictive outcome measure.",
+    "Pooling gradient norms across weak test bases.",
+    "Accepting either scale when a required pair digest is missing or mismatched.",
+    "Changing the tool, checkpoint, config, data, seed, windows, operating lambda, target ratio, basis, or formula after measurements are visible.",
+    "Freezing a v5 efficacy config before both scales exist and every abort rule passes."
+  ]
+}

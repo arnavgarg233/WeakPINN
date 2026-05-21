@@ -1,0 +1,7 @@
+# S-FRAP2_synthetic_aggregate: **Table S-FRAP2.** Synthetic aggregate metrics across the 4 noise blocks and the pooled noisy summary. D-MAE is the mean absolute error between PINN-recovered $D$ and the simulator-defined ground-truth $D_{\mathrm{norm,true}}=0.01975$. The headline 82.1% reduction applies to the pooled noisy stacks only; the clean block is reported as a stability/sanity check, not a generalization claim.
+block,strong D-MAE,weak D-MAE,strong % err,weak % err,relative reduction (%),strong cross-seed std,weak cross-seed std,strong val_mse (mean),weak val_mse (mean)
+clean,6.589e-04,4.100e-04,3.34,2.08,37.8,0.00030,0.00005,4.523e-05,1.275e-04
+noiselow,9.672e-04,2.791e-04,4.90,1.41,71.1,0.00032,0.00016,2.084e-04,2.960e-04
+noisemed,2.124e-03,5.929e-04,10.75,3.00,72.1,0.00110,0.00036,1.184e-03,1.206e-03
+noisehigh,3.391e-03,2.914e-04,17.17,1.48,91.4,0.00100,0.00035,7.138e-03,7.162e-03
+POOLED NOISY (low + med + high; 9 seeds per method),2.161e-03,3.878e-04,10.94,1.96,82.1,(see per-block rows),(see per-block rows),(see per-block rows),(see per-block rows)

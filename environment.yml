@@ -1,0 +1,33 @@
+name: weakpinn
+channels:
+  - conda-forge
+  - defaults
+  - pytorch
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - xarray
+  - astropy
+  - sunpy
+  - drms
+  - scikit-image
+  - opencv
+  - pyarrow
+  - fastparquet
+  - tqdm
+  - pydantic
+  - pyyaml
+  - click
+  - matplotlib
+  - seaborn
+  - pytorch
+  - h5py
+  - pip:
+      - parfive>=2.0.0
+      - einops>=0.6.0
+      - tenacity>=8.2.0
+      - wandb>=0.15.0
+      - tensorflow>=2.10  # only required for the DeepFRAP NN reference comparison (reviewer-response artifact, not core)

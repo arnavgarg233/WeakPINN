@@ -1,0 +1,69 @@
+{
+  "checkpoint": {
+    "path": "/workspace/Flare-PINN/outputs/checkpoints/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0046000.pt",
+    "sha256": "c9647f169f748d001d8c680c6e7300a19fd2f8d0cb1c42da25f04118c0959284",
+    "step": 46000
+  },
+  "mean_tss": 0.8081800614035225,
+  "metric": "sweep_tss",
+  "per_horizon": [
+    {
+      "horizon": 6,
+      "n_pos": 37,
+      "n_total": 1905,
+      "pr_auc": 0.2929936761425979,
+      "status": "complete",
+      "threshold": 0.24825787544250488,
+      "tss": 0.8396753284333585
+    },
+    {
+      "horizon": 12,
+      "n_pos": 63,
+      "n_total": 1905,
+      "pr_auc": 0.4291335465826246,
+      "status": "complete",
+      "threshold": 0.22492216527462006,
+      "tss": 0.8068869241507677
+    },
+    {
+      "horizon": 24,
+      "n_pos": 98,
+      "n_total": 1905,
+      "pr_auc": 0.5575264860734079,
+      "status": "complete",
+      "threshold": 0.21526418786692758,
+      "tss": 0.7779779316264415
+    }
+  ],
+  "per_horizon_thresholds": [
+    0.24825787544250488,
+    0.22492216527462006,
+    0.21526418786692758
+  ],
+  "per_horizon_tss": [
+    0.8396753284333585,
+    0.8068869241507677,
+    0.7779779316264415
+  ],
+  "pr_auc_available": true,
+  "predictions_sha256": "daccfa691a610082917bb03ecdd2a9fe28fe952f49568a09e85ad4eb7a415bde",
+  "provenance": {
+    "batch_evaluator": {
+      "path": "/workspace/Flare-PINN/tools/validation/batch_validate_checkpoints.py",
+      "sha256": "c26034f56d1531273c28bc3bd55ba852bb3466c1c4f75ae5d17a187d0034be82"
+    },
+    "validate_checkpoint": {
+      "path": "/workspace/Flare-PINN/tools/validation/validate_checkpoint.py",
+      "sha256": "5c7446a02d44dd841ba4522c1b46e0c52ad2cfde0d52a066eaf02180ad23f874"
+    }
+  },
+  "request_sha256": "5f35f337035a93b6a4153e90d092d90acb27a9b56ae8884269cd31b3326c58dd",
+  "schema_version": 1,
+  "status": "complete",
+  "threshold_sweep_n": 1024,
+  "validation_parquet": {
+    "path": "/workspace/Flare-PINN/data/windows_val_5.parquet",
+    "sha256": "7dba3e03066a890a17ca0c4cca41ac3141927271ca8dfb756cec94fded61d57e"
+  },
+  "weights": "raw"
+}

@@ -1,0 +1,8 @@
+# S-FRAP5_residual_diagnostics: **Table S-FRAP5.** Median absolute residuals from each PINN model under each residual metric (fair cross-evaluation: both strong-form and weak-form residuals computed on both trained models). Per (block, training_method) cell the median is over the run-level medians from each seed. Strong-form residuals are evaluated pointwise; weak-form residuals are integrated against boundary-vanishing Gaussian test functions and therefore live on a smaller absolute scale.
+block,median |r_strong| on strong-trained,median |r_strong| on weak-trained,median |r_weak| on strong-trained,median |r_weak| on weak-trained
+clean,2.373e-03,1.383e-02,9.342e-05,5.943e-04
+noiselow,2.533e-03,1.673e-02,1.380e-04,4.823e-04
+noisemed,2.601e-03,1.456e-02,2.644e-04,6.003e-04
+noisehigh,1.724e-03,7.027e-03,1.413e-04,4.354e-04
+real_32ww,1.556e-03,1.322e-02,4.689e-05,3.617e-04
+real_56ww,1.466e-03,8.636e-03,1.023e-04,3.696e-04

@@ -1,0 +1,69 @@
+{
+  "checkpoint": {
+    "path": "/workspace/Flare-PINN/outputs/checkpoints/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0046000.pt",
+    "sha256": "5b952024c89254bfdc900d221c0ccaf114f5b47aedf578dce2e30627b3730ec3",
+    "step": 46000
+  },
+  "mean_tss": 0.8103650883365446,
+  "metric": "sweep_tss",
+  "per_horizon": [
+    {
+      "horizon": 6,
+      "n_pos": 37,
+      "n_total": 1905,
+      "pr_auc": 0.2859792536361226,
+      "status": "complete",
+      "threshold": 0.22896281800391388,
+      "tss": 0.8412813241507032
+    },
+    {
+      "horizon": 12,
+      "n_pos": 63,
+      "n_total": 1905,
+      "pr_auc": 0.43047334510099283,
+      "status": "complete",
+      "threshold": 0.20939334637964774,
+      "tss": 0.8085155886458817
+    },
+    {
+      "horizon": 24,
+      "n_pos": 98,
+      "n_total": 1905,
+      "pr_auc": 0.5570698721006029,
+      "status": "complete",
+      "threshold": 0.20328347384929657,
+      "tss": 0.7812983522130491
+    }
+  ],
+  "per_horizon_thresholds": [
+    0.22896281800391388,
+    0.20939334637964774,
+    0.20328347384929657
+  ],
+  "per_horizon_tss": [
+    0.8412813241507032,
+    0.8085155886458817,
+    0.7812983522130491
+  ],
+  "pr_auc_available": true,
+  "predictions_sha256": "0a757b368a4a418c5cc7b328acde6f4302c4316b44fa8bafc04eaec8ad7e3a32",
+  "provenance": {
+    "batch_evaluator": {
+      "path": "/workspace/Flare-PINN/tools/validation/batch_validate_checkpoints.py",
+      "sha256": "c26034f56d1531273c28bc3bd55ba852bb3466c1c4f75ae5d17a187d0034be82"
+    },
+    "validate_checkpoint": {
+      "path": "/workspace/Flare-PINN/tools/validation/validate_checkpoint.py",
+      "sha256": "5c7446a02d44dd841ba4522c1b46e0c52ad2cfde0d52a066eaf02180ad23f874"
+    }
+  },
+  "request_sha256": "e5149e92ceba5a7ca566115c9d73fc01224e2a6bdda1df825ce43a22f0356120",
+  "schema_version": 1,
+  "status": "complete",
+  "threshold_sweep_n": 1024,
+  "validation_parquet": {
+    "path": "/workspace/Flare-PINN/data/windows_val_5.parquet",
+    "sha256": "7dba3e03066a890a17ca0c4cca41ac3141927271ca8dfb756cec94fded61d57e"
+  },
+  "weights": "ema"
+}

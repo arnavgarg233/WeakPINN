@@ -1,0 +1,1450 @@
+{
+  "schema_version": "efficacy_v5_v3_complete_screening_receipt/1",
+  "status": "complete_training_stop",
+  "scope": {
+    "local_only": true,
+    "repo_relative_artifact_root": "outputs/recovery/efficacy_v5/v3_complete",
+    "run_name": "efficacy_v5_v3",
+    "arms": [
+      "no_physics",
+      "lowdose_legacy",
+      "lowdose_tensor"
+    ],
+    "seed": 1234,
+    "training_range": {
+      "resume_step": 40000,
+      "steps": [
+        41000,
+        42000,
+        43000,
+        44000,
+        45000,
+        46000
+      ],
+      "terminal_step": 46000
+    }
+  },
+  "protocol": {
+    "path": "tools/recovery/efficacy_v5_protocol_v3.json",
+    "sha256": "55a5f38bf31db6ff080c3d6a1b7ae21b274072ab9937f8c8870c114b0c54609e",
+    "schema_version": "efficacy_v5/3",
+    "frozen": true,
+    "exploratory": true,
+    "validation_only": true,
+    "confirmatory": false,
+    "test_access": false,
+    "primary_step": 46000,
+    "primary_weights": "ema",
+    "diagnostic_steps": [
+      41000,
+      42000,
+      43000,
+      44000,
+      45000
+    ],
+    "threshold_sweep_n": 1024,
+    "best_model_prohibited": true,
+    "checkpoint_cadence": 1000,
+    "mde_mean_tss": 0.009
+  },
+  "input_hashes": {
+    "resume_checkpoint": {
+      "path": "outputs/checkpoints/benchmark_classifier/checkpoint_step_0040000.pt",
+      "sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183",
+      "step": 40000
+    },
+    "configs": {
+      "no_physics": {
+        "path": "src/configs/flare_pinn_v5_no_physics_v3.yaml",
+        "sha256": "4335345b9dcadf137f86a45ea63867016e9cc1001e5cf577eed2ef1f60e8e235"
+      },
+      "lowdose_legacy": {
+        "path": "src/configs/flare_pinn_v5_lowdose_legacy_v3.yaml",
+        "sha256": "c1759ca557a6ebd28be0e4d0faa24927ba518de7bf1788e8cdc6909ee745b0cb"
+      },
+      "lowdose_tensor": {
+        "path": "src/configs/flare_pinn_v5_lowdose_tensor_v3.yaml",
+        "sha256": "9876d24503472b4f93c48f3e92b645182a82a9d09d62c92bfd41d7ea9ba653d9"
+      }
+    },
+    "calibration": {
+      "protocol": {
+        "path": "tools/recovery/gradient_calibration_v5_protocol_v5.json",
+        "sha256": "01bdfce57a27e8a50ae56a88701ec79a9636224482398a66fc1b480bca189e9b"
+      },
+      "config": {
+        "path": "src/configs/flare_pinn_v5_calibration.yaml",
+        "sha256": "677a5017c23812f39ea425caaa8cf57f6ebc9a1ef2c2a3b8cc7dae3872e3cf93"
+      },
+      "legacy_diagonal": {
+        "path": "outputs/recovery/gradient_calibration_v5/legacy_diagonal.json",
+        "sha256": "9283b10d53fd6c4cf0a9539641c4953375593b9bafd66416b2a3da91dada18f6"
+      },
+      "tensor_product": {
+        "path": "outputs/recovery/gradient_calibration_v5/tensor_product.json",
+        "sha256": "0d70596833ba520d3fd981146917be234658ad32c392809f1713a107e9ee6624"
+      },
+      "pair_acceptance": {
+        "path": "outputs/recovery/gradient_calibration_v5/pair_acceptance.json",
+        "sha256": "31e43011bd8b132db91b6dbc4b5df736be229166001098e451ab9394b222f6b6",
+        "accepted": true,
+        "acceptance_digest": "c5b0ce66a0fd37cddc34fa21a045c75c2c1e2c0a9cba7101f8c60a94e1562971"
+      }
+    }
+  },
+  "calibration": {
+    "accepted": true,
+    "target_effective_gradient_ratio": 0.25,
+    "lambda_phys": 0.06956521739130435,
+    "legacy_diagonal": {
+      "physics_grad_scale": 0.04029105864893679,
+      "weak_test_basis": "legacy_diagonal"
+    },
+    "tensor_product": {
+      "physics_grad_scale": 0.04437884540685923,
+      "weak_test_basis": "tensor_product"
+    },
+    "shared_checkpoint_sha256": "b2d766f4243c41be542c03804b3d87a5871430f0f39291362e8e01394d59e183",
+    "shared_config_sha256": "677a5017c23812f39ea425caaa8cf57f6ebc9a1ef2c2a3b8cc7dae3872e3cf93",
+    "cross_basis_pooling": false,
+    "matched_sampling_digest": "cf847c7d2bf9ac4565eaa52feebe9b4f8e47ee7762b6130d9459fa82b862ccd8",
+    "matched_coordinate_digest": "28ac96fcc8833898701e77d9204f5260d02d67d1c3b211014e9f5e3c32f9590f",
+    "frozen_state_sha256": "2d5b21e738f97705e2fedddb75248d045d2657a59b9733ef859861993dc6618b"
+  },
+  "anchor": {
+    "step": 40000,
+    "weights": "ema",
+    "metric": "mean sweep-TSS over 6h, 12h, and 24h",
+    "threshold_sweep_n": 1024,
+    "validation_windows": 1905,
+    "mean_tss": 0.8061295869851035,
+    "per_horizon_tss": {
+      "6h": 0.8407459922449216,
+      "12h": 0.7992864898402356,
+      "24h": 0.7783562788701535
+    },
+    "source_declared_by_protocol": "outputs/checkpoints/benchmark_classifier/validation_results/checkpoint_step_0040000_validation.npz"
+  },
+  "arms": {
+    "no_physics": {
+      "config": {
+        "path": "src/configs/flare_pinn_v5_no_physics_v3.yaml",
+        "sha256": "4335345b9dcadf137f86a45ea63867016e9cc1001e5cf577eed2ef1f60e8e235",
+        "weak_test_basis": "legacy_diagonal",
+        "physics_grad_scale": 0.04029105864893679,
+        "lambda_phys_schedule": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      "log": {
+        "path": "outputs/recovery/efficacy_v5/v3_complete/v3_run/logs/no_physics.log",
+        "sha256": "ab3cf3aab62d788dc7758063e08c9d7e9bb8564ebff160567a0262ba55845b09",
+        "bytes": 17188
+      },
+      "run": {
+        "start_utc": "2026-09-04T16:10:53Z",
+        "complete_utc": "2026-09-04T16:35:27Z",
+        "return_code": 0,
+        "training_complete_log_timestamp": "2026-09-04 16:35:26",
+        "training_complete_log_line": 157,
+        "final_log_best_validation_tss": 0.8087
+      },
+      "checkpoint_dir": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234",
+      "in_training_metric_weights": "ema",
+      "checkpoint_metadata_common": {
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "zip_entries": 372,
+        "model_state_entries": 93,
+        "optimizer_state_entries": 72,
+        "optimizer_param_groups": 1,
+        "optimizer_lr": 1.2997162960954744e-06,
+        "ema_top_level_keys": [
+          "decay",
+          "shadow"
+        ],
+        "ema_decay": 0.995,
+        "ema_shadow_entries": 72,
+        "scheduler_state": {
+          "type": "constant",
+          "n_steps": 0
+        }
+      },
+      "checkpoints": [
+        {
+          "filename": "best_model.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/best_model.pt",
+          "sha256": "6953cdd9e74a512895e75ca2bdbc35f8e71390025fdc20c39207b3061adbe1d2",
+          "bytes": 12006079,
+          "role": "best_model_prohibited",
+          "internal_step": 41000,
+          "filename_step": null,
+          "filename_step_matches_internal": null,
+          "metric": 0.8087354375058284,
+          "best_val_tss": 0.8087354375058284,
+          "last_val_tss": 0.8087354375058284,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": "negative_infinity",
+            "best_step": 40000,
+            "counter": 0,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0041000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0041000.pt",
+          "sha256": "23c95b308d7e9ebad0542ddecddd444985a096318638ecf16434fb4a4e045c92",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 41000,
+          "filename_step": 41000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8087354375058284,
+          "best_val_tss": 0.8087354375058284,
+          "last_val_tss": 0.8087354375058284,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": "negative_infinity",
+            "best_step": 40000,
+            "counter": 0,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0042000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0042000.pt",
+          "sha256": "c477d43e8eafd374a97ee0dbbe372ad70dad763dedd60620f5aafd114e5384f6",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 42000,
+          "filename_step": 42000,
+          "filename_step_matches_internal": true,
+          "metric": 0.808360478043321,
+          "best_val_tss": 0.8087354375058284,
+          "last_val_tss": 0.808360478043321,
+          "consecutive_drops": 1,
+          "early_stopping_state": {
+            "best_metric": 0.8087354375058284,
+            "best_step": 41000,
+            "counter": 0,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0043000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0043000.pt",
+          "sha256": "ece7ebc521f441b54ef2fea56d785c36ebc19096b2a12989dcef4901407d0ea3",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 43000,
+          "filename_step": 43000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8086831092851385,
+          "best_val_tss": 0.8087354375058284,
+          "last_val_tss": 0.8086831092851385,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.8087354375058284,
+            "best_step": 41000,
+            "counter": 1,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0044000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0044000.pt",
+          "sha256": "613657e644997b2e4a44b0b632d47a7effdcd59c2b6bef37914a7d6259275343",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 44000,
+          "filename_step": 44000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8083262213479508,
+          "best_val_tss": 0.8087354375058284,
+          "last_val_tss": 0.8083262213479508,
+          "consecutive_drops": 1,
+          "early_stopping_state": {
+            "best_metric": 0.8087354375058284,
+            "best_step": 41000,
+            "counter": 2,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0045000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0045000.pt",
+          "sha256": "f7edbd71ce85b6a26085a067d8201af64eba5fceabf5d1a22595a50aac0b4296",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 45000,
+          "filename_step": 45000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8081905766695857,
+          "best_val_tss": 0.8087354375058284,
+          "last_val_tss": 0.8081905766695857,
+          "consecutive_drops": 2,
+          "early_stopping_state": {
+            "best_metric": 0.8087354375058284,
+            "best_step": 41000,
+            "counter": 3,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0046000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0046000.pt",
+          "sha256": "c9647f169f748d001d8c680c6e7300a19fd2f8d0cb1c42da25f04118c0959284",
+          "bytes": 12010979,
+          "role": "primary_candidate_but_offline_eval_missing",
+          "internal_step": 46000,
+          "filename_step": 46000,
+          "filename_step_matches_internal": true,
+          "metric": 0.808549983359859,
+          "best_val_tss": 0.8087354375058284,
+          "last_val_tss": 0.808549983359859,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.8087354375058284,
+            "best_step": 41000,
+            "counter": 4,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        }
+      ],
+      "training_ema_diagnostics": [
+        {
+          "step": 41000,
+          "timestamp": "2026-09-04 16:15:42",
+          "mean_tss": 0.8087,
+          "tss_24h": 0.7807,
+          "max_tss": 0.8407,
+          "per_horizon_tss": {
+            "6h": 0.841,
+            "12h": 0.805,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.8087354375058284,
+          "source_lines": {
+            "selection_summary": 54,
+            "6h": 55,
+            "12h": 56,
+            "24h": 57
+          }
+        },
+        {
+          "step": 42000,
+          "timestamp": "2026-09-04 16:19:43",
+          "mean_tss": 0.8084,
+          "tss_24h": 0.7791,
+          "max_tss": 0.8413,
+          "per_horizon_tss": {
+            "6h": 0.841,
+            "12h": 0.805,
+            "24h": 0.779
+          },
+          "checkpoint_metric_exact": 0.808360478043321,
+          "source_lines": {
+            "selection_summary": 74,
+            "6h": 75,
+            "12h": 76,
+            "24h": 77
+          }
+        },
+        {
+          "step": 43000,
+          "timestamp": "2026-09-04 16:23:43",
+          "mean_tss": 0.8087,
+          "tss_24h": 0.7811,
+          "max_tss": 0.8402,
+          "per_horizon_tss": {
+            "6h": 0.84,
+            "12h": 0.805,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.8086831092851385,
+          "source_lines": {
+            "selection_summary": 94,
+            "6h": 95,
+            "12h": 96,
+            "24h": 97
+          }
+        },
+        {
+          "step": 44000,
+          "timestamp": "2026-09-04 16:27:41",
+          "mean_tss": 0.8083,
+          "tss_24h": 0.7811,
+          "max_tss": 0.8391,
+          "per_horizon_tss": {
+            "6h": 0.839,
+            "12h": 0.805,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.8083262213479508,
+          "source_lines": {
+            "selection_summary": 112,
+            "6h": 113,
+            "12h": 114,
+            "24h": 115
+          }
+        },
+        {
+          "step": 45000,
+          "timestamp": "2026-09-04 16:31:35",
+          "mean_tss": 0.8082,
+          "tss_24h": 0.7796,
+          "max_tss": 0.8397,
+          "per_horizon_tss": {
+            "6h": 0.84,
+            "12h": 0.805,
+            "24h": 0.78
+          },
+          "checkpoint_metric_exact": 0.8081905766695857,
+          "source_lines": {
+            "selection_summary": 132,
+            "6h": 133,
+            "12h": 134,
+            "24h": 135
+          }
+        },
+        {
+          "step": 46000,
+          "timestamp": "2026-09-04 16:35:26",
+          "mean_tss": 0.8085,
+          "tss_24h": 0.7796,
+          "max_tss": 0.8402,
+          "per_horizon_tss": {
+            "6h": 0.84,
+            "12h": 0.806,
+            "24h": 0.78
+          },
+          "checkpoint_metric_exact": 0.808549983359859,
+          "source_lines": {
+            "selection_summary": 152,
+            "6h": 153,
+            "12h": 154,
+            "24h": 155
+          }
+        }
+      ],
+      "runtime_log_evidence": {
+        "device_line": 1,
+        "lr_policy_line": 6,
+        "lr_scheduler_horizon_line": 7,
+        "ema_enabled_line": 8,
+        "resume_policy_line": 9,
+        "constant_lr_restore_line": 12,
+        "resume_line": 13,
+        "ema_restore_line": 14,
+        "strict_model_restore_line": 15,
+        "optimizer_restore_line": 16,
+        "ema_shadow_restore_line": 17,
+        "scheduler_skip_line": 18,
+        "early_stopping_restore_line": 19,
+        "step_alignment_line": 20,
+        "sampler_line": 36
+      }
+    },
+    "lowdose_legacy": {
+      "config": {
+        "path": "src/configs/flare_pinn_v5_lowdose_legacy_v3.yaml",
+        "sha256": "c1759ca557a6ebd28be0e4d0faa24927ba518de7bf1788e8cdc6909ee745b0cb",
+        "weak_test_basis": "legacy_diagonal",
+        "physics_grad_scale": 0.04029105864893679,
+        "lambda_phys_schedule": [
+          [
+            0.0,
+            0.06956521739130435
+          ],
+          [
+            1.0,
+            0.06956521739130435
+          ]
+        ]
+      },
+      "log": {
+        "path": "outputs/recovery/efficacy_v5/v3_complete/v3_run/logs/lowdose_legacy.log",
+        "sha256": "b40e418842f00800ce4ba8f223a11ae92255bd814b04fa7ae0d54438e3967fb1",
+        "bytes": 36962
+      },
+      "run": {
+        "start_utc": "2026-09-04T16:35:27Z",
+        "complete_utc": "2026-09-04T17:05:08Z",
+        "return_code": 0,
+        "training_complete_log_timestamp": "2026-09-04 17:05:08",
+        "training_complete_log_line": 281,
+        "final_log_best_validation_tss": 0.8105
+      },
+      "checkpoint_dir": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234",
+      "in_training_metric_weights": "ema",
+      "checkpoint_metadata_common": {
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "zip_entries": 372,
+        "model_state_entries": 93,
+        "optimizer_state_entries": 72,
+        "optimizer_param_groups": 1,
+        "optimizer_lr": 1.2997162960954744e-06,
+        "ema_top_level_keys": [
+          "decay",
+          "shadow"
+        ],
+        "ema_decay": 0.995,
+        "ema_shadow_entries": 72,
+        "scheduler_state": {
+          "type": "constant",
+          "n_steps": 0
+        }
+      },
+      "checkpoints": [
+        {
+          "filename": "best_model.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/best_model.pt",
+          "sha256": "5ab09a832002df2cdb0a85ad6ccd63025ba7068297e76daea598499788aaf9d2",
+          "bytes": 12006079,
+          "role": "best_model_prohibited",
+          "internal_step": 45000,
+          "filename_step": null,
+          "filename_step_matches_internal": null,
+          "metric": 0.810546051058224,
+          "best_val_tss": 0.810546051058224,
+          "last_val_tss": 0.810546051058224,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.809460274728148,
+            "best_step": 41000,
+            "counter": 3,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0041000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0041000.pt",
+          "sha256": "497b3548950b5fe5375c1e8e42a7c61818b8025a0ad06629540abd463b281bbe",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 41000,
+          "filename_step": 41000,
+          "filename_step_matches_internal": true,
+          "metric": 0.809460274728148,
+          "best_val_tss": 0.809460274728148,
+          "last_val_tss": 0.809460274728148,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": "negative_infinity",
+            "best_step": 40000,
+            "counter": 0,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0042000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0042000.pt",
+          "sha256": "dc26f0234f54b773865fb37e0d1ce80267bfc2e49fca52fb572b76f17c5d6f7c",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 42000,
+          "filename_step": 42000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8092662779873199,
+          "best_val_tss": 0.809460274728148,
+          "last_val_tss": 0.8092662779873199,
+          "consecutive_drops": 1,
+          "early_stopping_state": {
+            "best_metric": 0.809460274728148,
+            "best_step": 41000,
+            "counter": 0,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0043000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0043000.pt",
+          "sha256": "65a5f1878ce5a383200feb8f7c8619c7a5ee142be0fabade571241e6d81da9c3",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 43000,
+          "filename_step": 43000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8090853152656406,
+          "best_val_tss": 0.809460274728148,
+          "last_val_tss": 0.8090853152656406,
+          "consecutive_drops": 2,
+          "early_stopping_state": {
+            "best_metric": 0.809460274728148,
+            "best_step": 41000,
+            "counter": 1,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0044000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0044000.pt",
+          "sha256": "3410f9028e503135899e61b57295059d5007fa88577b1777331262248d65f9bc",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 44000,
+          "filename_step": 44000,
+          "filename_step_matches_internal": true,
+          "metric": 0.809640251114225,
+          "best_val_tss": 0.809640251114225,
+          "last_val_tss": 0.809640251114225,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.809460274728148,
+            "best_step": 41000,
+            "counter": 2,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0045000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0045000.pt",
+          "sha256": "b42aafc0b5fd108c1b4332ff6ccb4956e0bd4fd3cd5ca88f4ca9f90206abb22d",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 45000,
+          "filename_step": 45000,
+          "filename_step_matches_internal": true,
+          "metric": 0.810546051058224,
+          "best_val_tss": 0.810546051058224,
+          "last_val_tss": 0.810546051058224,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.809460274728148,
+            "best_step": 41000,
+            "counter": 3,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0046000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0046000.pt",
+          "sha256": "5b952024c89254bfdc900d221c0ccaf114f5b47aedf578dce2e30627b3730ec3",
+          "bytes": 12010979,
+          "role": "primary_candidate_but_offline_eval_missing",
+          "internal_step": 46000,
+          "filename_step": 46000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8103615832478569,
+          "best_val_tss": 0.810546051058224,
+          "last_val_tss": 0.8103615832478569,
+          "consecutive_drops": 1,
+          "early_stopping_state": {
+            "best_metric": 0.809460274728148,
+            "best_step": 41000,
+            "counter": 4,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        }
+      ],
+      "training_ema_diagnostics": [
+        {
+          "step": 41000,
+          "timestamp": "2026-09-04 16:41:01",
+          "mean_tss": 0.8095,
+          "tss_24h": 0.7813,
+          "max_tss": 0.8413,
+          "per_horizon_tss": {
+            "6h": 0.841,
+            "12h": 0.806,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.809460274728148,
+          "source_lines": {
+            "selection_summary": 74,
+            "6h": 75,
+            "12h": 76,
+            "24h": 77
+          }
+        },
+        {
+          "step": 42000,
+          "timestamp": "2026-09-04 16:45:50",
+          "mean_tss": 0.8093,
+          "tss_24h": 0.7796,
+          "max_tss": 0.8418,
+          "per_horizon_tss": {
+            "6h": 0.842,
+            "12h": 0.806,
+            "24h": 0.78
+          },
+          "checkpoint_metric_exact": 0.8092662779873199,
+          "source_lines": {
+            "selection_summary": 114,
+            "6h": 115,
+            "12h": 116,
+            "24h": 117
+          }
+        },
+        {
+          "step": 43000,
+          "timestamp": "2026-09-04 16:50:40",
+          "mean_tss": 0.8091,
+          "tss_24h": 0.7796,
+          "max_tss": 0.8418,
+          "per_horizon_tss": {
+            "6h": 0.842,
+            "12h": 0.806,
+            "24h": 0.78
+          },
+          "checkpoint_metric_exact": 0.8090853152656406,
+          "source_lines": {
+            "selection_summary": 154,
+            "6h": 155,
+            "12h": 156,
+            "24h": 157
+          }
+        },
+        {
+          "step": 44000,
+          "timestamp": "2026-09-04 16:55:34",
+          "mean_tss": 0.8096,
+          "tss_24h": 0.7807,
+          "max_tss": 0.8407,
+          "per_horizon_tss": {
+            "6h": 0.841,
+            "12h": 0.807,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.809640251114225,
+          "source_lines": {
+            "selection_summary": 194,
+            "6h": 195,
+            "12h": 196,
+            "24h": 197
+          }
+        },
+        {
+          "step": 45000,
+          "timestamp": "2026-09-04 17:00:23",
+          "mean_tss": 0.8105,
+          "tss_24h": 0.7813,
+          "max_tss": 0.8413,
+          "per_horizon_tss": {
+            "6h": 0.841,
+            "12h": 0.809,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.810546051058224,
+          "source_lines": {
+            "selection_summary": 234,
+            "6h": 235,
+            "12h": 236,
+            "24h": 237
+          }
+        },
+        {
+          "step": 46000,
+          "timestamp": "2026-09-04 17:05:08",
+          "mean_tss": 0.8104,
+          "tss_24h": 0.7807,
+          "max_tss": 0.8413,
+          "per_horizon_tss": {
+            "6h": 0.841,
+            "12h": 0.809,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.8103615832478569,
+          "source_lines": {
+            "selection_summary": 274,
+            "6h": 275,
+            "12h": 276,
+            "24h": 277
+          }
+        }
+      ],
+      "runtime_log_evidence": {
+        "device_line": 1,
+        "lr_policy_line": 6,
+        "lr_scheduler_horizon_line": 7,
+        "ema_enabled_line": 8,
+        "resume_policy_line": 9,
+        "constant_lr_restore_line": 12,
+        "resume_line": 13,
+        "ema_restore_line": 14,
+        "strict_model_restore_line": 15,
+        "optimizer_restore_line": 16,
+        "ema_shadow_restore_line": 17,
+        "scheduler_skip_line": 18,
+        "early_stopping_restore_line": 19,
+        "step_alignment_line": 20,
+        "sampler_line": 36
+      }
+    },
+    "lowdose_tensor": {
+      "config": {
+        "path": "src/configs/flare_pinn_v5_lowdose_tensor_v3.yaml",
+        "sha256": "9876d24503472b4f93c48f3e92b645182a82a9d09d62c92bfd41d7ea9ba653d9",
+        "weak_test_basis": "tensor_product",
+        "physics_grad_scale": 0.04437884540685923,
+        "lambda_phys_schedule": [
+          [
+            0.0,
+            0.06956521739130435
+          ],
+          [
+            1.0,
+            0.06956521739130435
+          ]
+        ]
+      },
+      "log": {
+        "path": "outputs/recovery/efficacy_v5/v3_complete/v3_run/logs/lowdose_tensor.log",
+        "sha256": "48ffd480da37d55f0a7a068904240d23308fc54f603b3460cd840ccc07e44491",
+        "bytes": 36565
+      },
+      "run": {
+        "start_utc": "2026-09-04T17:05:08Z",
+        "complete_utc": "2026-09-04T17:35:32Z",
+        "return_code": 0,
+        "training_complete_log_timestamp": "2026-09-04 17:35:32",
+        "training_complete_log_line": 279,
+        "final_log_best_validation_tss": 0.8107
+      },
+      "checkpoint_dir": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234",
+      "in_training_metric_weights": "ema",
+      "checkpoint_metadata_common": {
+        "top_level_keys": [
+          "step",
+          "model_state_dict",
+          "optimizer_state_dict",
+          "metric",
+          "best_val_tss",
+          "consecutive_drops",
+          "last_val_tss",
+          "scheduler_state_dict",
+          "ema_state_dict",
+          "early_stopping_state"
+        ],
+        "zip_entries": 372,
+        "model_state_entries": 93,
+        "optimizer_state_entries": 72,
+        "optimizer_param_groups": 1,
+        "optimizer_lr": 1.2997162960954744e-06,
+        "ema_top_level_keys": [
+          "decay",
+          "shadow"
+        ],
+        "ema_decay": 0.995,
+        "ema_shadow_entries": 72,
+        "scheduler_state": {
+          "type": "constant",
+          "n_steps": 0
+        }
+      },
+      "checkpoints": [
+        {
+          "filename": "best_model.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/best_model.pt",
+          "sha256": "2d3407c46c61c2aaa3e3dcb54a44af48c386c3c61935b64562d4a31c91e26632",
+          "bytes": 12006079,
+          "role": "best_model_prohibited",
+          "internal_step": 46000,
+          "filename_step": null,
+          "filename_step_matches_internal": null,
+          "metric": 0.8107244950268179,
+          "best_val_tss": 0.8107244950268179,
+          "last_val_tss": 0.8107244950268179,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.8096361999436564,
+            "best_step": 41000,
+            "counter": 4,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0041000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0041000.pt",
+          "sha256": "299a78b0b72167ffbd7f1774dc20c89571ea7be0feabcae54d49cfcdc0bdce46",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 41000,
+          "filename_step": 41000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8096361999436564,
+          "best_val_tss": 0.8096361999436564,
+          "last_val_tss": 0.8096361999436564,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": "negative_infinity",
+            "best_step": 40000,
+            "counter": 0,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0042000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0042000.pt",
+          "sha256": "2a5558950ea926cefa45ea81ecaa4b88b862c85ea080a90d372fd655a1067d73",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 42000,
+          "filename_step": 42000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8089008474552735,
+          "best_val_tss": 0.8096361999436564,
+          "last_val_tss": 0.8089008474552735,
+          "consecutive_drops": 1,
+          "early_stopping_state": {
+            "best_metric": 0.8096361999436564,
+            "best_step": 41000,
+            "counter": 0,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0043000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0043000.pt",
+          "sha256": "6808357026519c1c731654941b78b1ac49cc5545c6053f84fedee4b261ac0774",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 43000,
+          "filename_step": 43000,
+          "filename_step_matches_internal": true,
+          "metric": 0.809635213608054,
+          "best_val_tss": 0.8096361999436564,
+          "last_val_tss": 0.809635213608054,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.8096361999436564,
+            "best_step": 41000,
+            "counter": 1,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0044000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0044000.pt",
+          "sha256": "008620bf8c66a12744f8ab66b6025ed4431bab679e41880d00fc0ccb89e5955a",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 44000,
+          "filename_step": 44000,
+          "filename_step_matches_internal": true,
+          "metric": 0.810003162893186,
+          "best_val_tss": 0.810003162893186,
+          "last_val_tss": 0.810003162893186,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.8096361999436564,
+            "best_step": 41000,
+            "counter": 2,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0045000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0045000.pt",
+          "sha256": "790033ce760f1db2b1074484a50ed773a822dd893bc498456f5fad9f0151a19d",
+          "bytes": 12010979,
+          "role": "diagnostic_only",
+          "internal_step": 45000,
+          "filename_step": 45000,
+          "filename_step_matches_internal": true,
+          "metric": 0.810546051058224,
+          "best_val_tss": 0.810546051058224,
+          "last_val_tss": 0.810546051058224,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.8096361999436564,
+            "best_step": 41000,
+            "counter": 3,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        },
+        {
+          "filename": "checkpoint_step_0046000.pt",
+          "path": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0046000.pt",
+          "sha256": "3f23383c7cd645ef19190c5baec67eb38bb82e3e3a56a788c143b3a6aa278ff4",
+          "bytes": 12010979,
+          "role": "primary_candidate_but_offline_eval_missing",
+          "internal_step": 46000,
+          "filename_step": 46000,
+          "filename_step_matches_internal": true,
+          "metric": 0.8107244950268179,
+          "best_val_tss": 0.8107244950268179,
+          "last_val_tss": 0.8107244950268179,
+          "consecutive_drops": 0,
+          "early_stopping_state": {
+            "best_metric": 0.8096361999436564,
+            "best_step": 41000,
+            "counter": 4,
+            "patience": 12,
+            "min_delta": 0.003
+          }
+        }
+      ],
+      "training_ema_diagnostics": [
+        {
+          "step": 41000,
+          "timestamp": "2026-09-04 17:10:45",
+          "mean_tss": 0.8096,
+          "tss_24h": 0.7813,
+          "max_tss": 0.8424,
+          "per_horizon_tss": {
+            "6h": 0.842,
+            "12h": 0.805,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.8096361999436564,
+          "source_lines": {
+            "selection_summary": 74,
+            "6h": 75,
+            "12h": 76,
+            "24h": 77
+          }
+        },
+        {
+          "step": 42000,
+          "timestamp": "2026-09-04 17:15:41",
+          "mean_tss": 0.8089,
+          "tss_24h": 0.7791,
+          "max_tss": 0.8418,
+          "per_horizon_tss": {
+            "6h": 0.842,
+            "12h": 0.806,
+            "24h": 0.779
+          },
+          "checkpoint_metric_exact": 0.8089008474552735,
+          "source_lines": {
+            "selection_summary": 114,
+            "6h": 115,
+            "12h": 116,
+            "24h": 117
+          }
+        },
+        {
+          "step": 43000,
+          "timestamp": "2026-09-04 17:20:39",
+          "mean_tss": 0.8096,
+          "tss_24h": 0.7807,
+          "max_tss": 0.8418,
+          "per_horizon_tss": {
+            "6h": 0.842,
+            "12h": 0.806,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.809635213608054,
+          "source_lines": {
+            "selection_summary": 154,
+            "6h": 155,
+            "12h": 156,
+            "24h": 157
+          }
+        },
+        {
+          "step": 44000,
+          "timestamp": "2026-09-04 17:25:38",
+          "mean_tss": 0.81,
+          "tss_24h": 0.7813,
+          "max_tss": 0.8413,
+          "per_horizon_tss": {
+            "6h": 0.841,
+            "12h": 0.807,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.810003162893186,
+          "source_lines": {
+            "selection_summary": 192,
+            "6h": 193,
+            "12h": 194,
+            "24h": 195
+          }
+        },
+        {
+          "step": 45000,
+          "timestamp": "2026-09-04 17:30:33",
+          "mean_tss": 0.8105,
+          "tss_24h": 0.7813,
+          "max_tss": 0.8413,
+          "per_horizon_tss": {
+            "6h": 0.841,
+            "12h": 0.809,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.810546051058224,
+          "source_lines": {
+            "selection_summary": 232,
+            "6h": 233,
+            "12h": 234,
+            "24h": 235
+          }
+        },
+        {
+          "step": 46000,
+          "timestamp": "2026-09-04 17:35:32",
+          "mean_tss": 0.8107,
+          "tss_24h": 0.7813,
+          "max_tss": 0.8418,
+          "per_horizon_tss": {
+            "6h": 0.842,
+            "12h": 0.809,
+            "24h": 0.781
+          },
+          "checkpoint_metric_exact": 0.8107244950268179,
+          "source_lines": {
+            "selection_summary": 272,
+            "6h": 273,
+            "12h": 274,
+            "24h": 275
+          }
+        }
+      ],
+      "runtime_log_evidence": {
+        "device_line": 1,
+        "lr_policy_line": 6,
+        "lr_scheduler_horizon_line": 7,
+        "ema_enabled_line": 8,
+        "resume_policy_line": 9,
+        "constant_lr_restore_line": 12,
+        "resume_line": 13,
+        "ema_restore_line": 14,
+        "strict_model_restore_line": 15,
+        "optimizer_restore_line": 16,
+        "ema_shadow_restore_line": 17,
+        "scheduler_skip_line": 18,
+        "early_stopping_restore_line": 19,
+        "step_alignment_line": 20,
+        "sampler_line": 36
+      }
+    }
+  },
+  "primary_46000": {
+    "step": 46000,
+    "weights": "ema",
+    "metric": "mean sweep-TSS over 6h, 12h, and 24h",
+    "role": "sole_primary",
+    "offline_primary_evaluation_completed": false,
+    "values_are_in_training_diagnostics": true,
+    "arms": {
+      "no_physics": {
+        "logged": {
+          "mean_tss": 0.8085,
+          "tss_24h": 0.7796,
+          "max_tss": 0.8402,
+          "per_horizon_tss": {
+            "6h": 0.84,
+            "12h": 0.806,
+            "24h": 0.78
+          }
+        },
+        "checkpoint_metric_exact_mean_tss": 0.808549983359859,
+        "checkpoint": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0046000.pt"
+      },
+      "lowdose_legacy": {
+        "logged": {
+          "mean_tss": 0.8104,
+          "tss_24h": 0.7807,
+          "max_tss": 0.8413,
+          "per_horizon_tss": {
+            "6h": 0.841,
+            "12h": 0.809,
+            "24h": 0.781
+          }
+        },
+        "checkpoint_metric_exact_mean_tss": 0.8103615832478569,
+        "checkpoint": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0046000.pt"
+      },
+      "lowdose_tensor": {
+        "logged": {
+          "mean_tss": 0.8107,
+          "tss_24h": 0.7813,
+          "max_tss": 0.8418,
+          "per_horizon_tss": {
+            "6h": 0.842,
+            "12h": 0.809,
+            "24h": 0.781
+          }
+        },
+        "checkpoint_metric_exact_mean_tss": 0.8107244950268179,
+        "checkpoint": "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0046000.pt"
+      }
+    }
+  },
+  "pair_differences": {
+    "comparison_direction": "candidate minus comparator",
+    "basis": "exact checkpoint metric at step 46000 for each in-training EMA arm minus exact anchor mean_tss; diagnostic arithmetic only because raw offline evaluation is incomplete",
+    "mde_mean_tss": 0.009,
+    "values": {
+      "T-anchor": 0.0045949080417144,
+      "T-N": 0.0021745116669589,
+      "T-L": 0.000362911778961,
+      "L-anchor": 0.0042319962627534,
+      "L-N": 0.0018115998879979
+    },
+    "logged_4dp_mean_values": {
+      "tensor_46000": 0.8107,
+      "no_physics_46000": 0.8085,
+      "legacy_46000": 0.8104,
+      "anchor_40000": 0.8061295869851035
+    },
+    "logged_4dp_differences": {
+      "T-anchor": 0.0045704130148965,
+      "T-N": 0.0022,
+      "T-L": 0.0003,
+      "L-anchor": 0.0042704130148965,
+      "L-N": 0.0019
+    },
+    "hierarchy_gate_results": {
+      "priority_1_tensor_advances": {
+        "condition": "T-anchor >= 0.009 and T-N >= 0.009 and T-L >= 0.009",
+        "T-anchor_ge_mde": false,
+        "T-N_ge_mde": false,
+        "T-L_ge_mde": false,
+        "passes": false
+      },
+      "priority_2_legacy_advances": {
+        "condition": "tensor gate fails and L-anchor >= 0.009 and L-N >= 0.009",
+        "L-anchor_ge_mde": false,
+        "L-N_ge_mde": false,
+        "passes": false
+      },
+      "priority_3_stop": {
+        "condition": "both advancement gates fail",
+        "passes": true
+      }
+    }
+  },
+  "runtime_verification": {
+    "device": {
+      "requested": "cuda",
+      "selected": "cuda",
+      "verified_for_all_arms": true
+    },
+    "strict_lr": {
+      "policy": "constant",
+      "lr": 1.2997162960954744e-06,
+      "logged_display": "1.30e-06",
+      "scheduler_horizon": 20000,
+      "train_steps": 46000,
+      "warmup": 0,
+      "schedule_steps": 0,
+      "constant_lr_held_at_checkpoint_value": true,
+      "verified_for_all_arms": true
+    },
+    "strict_restore": {
+      "resume_step": 40000,
+      "model_state_strict": true,
+      "optimizer_state_restored": true,
+      "optimizer_parameters_restored": 72,
+      "ema_state_restored": true,
+      "ema_shadow_tensors_restored": 72,
+      "scheduler_state_restored": false,
+      "scheduler_skipped_by_policy": true,
+      "early_stopping_state_restored": true,
+      "step_alignment_verified": true,
+      "verified_for_all_arms": true
+    },
+    "sampling": {
+      "training_sampler": "weighted",
+      "positive_multiplier": 2.0,
+      "collocation_mode_for_physics_arms": "stratified_time_uniform",
+      "collocation_n_for_physics_arms": 4096,
+      "collocation_points_per_time": "83-84",
+      "quadrature_weight_mode": "uniform",
+      "adaptive_resampling_configured": false,
+      "alpha_start": 0.0,
+      "alpha_end": 0.0,
+      "no_physics_collocation_diagnostics": "not_logged_physics_term_zero_by_schedule",
+      "physics_arm_weak_moment_records_per_arm": 60,
+      "physics_arm_collocation_records_per_arm": 60,
+      "verified_from_logs_and_configs": true
+    },
+    "no_clipping": {
+      "physics_raw_loss_clip": 0.0,
+      "physics_weak_moment_clip": 0.0,
+      "physics_gradient_clamping_enabled": false,
+      "physics_arm_log_weak_moment_clipped_values": [
+        0
+      ],
+      "physics_arm_log_collocation_clip_values": [
+        0.0
+      ],
+      "physics_arm_log_saturated_values": [
+        false
+      ],
+      "no_physics_arm_physics_clipping": "not_applicable_physics_disabled",
+      "training_grad_clip_configured": 1.0,
+      "interpretation": "No physics raw-loss, weak-moment, or physics-gradient clamping was configured or observed; the separate train.grad_clip field is 1.0 in all three frozen configs.",
+      "verified_from_logs_and_configs": true
+    },
+    "metric_semantics": {
+      "evaluate_default_uses_ema": true,
+      "in_training_tss_is_sweep_tss": true,
+      "in_training_threshold_sweep_n": 1024,
+      "selection_metric": "mean_tss",
+      "implementation_reference": "src/train.py evaluate() and select_validation_metric()"
+    }
+  },
+  "offline_evaluation": {
+    "status": "not_completed",
+    "raw_offline_eval_completed": false,
+    "ema_offline_primary_eval_completed": false,
+    "expected_tool": "tools/validation/batch_validate_checkpoints.py",
+    "required_primary_step": 46000,
+    "required_weights": "ema",
+    "raw_weight_mode": "required_diagnostic_only",
+    "observed_offline_validation_artifacts": [],
+    "interpretation": "The copied artifacts contain in-training validation logs and checkpoints only. No raw or EMA batch-validation archive was completed, so the formal offline primary endpoint is unavailable.",
+    "do_not_promote_in_training_diagnostics_to_formal_offline_endpoint": true
+  },
+  "decision": {
+    "result": "STOP",
+    "branch": "priority_3_stop",
+    "formal_primary_decision_evaluable": false,
+    "reason": "STOP: raw offline evaluation was not completed, and the in-training step-46000 EMA diagnostic differences fail both MDE advancement gates.",
+    "mde_mean_tss": 0.009,
+    "advancement": false,
+    "no_advancement": true,
+    "confirmation": false,
+    "no_confirmation": true,
+    "test": false,
+    "no_test": true,
+    "confirmation_launched": false,
+    "test_evaluation_launched": false
+  },
+  "run_timeline": {
+    "start_utc": "2026-09-04T16:10:53Z",
+    "all_complete_utc": "2026-09-04T17:35:32Z",
+    "arms": {
+      "no_physics": {
+        "start_utc": "2026-09-04T16:10:53Z",
+        "complete_utc": "2026-09-04T16:35:27Z",
+        "return_code": 0
+      },
+      "lowdose_legacy": {
+        "start_utc": "2026-09-04T16:35:27Z",
+        "complete_utc": "2026-09-04T17:05:08Z",
+        "return_code": 0
+      },
+      "lowdose_tensor": {
+        "start_utc": "2026-09-04T17:05:08Z",
+        "complete_utc": "2026-09-04T17:35:32Z",
+        "return_code": 0
+      }
+    },
+    "steward_log": {
+      "path": "outputs/recovery/efficacy_v5/v3_complete/v3_run/steward.log",
+      "sha256": "3dc410bec40bf13de75b2ae2e30190e4370f0a138664128049437400d9e653e0",
+      "bytes": 433,
+      "all_complete_line": 8
+    }
+  },
+  "copied_artifacts": {
+    "root": "outputs/recovery/efficacy_v5/v3_complete",
+    "run_control_files": [
+      "outputs/recovery/efficacy_v5/v3_complete/v3_run/nohup.out",
+      "outputs/recovery/efficacy_v5/v3_complete/v3_run/steward.log",
+      "outputs/recovery/efficacy_v5/v3_complete/v3_run/steward.pid"
+    ],
+    "logs": [
+      "outputs/recovery/efficacy_v5/v3_complete/v3_run/logs/no_physics.log",
+      "outputs/recovery/efficacy_v5/v3_complete/v3_run/logs/lowdose_legacy.log",
+      "outputs/recovery/efficacy_v5/v3_complete/v3_run/logs/lowdose_tensor.log"
+    ],
+    "checkpoint_files": [
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/best_model.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0041000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0042000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0043000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0044000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0045000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/no_physics/seed1234/checkpoint_step_0046000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/best_model.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0041000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0042000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0043000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0044000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0045000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_legacy/seed1234/checkpoint_step_0046000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/best_model.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0041000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0042000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0043000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0044000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0045000.pt",
+      "outputs/recovery/efficacy_v5/v3_complete/efficacy_v5_v3/lowdose_tensor/seed1234/checkpoint_step_0046000.pt"
+    ],
+    "counts": {
+      "logs": 3,
+      "checkpoints": 21,
+      "run_control_files": 3
+    },
+    "run_control_hashes": {
+      "outputs/recovery/efficacy_v5/v3_complete/v3_run/nohup.out": {
+        "sha256": "3db925038ceb4295d2703517651377d50b7023ab6640cfd4c18329339beb98e8",
+        "bytes": 91295
+      },
+      "outputs/recovery/efficacy_v5/v3_complete/v3_run/steward.log": {
+        "sha256": "3dc410bec40bf13de75b2ae2e30190e4370f0a138664128049437400d9e653e0",
+        "bytes": 433
+      },
+      "outputs/recovery/efficacy_v5/v3_complete/v3_run/steward.pid": {
+        "sha256": "c78a99d2279a1f64709a9adee6bff80120f18bdd0ae7bdc220443d5750f36a92",
+        "bytes": 4
+      }
+    }
+  },
+  "held_out_test_accessed": false,
+  "pod_stopped": true,
+  "validation": {
+    "json_parseable": true,
+    "artifact_hashes_checked": true,
+    "checkpoint_metadata_checked": true,
+    "metric_rows_checked": true,
+    "arithmetic_pair_differences_checked": true,
+    "mde_hierarchy_checked": true,
+    "no_test_access_check": true,
+    "deterministic_serialization": "UTF-8 JSON with fixed indentation and final newline; receipt SHA reported after write"
+  }
+}

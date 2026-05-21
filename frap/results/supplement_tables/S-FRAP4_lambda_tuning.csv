@@ -1,0 +1,15 @@
+# S-FRAP4_lambda_tuning: **Table S-FRAP4.** Lambda tuning sweep results on the clean synthetic development stack at the matched 10000-step training length. The pilot-tuning rule prioritized D recovery among stable runs with low validation MSE; validation MSE was used as a reconstruction-quality constraint rather than the primary objective. Noisy synthetic and experimental stacks were not used during $\lambda$ selection.
+method,lambda,val_mse (clean synthetic dev stack),D recovered,D % err vs D_norm_true=0.01975,stable / NaN,selected,selection note
+strong,0.0100,8.135e-05,0.0149,24.76,stable,no,
+strong,0.1000,1.847e-05,0.0172,12.77,stable,no,
+strong,1.0000,5.985e-05,0.0193,2.15,stable,yes,SELECTED via pilot-tuning calibration rule (prioritize D_norm recovery among stable low-val_mse runs)
+strong,10.0000,5.645e-05,0.0163,17.23,stable,no,
+strong,100.0000,1.979e-04,0.0115,41.68,stable,no,
+weak,1.0000,1.105e-04,0.0206,4.40,stable,no,
+weak,10.0000,7.131e-05,0.0204,3.14,stable,no,
+weak,30.0000,5.142e-05,0.0202,2.27,stable,yes,SELECTED via pilot-tuning calibration rule (prioritize D_norm recovery among stable low-val_mse runs)
+weak,100.0000,1.288e-04,0.0195,1.19,stable,no,
+weak,300.0000,3.994e-05,0.0179,9.50,stable,no,
+weak,1000.0000,5.786e-05,0.0159,19.51,stable,no,
+weak,3000.0000,1.462e-04,0.0131,33.73,stable,no,
+weak,10000.0000,2.192e-04,0.0113,42.75,stable,no,
