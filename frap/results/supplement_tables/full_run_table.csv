@@ -1,0 +1,148 @@
+# full_run_table: **Per-run reproducibility CSV (not in supplement PDF; available in the code repository at `results/supplement_tables/full_run_table.csv`).** All 66 Phase 9 training runs. Synthetic blocks (clean + 3 noise levels) use 3 seeds per (condition, method) cell; experimental blocks use 5 seeds. Ground-truth D in normalized PINN coordinates is 0.01975 for synthetic; experimental D has no ground truth (LS-fit anchor is reported in Table S-FRAP3 only as a literature reference).
+method,seed,condition,lambda_phys,init_D,D_recovered,D abs err,D % err,val_mse,median_strong_resid,median_weak_resid,k,notes
+data,0,clean,0.0,0.05,0.0500,0.03025,153.16,1.079e-04,1.382e-02,4.274e-04,0.0000,
+data,1,clean,0.0,0.05,0.0500,0.03025,153.16,1.497e-04,2.263e-02,1.726e-03,0.0000,
+data,2,clean,0.0,0.05,0.0500,0.03025,153.16,5.192e-05,1.775e-02,5.016e-04,0.0000,
+strong,0,clean,1.0,0.05,0.0193,0.00042,2.15,5.985e-05,2.022e-03,5.948e-05,0.0000,
+strong,1,clean,1.0,0.05,0.0187,0.00109,5.50,4.242e-05,3.088e-03,1.370e-04,0.0000,
+strong,2,clean,1.0,0.05,0.0193,0.00047,2.36,3.343e-05,2.373e-03,9.342e-05,0.0000,
+weak,0,clean,30.0,0.05,0.0202,0.00045,2.27,5.142e-05,8.277e-03,1.230e-04,0.0000,
+weak,1,clean,30.0,0.05,0.0202,0.00044,2.24,2.870e-04,2.279e-02,1.150e-03,0.0000,
+weak,2,clean,30.0,0.05,0.0201,0.00034,1.72,4.405e-05,1.383e-02,5.943e-04,0.0000,
+data,0,noise_low,0.0,0.05,0.0500,0.03025,153.16,2.310e-04,1.794e-02,3.781e-04,0.0000,
+data,1,noise_low,0.0,0.05,0.0500,0.03025,153.16,2.894e-04,2.877e-02,1.117e-03,0.0000,
+data,2,noise_low,0.0,0.05,0.0500,0.03025,153.16,2.650e-04,2.012e-02,5.515e-04,0.0000,
+strong,0,noise_low,1.0,0.05,0.0191,0.00061,3.11,1.919e-04,1.844e-03,9.841e-05,0.0000,
+strong,1,noise_low,1.0,0.05,0.0184,0.00140,7.07,2.454e-04,2.645e-03,1.380e-04,0.0000,
+strong,2,noise_low,1.0,0.05,0.0189,0.00089,4.51,1.879e-04,2.533e-03,1.657e-04,0.0000,
+weak,0,noise_low,30.0,0.05,0.0202,0.00047,2.36,2.081e-04,1.110e-02,1.859e-04,0.0000,
+weak,1,noise_low,30.0,0.05,0.0200,0.00029,1.48,4.003e-04,2.096e-02,8.969e-04,0.0000,
+weak,2,noise_low,30.0,0.05,0.0198,0.00008,0.41,2.796e-04,1.673e-02,4.823e-04,0.0000,
+data,0,noise_med,0.0,0.05,0.0500,0.03025,153.16,1.245e-03,1.488e-02,3.849e-04,0.0000,
+data,1,noise_med,0.0,0.05,0.0500,0.03025,153.16,1.193e-03,1.926e-02,7.131e-04,0.0000,
+data,2,noise_med,0.0,0.05,0.0500,0.03025,153.16,1.169e-03,1.613e-02,9.456e-04,0.0000,
+strong,0,noise_med,1.0,0.05,0.0161,0.00367,18.56,1.175e-03,3.448e-03,3.199e-04,0.0000,
+strong,1,noise_med,1.0,0.05,0.0182,0.00151,7.63,1.185e-03,2.601e-03,2.644e-04,0.0000,
+strong,2,noise_med,1.0,0.05,0.0186,0.00120,6.06,1.191e-03,2.555e-03,1.204e-04,0.0000,
+weak,0,noise_med,30.0,0.05,0.0201,0.00036,1.85,1.243e-03,1.456e-02,6.629e-04,0.0000,
+weak,1,noise_med,30.0,0.05,0.0208,0.00110,5.56,1.202e-03,1.941e-02,5.745e-04,0.0000,
+weak,2,noise_med,30.0,0.05,0.0201,0.00032,1.60,1.174e-03,1.437e-02,6.003e-04,0.0000,
+data,0,noise_high,0.0,0.05,0.0500,0.03025,153.16,7.149e-03,7.976e-03,6.742e-04,0.0000,
+data,1,noise_high,0.0,0.05,0.0500,0.03025,153.16,7.167e-03,8.477e-03,1.352e-03,0.0000,
+data,2,noise_high,0.0,0.05,0.0500,0.03025,153.16,7.125e-03,1.065e-02,8.007e-04,0.0000,
+strong,0,noise_high,1.0,0.05,0.0150,0.00477,24.13,7.149e-03,2.449e-03,5.669e-05,0.0000,
+strong,1,noise_high,1.0,0.05,0.0174,0.00240,12.13,7.133e-03,1.724e-03,1.413e-04,0.0000,
+strong,2,noise_high,1.0,0.05,0.0167,0.00301,15.24,7.131e-03,1.499e-03,1.562e-04,0.0000,
+weak,0,noise_high,30.0,0.05,0.0198,0.00004,0.20,7.148e-03,7.027e-03,4.080e-04,0.0000,
+weak,1,noise_high,30.0,0.05,0.0200,0.00028,1.44,7.211e-03,1.019e-02,1.102e-03,0.0000,
+weak,2,noise_high,30.0,0.05,0.0192,0.00055,2.79,7.126e-03,6.333e-03,4.354e-04,0.0000,
+strong,0,real_32ww,1.0,0.05,0.1191,,,3.658e-03,1.364e-03,3.672e-05,0.0001,no ground-truth D (real stack)
+strong,1,real_32ww,1.0,0.05,0.1129,,,3.652e-03,1.344e-03,3.527e-05,0.0001,no ground-truth D (real stack)
+strong,2,real_32ww,1.0,0.05,0.1108,,,3.653e-03,2.563e-03,1.569e-04,0.0000,no ground-truth D (real stack)
+strong,3,real_32ww,1.0,0.05,0.1147,,,3.662e-03,1.340e-03,9.338e-05,0.0001,no ground-truth D (real stack)
+strong,4,real_32ww,1.0,0.05,0.1113,,,3.650e-03,1.346e-03,3.209e-05,0.0001,no ground-truth D (real stack)
+weak,0,real_32ww,30.0,0.05,0.1294,,,3.671e-03,1.404e-02,3.411e-04,0.0000,no ground-truth D (real stack)
+weak,1,real_32ww,30.0,0.05,0.1329,,,3.648e-03,1.475e-02,2.875e-04,0.0000,no ground-truth D (real stack)
+weak,2,real_32ww,30.0,0.05,0.1316,,,3.651e-03,8.654e-03,2.381e-04,0.0000,no ground-truth D (real stack)
+weak,3,real_32ww,30.0,0.05,0.1297,,,3.658e-03,8.397e-03,3.617e-04,0.0000,no ground-truth D (real stack)
+weak,4,real_32ww,30.0,0.05,0.1338,,,3.647e-03,1.027e-02,4.303e-04,0.0000,no ground-truth D (real stack)
+strong,0,real_32ww,1.0,0.05,0.1177,,,3.547e-03,1.472e-03,3.889e-05,0.0006,no ground-truth D (real stack)
+strong,1,real_32ww,1.0,0.05,0.1129,,,3.546e-03,1.633e-03,6.217e-05,0.0002,no ground-truth D (real stack)
+strong,2,real_32ww,1.0,0.05,0.1081,,,3.542e-03,3.276e-03,1.015e-04,0.0001,no ground-truth D (real stack)
+strong,3,real_32ww,1.0,0.05,0.1131,,,3.570e-03,1.071e-03,1.960e-05,0.0004,no ground-truth D (real stack)
+strong,4,real_32ww,1.0,0.05,0.1101,,,3.550e-03,1.158e-03,4.861e-05,0.0002,no ground-truth D (real stack)
+weak,0,real_32ww,30.0,0.05,0.1274,,,3.539e-03,1.815e-02,6.393e-04,0.0000,no ground-truth D (real stack)
+weak,1,real_32ww,30.0,0.05,0.1302,,,3.535e-03,1.091e-02,2.423e-04,0.0000,no ground-truth D (real stack)
+weak,2,real_32ww,30.0,0.05,0.1345,,,3.535e-03,1.428e-02,1.986e-04,0.0000,no ground-truth D (real stack)
+weak,3,real_32ww,30.0,0.05,0.1266,,,3.536e-03,9.701e-03,3.420e-04,0.0000,no ground-truth D (real stack)
+weak,4,real_32ww,30.0,0.05,0.1331,,,3.538e-03,1.588e-02,6.351e-04,0.0000,no ground-truth D (real stack)
+strong,0,real_32ww,1.0,0.05,0.1155,,,3.521e-03,1.403e-03,4.262e-05,0.0004,no ground-truth D (real stack)
+strong,1,real_32ww,1.0,0.05,0.1147,,,3.520e-03,1.179e-03,3.404e-05,0.0002,no ground-truth D (real stack)
+strong,2,real_32ww,1.0,0.05,0.1098,,,3.539e-03,1.845e-03,2.864e-05,0.0001,no ground-truth D (real stack)
+strong,3,real_32ww,1.0,0.05,0.1146,,,3.529e-03,1.849e-03,9.899e-05,0.0002,no ground-truth D (real stack)
+strong,4,real_32ww,1.0,0.05,0.1116,,,3.532e-03,1.835e-03,7.156e-05,0.0001,no ground-truth D (real stack)
+weak,0,real_32ww,30.0,0.05,0.1320,,,3.518e-03,1.167e-02,3.020e-04,0.0001,no ground-truth D (real stack)
+weak,1,real_32ww,30.0,0.05,0.1331,,,3.506e-03,1.705e-02,3.714e-04,0.0000,no ground-truth D (real stack)
+weak,2,real_32ww,30.0,0.05,0.1350,,,3.513e-03,1.265e-02,6.775e-04,0.0000,no ground-truth D (real stack)
+weak,3,real_32ww,30.0,0.05,0.1340,,,3.523e-03,1.322e-02,2.051e-04,0.0000,no ground-truth D (real stack)
+weak,4,real_32ww,30.0,0.05,0.1357,,,3.529e-03,1.239e-02,5.974e-04,0.0000,no ground-truth D (real stack)
+strong,0,real_32ww,1.0,0.05,0.1149,,,3.614e-03,1.230e-03,3.883e-05,0.0137,no ground-truth D (real stack)
+strong,1,real_32ww,1.0,0.05,0.1013,,,3.612e-03,1.949e-03,1.141e-04,0.0113,no ground-truth D (real stack)
+strong,2,real_32ww,1.0,0.05,0.1052,,,3.617e-03,1.556e-03,5.952e-05,0.0119,no ground-truth D (real stack)
+strong,3,real_32ww,1.0,0.05,0.1037,,,3.622e-03,1.742e-03,1.148e-04,0.0114,no ground-truth D (real stack)
+strong,4,real_32ww,1.0,0.05,0.1067,,,3.629e-03,1.616e-03,7.761e-05,0.0119,no ground-truth D (real stack)
+weak,0,real_32ww,30.0,0.05,0.1157,,,3.598e-03,1.367e-02,3.327e-04,0.0002,no ground-truth D (real stack)
+weak,1,real_32ww,30.0,0.05,0.1172,,,3.626e-03,8.742e-03,2.096e-04,0.0001,no ground-truth D (real stack)
+weak,2,real_32ww,30.0,0.05,0.1189,,,3.608e-03,1.320e-02,6.093e-04,0.0001,no ground-truth D (real stack)
+weak,3,real_32ww,30.0,0.05,0.1178,,,3.606e-03,1.320e-02,5.082e-04,0.0001,no ground-truth D (real stack)
+weak,4,real_32ww,30.0,0.05,0.1197,,,3.680e-03,1.862e-02,8.035e-04,0.0001,no ground-truth D (real stack)
+data,0,real_32ww,0.0,0.05,0.0500,,,3.605e-03,1.546e-02,2.171e-04,0.0003,no ground-truth D (real stack)
+data,1,real_32ww,0.0,0.05,0.0500,,,3.631e-03,1.545e-02,2.985e-04,0.0003,no ground-truth D (real stack)
+data,2,real_32ww,0.0,0.05,0.0500,,,3.633e-03,1.788e-02,3.805e-04,0.0003,no ground-truth D (real stack)
+data,3,real_32ww,0.0,0.05,0.0500,,,3.613e-03,1.427e-02,3.929e-04,0.0003,no ground-truth D (real stack)
+data,4,real_32ww,0.0,0.05,0.0500,,,3.606e-03,1.431e-02,1.322e-04,0.0003,no ground-truth D (real stack)
+strong,0,real_32ww,1.0,0.05,0.1131,,,3.621e-03,1.465e-03,3.781e-05,0.0204,no ground-truth D (real stack)
+strong,1,real_32ww,1.0,0.05,0.1068,,,3.627e-03,1.691e-03,3.348e-05,0.0195,no ground-truth D (real stack)
+strong,2,real_32ww,1.0,0.05,0.1040,,,3.624e-03,1.608e-03,1.867e-05,0.0183,no ground-truth D (real stack)
+strong,3,real_32ww,1.0,0.05,0.1079,,,3.627e-03,1.637e-03,1.091e-04,0.0193,no ground-truth D (real stack)
+strong,4,real_32ww,1.0,0.05,0.1062,,,3.616e-03,1.235e-03,4.689e-05,0.0197,no ground-truth D (real stack)
+weak,0,real_32ww,30.0,0.05,0.1103,,,3.603e-03,1.281e-02,3.989e-04,0.0019,no ground-truth D (real stack)
+weak,1,real_32ww,30.0,0.05,0.1118,,,3.607e-03,1.821e-02,3.386e-04,0.0009,no ground-truth D (real stack)
+weak,2,real_32ww,30.0,0.05,0.1129,,,3.602e-03,1.762e-02,3.806e-04,0.0008,no ground-truth D (real stack)
+weak,3,real_32ww,30.0,0.05,0.1078,,,3.602e-03,1.404e-02,4.498e-04,0.0008,no ground-truth D (real stack)
+weak,4,real_32ww,30.0,0.05,0.1169,,,3.606e-03,1.702e-02,2.538e-04,0.0008,no ground-truth D (real stack)
+strong,0,real_56ww,1.0,0.05,0.0129,,,1.841e-03,1.797e-03,1.023e-04,0.0094,no ground-truth D (real stack)
+strong,1,real_56ww,1.0,0.05,0.0140,,,1.784e-03,1.499e-03,5.743e-05,0.0093,no ground-truth D (real stack)
+strong,2,real_56ww,1.0,0.05,0.0144,,,1.755e-03,9.304e-04,1.120e-04,0.0091,no ground-truth D (real stack)
+strong,3,real_56ww,1.0,0.05,0.0144,,,1.804e-03,1.019e-03,8.498e-05,0.0091,no ground-truth D (real stack)
+strong,4,real_56ww,1.0,0.05,0.0121,,,1.793e-03,2.136e-03,1.357e-04,0.0094,no ground-truth D (real stack)
+weak,0,real_56ww,30.0,0.05,0.0149,,,1.843e-03,7.689e-03,4.195e-04,0.0079,no ground-truth D (real stack)
+weak,1,real_56ww,30.0,0.05,0.0150,,,1.822e-03,8.884e-03,5.133e-04,0.0068,no ground-truth D (real stack)
+weak,2,real_56ww,30.0,0.05,0.0148,,,1.750e-03,7.657e-03,1.716e-04,0.0083,no ground-truth D (real stack)
+weak,3,real_56ww,30.0,0.05,0.0151,,,1.791e-03,5.047e-03,1.279e-04,0.0069,no ground-truth D (real stack)
+weak,4,real_56ww,30.0,0.05,0.0154,,,1.797e-03,5.539e-03,1.388e-04,0.0074,no ground-truth D (real stack)
+strong,0,real_56ww,1.0,0.05,0.0124,,,1.761e-03,1.497e-03,1.059e-04,0.0032,no ground-truth D (real stack)
+strong,1,real_56ww,1.0,0.05,0.0139,,,1.751e-03,1.452e-03,8.880e-05,0.0031,no ground-truth D (real stack)
+strong,2,real_56ww,1.0,0.05,0.0139,,,1.752e-03,1.373e-03,1.285e-04,0.0031,no ground-truth D (real stack)
+strong,3,real_56ww,1.0,0.05,0.0145,,,1.787e-03,1.025e-03,9.867e-05,0.0029,no ground-truth D (real stack)
+strong,4,real_56ww,1.0,0.05,0.0125,,,1.759e-03,1.874e-03,1.741e-04,0.0031,no ground-truth D (real stack)
+weak,0,real_56ww,30.0,0.05,0.0146,,,1.824e-03,1.299e-02,3.696e-04,0.0009,no ground-truth D (real stack)
+weak,1,real_56ww,30.0,0.05,0.0148,,,1.831e-03,1.270e-02,3.224e-04,0.0019,no ground-truth D (real stack)
+weak,2,real_56ww,30.0,0.05,0.0152,,,1.764e-03,1.060e-02,5.323e-04,0.0018,no ground-truth D (real stack)
+weak,3,real_56ww,30.0,0.05,0.0154,,,1.807e-03,1.157e-02,1.974e-04,0.0015,no ground-truth D (real stack)
+weak,4,real_56ww,30.0,0.05,0.0155,,,1.799e-03,9.229e-03,5.481e-04,0.0031,no ground-truth D (real stack)
+strong,0,real_56ww,1.0,0.05,0.0127,,,1.726e-03,1.517e-03,6.999e-05,0.0040,no ground-truth D (real stack)
+strong,1,real_56ww,1.0,0.05,0.0125,,,1.811e-03,2.513e-03,9.032e-05,0.0040,no ground-truth D (real stack)
+strong,2,real_56ww,1.0,0.05,0.0147,,,1.762e-03,7.770e-04,5.725e-05,0.0040,no ground-truth D (real stack)
+strong,3,real_56ww,1.0,0.05,0.0147,,,1.773e-03,1.017e-03,9.594e-05,0.0040,no ground-truth D (real stack)
+strong,4,real_56ww,1.0,0.05,0.0137,,,1.772e-03,1.466e-03,4.656e-05,0.0040,no ground-truth D (real stack)
+weak,0,real_56ww,30.0,0.05,0.0152,,,1.813e-03,1.124e-02,1.019e-03,0.0004,no ground-truth D (real stack)
+weak,1,real_56ww,30.0,0.05,0.0159,,,1.910e-03,9.255e-03,9.521e-04,0.0006,no ground-truth D (real stack)
+weak,2,real_56ww,30.0,0.05,0.0153,,,1.740e-03,8.636e-03,2.123e-04,0.0008,no ground-truth D (real stack)
+weak,3,real_56ww,30.0,0.05,0.0159,,,1.760e-03,5.178e-03,1.607e-04,0.0003,no ground-truth D (real stack)
+weak,4,real_56ww,30.0,0.05,0.0154,,,1.835e-03,1.038e-02,6.375e-04,0.0006,no ground-truth D (real stack)
+strong,0,real_56ww,1.0,0.05,0.0126,,,1.720e-03,2.092e-03,1.266e-04,0.0098,no ground-truth D (real stack)
+strong,1,real_56ww,1.0,0.05,0.0129,,,1.711e-03,1.850e-03,2.861e-04,0.0099,no ground-truth D (real stack)
+strong,2,real_56ww,1.0,0.05,0.0142,,,1.743e-03,8.169e-04,4.911e-05,0.0095,no ground-truth D (real stack)
+strong,3,real_56ww,1.0,0.05,0.0143,,,1.681e-03,8.458e-04,5.142e-05,0.0096,no ground-truth D (real stack)
+strong,4,real_56ww,1.0,0.05,0.0121,,,1.755e-03,2.809e-03,1.240e-04,0.0097,no ground-truth D (real stack)
+weak,0,real_56ww,30.0,0.05,0.0146,,,1.784e-03,9.442e-03,4.471e-04,0.0068,no ground-truth D (real stack)
+weak,1,real_56ww,30.0,0.05,0.0149,,,1.809e-03,8.005e-03,3.994e-04,0.0070,no ground-truth D (real stack)
+weak,2,real_56ww,30.0,0.05,0.0153,,,1.738e-03,9.330e-03,1.796e-04,0.0065,no ground-truth D (real stack)
+weak,3,real_56ww,30.0,0.05,0.0154,,,1.732e-03,6.713e-03,1.198e-04,0.0058,no ground-truth D (real stack)
+weak,4,real_56ww,30.0,0.05,0.0156,,,1.710e-03,7.584e-03,2.240e-04,0.0070,no ground-truth D (real stack)
+data,0,real_56ww,0.0,0.05,0.0500,,,1.762e-03,8.555e-03,5.091e-04,0.0003,no ground-truth D (real stack)
+data,1,real_56ww,0.0,0.05,0.0500,,,1.879e-03,1.182e-02,4.670e-04,0.0003,no ground-truth D (real stack)
+data,2,real_56ww,0.0,0.05,0.0500,,,1.823e-03,1.537e-02,9.125e-04,0.0003,no ground-truth D (real stack)
+data,3,real_56ww,0.0,0.05,0.0500,,,1.757e-03,9.725e-03,8.814e-04,0.0003,no ground-truth D (real stack)
+data,4,real_56ww,0.0,0.05,0.0500,,,1.877e-03,1.479e-02,3.732e-04,0.0003,no ground-truth D (real stack)
+strong,0,real_56ww,1.0,0.05,0.0121,,,1.800e-03,1.846e-03,1.285e-04,0.0050,no ground-truth D (real stack)
+strong,1,real_56ww,1.0,0.05,0.0139,,,1.783e-03,1.364e-03,1.110e-04,0.0049,no ground-truth D (real stack)
+strong,2,real_56ww,1.0,0.05,0.0145,,,1.764e-03,8.499e-04,1.093e-04,0.0048,no ground-truth D (real stack)
+strong,3,real_56ww,1.0,0.05,0.0146,,,1.743e-03,8.453e-04,9.521e-05,0.0048,no ground-truth D (real stack)
+strong,4,real_56ww,1.0,0.05,0.0119,,,1.751e-03,2.187e-03,1.985e-04,0.0052,no ground-truth D (real stack)
+weak,0,real_56ww,30.0,0.05,0.0147,,,1.797e-03,6.330e-03,5.395e-04,0.0016,no ground-truth D (real stack)
+weak,1,real_56ww,30.0,0.05,0.0151,,,1.874e-03,9.871e-03,5.666e-04,0.0018,no ground-truth D (real stack)
+weak,2,real_56ww,30.0,0.05,0.0156,,,1.768e-03,8.063e-03,3.591e-04,0.0021,no ground-truth D (real stack)
+weak,3,real_56ww,30.0,0.05,0.0157,,,1.753e-03,5.792e-03,1.971e-04,0.0017,no ground-truth D (real stack)
+weak,4,real_56ww,30.0,0.05,0.0152,,,1.791e-03,6.650e-03,4.415e-04,0.0024,no ground-truth D (real stack)

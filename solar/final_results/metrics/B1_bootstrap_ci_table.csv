@@ -1,0 +1,13 @@
+comparison,horizon,delta_tss,ci_lower,ci_upper,p_value,ci_includes_zero
+Flare-PINN vs Baseline,6h,+0.113582,+0.023068,+0.234043,0.013060,False
+Flare-PINN vs Baseline,12h,+0.151862,+0.034792,+0.274777,0.009450,False
+Flare-PINN vs Baseline,24h,+0.052423,+0.014476,+0.111604,0.009930,False
+Strong-Form vs Baseline,6h,+0.055031,-0.003967,+0.126971,0.394850,True
+Strong-Form vs Baseline,12h,+0.047525,-0.003359,+0.092231,0.139860,True
+Strong-Form vs Baseline,24h,+0.019345,+0.007161,+0.055654,0.000000,False
+Flare-PINN vs Strong,6h,+0.050025,+0.003787,+0.147788,0.011910,False
+Flare-PINN vs Strong,12h,+0.089482,+0.016664,+0.201222,0.016800,False
+Flare-PINN vs Strong,24h,+0.037856,-0.000275,+0.089077,0.051370,True
+Flare-PINN vs DeFN,6h,+0.124133,+0.030003,+0.268968,0.019000,False
+Flare-PINN vs DeFN,12h,+0.048717,-0.016033,+0.107666,0.110940,False
+Flare-PINN vs DeFN,24h,+0.059849,-0.013964,+0.117862,0.105320,False

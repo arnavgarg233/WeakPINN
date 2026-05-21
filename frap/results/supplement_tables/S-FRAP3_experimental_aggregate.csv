@@ -1,0 +1,15 @@
+# S-FRAP3_experimental_aggregate: **Table S-FRAP3.** Experimental aggregate metrics across the two molecular-weight conditions, each represented by the top-5 quality-ranked stacks from the DeepFRAP dataset (5 stacks × 5 seeds = 25 runs per method per condition; 100 runs total across the experimental matrix, plus a 10-run data-only ablation included in the supplement run table). Per-stack rows give the recovered $D_{\mathrm{norm}}$ and cross-seed std for each method, with the LS-fit anchor as a literature reference (not a training target). Condition-aggregate rows give the mean cross-seed std over the 5 stacks. The GRAND MEAN row reports the headline: weak-form is more stable than strong-form on 10/10 stacks; mean stack-level std reduction is 49.0%, median 60.7%.
+row,n_seeds,LS anchor D_phys (um^2/s),LS anchor D_norm,strong mean D_norm,weak mean D_norm,strong std,weak std,std reduction (%),strong % dev vs LS,weak % dev vs LS
+32ww_010 (rank #1),5,90.939,0.1274,0.1076,0.1119,0.00304,0.00303,0.5,15.5,12.1
+32ww_006 (rank #2),5,88.091,0.1234,0.1132,0.1339,0.00218,0.00131,40.0,8.2,8.5
+32ww_004 (rank #3),5,85.713,0.1201,0.1137,0.1315,0.00300,0.00173,42.2,5.3,9.5
+32ww_005 (rank #4),5,87.538,0.1226,0.1124,0.1304,0.00323,0.00309,4.4,8.4,6.3
+32ww_014 (rank #5),5,92.453,0.1295,0.1064,0.1178,0.00463,0.00140,69.8,17.9,9.0
+32ww aggregate (mean over 5 stacks),5 stacks × 5 seeds,-,-,-,-,0.00322,0.00211,34.4 (mean stack-level reduction: 31.4%),-,-
+56ww_005 (rank #1),5,9.448,0.0132,0.0134,0.0153,0.00117,0.00037,68.4,1.4,15.3
+56ww_004 (rank #2),5,9.064,0.0127,0.0135,0.0150,0.00091,0.00021,77.0,6.7,18.5
+56ww_018 (rank #3),5,9.165,0.0128,0.0132,0.0152,0.00089,0.00034,61.8,3.1,18.1
+56ww_011 (rank #4),5,9.582,0.0134,0.0135,0.0151,0.00083,0.00034,59.6,0.3,12.4
+56ww_014 (rank #5),5,9.683,0.0136,0.0137,0.0155,0.00095,0.00032,66.7,0.7,14.6
+56ww aggregate (mean over 5 stacks),5 stacks × 5 seeds,-,-,-,-,0.00095,0.00031,67.0 (mean stack-level reduction: 66.7%),-,-
+GRAND MEAN across 10 stacks,10 stacks × 5 seeds = 50,-,-,-,-,0.00208,0.00121,41.8 (mean stack-level: 49.0%; median: 60.7%),-,-

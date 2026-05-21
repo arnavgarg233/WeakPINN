@@ -1,0 +1,78 @@
+# --- python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# --- editors / OS ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# --- env ---
+.env
+.venv/
+venv/
+env/
+*.local.yml
+
+# --- large / regenerable data (NOT in repo; instructions in domain READMEs) ---
+# Solar SHARP-derived data
+solar/data/
+solar/outputs/
+solar/checkpoints/
+
+# Solar windowed parquets
+*.parquet
+
+# FRAP raw DeepFRAP unzip + real-data derivatives (regenerable from Zenodo)
+frap/data/deepfrap/
+frap/data/deepfrap.zip
+frap/data/real_*.npz
+frap/data/mat_files.txt
+
+# Phase 9 per-run JSONs are intentionally not in the repo
+# (per-run reproducibility CSV is in results/supplement_tables/full_run_table.csv)
+frap/results/clean_*.json
+frap/results/noiselow_*.json
+frap/results/noisemed_*.json
+frap/results/noisehigh_*.json
+frap/results/real_32ww_*.json
+frap/results/real_56ww_*.json
+
+# Tuning intermediate JSONs (the canonical λ values live in config/lambda.json
+# and the curated table in results/supplement_tables/S-FRAP4_lambda_tuning.csv)
+frap/results/tune_*.json
+frap/results/tune10k_*.json
+frap/results/debug_*.json
+frap/results/*_stdout.log
+frap/results/s4_tables.txt
+frap/results/mat_audit*.txt
+frap/results/quality_screen_summary.txt
+
+# --- generic large/derived ---
+*.npz.zip
+*.h5
+*.tar.gz
+*.zip
+!frap/results/supplement_tables/*.csv
+
+# --- logs ---
+*.log
+logs/
+
+# --- ad-hoc scratch ---
+scratch/
+tmp/
